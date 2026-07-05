@@ -28,39 +28,6 @@ section {
   margin-top: 24px;
 }
 
-.section-curso__decor {
-  position: relative;
-  width: 55%;
-  max-width: 620px;
-  min-width: 320px;
-  aspect-ratio: 967 / 376;
-  margin: 0 0 32px auto;
-  overflow: hidden;
-}
-
-.decor-square {
-  position: absolute;
-  box-sizing: border-box;
-}
-
-.decor-square:nth-child(1) { left: 100%; top: 30.6%; width: 11.9%; height: 30.6%; }
-.decor-square:nth-child(2) { left: 59.2%; top: 65.4%; width: 11.9%; height: 30.9%; }
-.decor-square:nth-child(3) { left: 59.2%; top: 30.6%; width: 11.9%; height: 30.6%; }
-.decor-square:nth-child(4) { left: 72.4%; top: 100%; width: 11.9%; height: 30.3%; }
-.decor-square:nth-child(5) { left: 73.4%; top: 30.6%; width: 11.9%; height: 30.6%; }
-.decor-square:nth-child(6) { left: 87.0%; top: 30.3%; width: 11.9%; height: 30.3%; }
-.decor-square:nth-child(7) { left: 91.0%; top: 100%; width: 11.8%; height: 30.3%; }
-.decor-square:nth-child(8) { left: 11.9%; top: 100%; width: 11.9%; height: 30.6%; }
-.decor-square:nth-child(9) { left: 35.0%; top: 65.4%; width: 11.8%; height: 30.6%; }
-
-.decor-square--fill {
-  background-color: var(--verde-500);
-}
-
-.decor-square--outline {
-  border: 8px solid var(--verde-500);
-}
-
 .section-cronograma {
   text-align: left;
 }

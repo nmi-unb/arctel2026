@@ -11,3 +11,151 @@
 @import url("./components/cards.css");
 
 @import url("./pages/home.css");
+
+/* ==========================================================================
+   ILUSTRAÇÃO DE BLOCOS RETANGULARES (FIGMA - GRUPO 3)
+   ========================================================================== */
+
+.decorative-blocks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+  margin-bottom: 80px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decorative-blocks__stage {
+  position: relative;
+  width: 1180px;
+  height: 420px;
+  max-width: 100%;
+}
+
+/* Base dos blocos */
+.decorative-block {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.decorative-block--filled {
+  background-color: #5fbd7b;
+}
+
+.decorative-block--outline {
+  border: 8px solid #5fbd7b;
+  background-color: transparent;
+}
+
+/* Blocos da esquerda */
+.block-01 {
+  left: 0;
+  top: 250px;
+}
+
+.block-02 {
+  left: 280px;
+  top: 120px;
+}
+
+/* Grupo superior à direita */
+.block-03 {
+  left: 560px;
+  top: 0;
+}
+
+.block-04 {
+  left: 710px;
+  top: 0;
+}
+
+.block-05 {
+  left: 860px;
+  top: 0;
+}
+
+.block-06 {
+  left: 1010px;
+  top: 0;
+}
+
+/* Grupo central e inferior */
+.block-07 {
+  left: 560px;
+  top: 150px;
+}
+
+.block-08 {
+  left: 700px;
+  top: 250px;
+}
+
+.block-09 {
+  left: 900px;
+  top: 250px;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 1200px) {
+  .decorative-blocks__stage {
+    width: 900px;
+    height: 360px;
+  }
+
+  .decorative-block {
+    width: 96px;
+    height: 96px;
+  }
+
+  .decorative-block--outline {
+    border-width: 7px;
+  }
+
+  .block-01 {
+    left: 0;
+    top: 240px;
+  }
+
+  .block-02 {
+    left: 250px;
+    top: 110px;
+  }
+
+  .block-03 {
+    left: 470px;
+    top: 0;
+  }
+
+  .block-04 {
+    left: 600px;
+    top: 0;
+  }
+
+  .block-05 {
+    left: 730px;
+    top: 0;
+  }
+
+  .block-06 {
+    left: 860px;
+    top: 0;
+  }
+
+  .block-07 {
+    left: 470px;
+    top: 125px;
+  }
+
+  .block-08 {
+    left: 590px;
+    top: 240px;
+  }
+
+  .block-09 {
+    left: 770px;
+    top: 240px;
+  }
+}

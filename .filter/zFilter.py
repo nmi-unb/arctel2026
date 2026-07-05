@@ -8,7 +8,6 @@ DEFAULT_CONFIG: dict = {
         ".docs"
         ],
     "visible_dirs": [
-        '.log',
         "assets"
     ],
     "ignored_extensions": [
