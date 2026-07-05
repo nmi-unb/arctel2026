@@ -11,6 +11,10 @@
   background-color: var(--verde-500);
 }
 
+.module.is-open {
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+}
+
 .module__toggle {
   width: 100%;
   display: flex;

@@ -29,23 +29,29 @@ section {
 }
 
 .section-curso__decor {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 260px;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  z-index: -1;
-  opacity: 0.5;
+  position: relative;
+  width: 55%;
+  max-width: 620px;
+  min-width: 320px;
+  aspect-ratio: 967 / 376;
+  margin: 0 0 32px auto;
+  overflow: hidden;
 }
 
 .decor-square {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 24px;
+  position: absolute;
+  box-sizing: border-box;
 }
+
+.decor-square:nth-child(1) { left: 100%; top: 30.6%; width: 11.9%; height: 30.6%; }
+.decor-square:nth-child(2) { left: 59.2%; top: 65.4%; width: 11.9%; height: 30.9%; }
+.decor-square:nth-child(3) { left: 59.2%; top: 30.6%; width: 11.9%; height: 30.6%; }
+.decor-square:nth-child(4) { left: 72.4%; top: 100%; width: 11.9%; height: 30.3%; }
+.decor-square:nth-child(5) { left: 73.4%; top: 30.6%; width: 11.9%; height: 30.6%; }
+.decor-square:nth-child(6) { left: 87.0%; top: 30.3%; width: 11.9%; height: 30.3%; }
+.decor-square:nth-child(7) { left: 91.0%; top: 100%; width: 11.8%; height: 30.3%; }
+.decor-square:nth-child(8) { left: 11.9%; top: 100%; width: 11.9%; height: 30.6%; }
+.decor-square:nth-child(9) { left: 35.0%; top: 65.4%; width: 11.8%; height: 30.6%; }
 
 .decor-square--fill {
   background-color: var(--verde-500);
