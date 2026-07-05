@@ -12,10 +12,89 @@
 .site-header__logo img {
   height: 70px;
   width: auto;
+  max-width: 100%;
+}
+
+/* Abaixo de 480px o logo (proporção larga) não cabe em 70px de altura
+   sem estourar a largura — deixa a altura encolher mantendo a proporção. */
+@media (max-width: 480px) {
+  .site-header__logo img {
+    height: auto;
+    max-height: 56px;
+    max-width: 100%;
+  }
 }
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+/* Botão hambúrguer - some por padrão, só aparece abaixo de 600px */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 24px;
+  right: var(--grid-margin);
+  z-index: 1100;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--verde-500);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+/* Ao rolar a página pra baixo, o botão fica bem mais discreto */
+.hamburger-btn.is-scrolled {
+  opacity: 0.4;
+}
+
+.hamburger-btn:hover,
+.hamburger-btn:focus-visible {
+  opacity: 1;
+}
+
+.hamburger-btn__bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--color-white);
+}
+
+/* Overlay de navegação - some por padrão, cobre a página quando aberto */
+.site-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  background-color: var(--color-white);
+}
+
+.site-nav-overlay.is-open {
+  display: flex;
+}
+
+/* Abaixo de 600px: esconde o nav horizontal, mostra o hambúrguer */
+@media (max-width: 599px) {
+  .site-nav {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
 }

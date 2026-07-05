@@ -11,6 +11,10 @@
   background-color: var(--verde-500);
 }
 
+.module.is-open {
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+}
+
 .module__toggle {
   width: 100%;
   display: flex;
@@ -41,16 +45,31 @@
 }
 
 .module.is-open .module__panel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
+  display: block;
 }
 
 .module__panel p {
-  flex: 1 1 480px;
   margin: 0;
+}
+
+/* Espaço entre o texto e o botão de ação, quando quebram linha */
+.module__panel .btn {
+  display: flex;
+  width: fit-content;
+  margin-top: 24px;
+  margin-left: auto;
+}
+
+/* Celular: o padding lateral assimétrico (66px/41px) sobra demais numa tela estreita */
+@media (max-width: 480px) {
+  .module__toggle {
+    padding: 16px 20px;
+    font-size: var(--text-lg);
+  }
+
+  .module__panel {
+    padding: 24px 20px 28px;
+  }
 }
 
 /* Aulas - cards de aula */

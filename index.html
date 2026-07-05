@@ -23,16 +23,39 @@
     </nav>
   </header>
 
+  <button type="button" class="hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav-overlay">
+    <span class="hamburger-btn__bar"></span>
+    <span class="hamburger-btn__bar"></span>
+    <span class="hamburger-btn__bar"></span>
+  </button>
+
+  <nav id="site-nav-overlay" class="site-nav-overlay" aria-label="Navegação principal (celular)">
+    <a class="btn btn--outline btn--outline-nav site-nav__link is-active" href="#inicio">Inicio</a>
+    <a class="btn btn--outline btn--outline-nav site-nav__link" href="#modulos">Módulos</a>
+    <a class="btn btn--outline btn--outline-nav site-nav__link" href="#aulas">Aulas</a>
+    <a class="btn btn--outline btn--outline-nav site-nav__link" href="#">Noticias</a>
+    <a class="btn btn--outline btn--outline-nav site-nav__link" href="#">Matériais</a>
+    <a class="btn btn--outline btn--outline-nav site-nav__link" href="#">Contato</a>
+  </nav>
+
+  <section class="hero-decoration" aria-hidden="true">
+    <div class="hero-decoration__stage">
+      <span class="decorative-block decorative-block--outline block-01"></span>
+      <span class="decorative-block decorative-block--outline block-02"></span>
+
+      <span class="decorative-block decorative-block--filled block-03"></span>
+      <span class="decorative-block decorative-block--filled block-04"></span>
+      <span class="decorative-block decorative-block--outline block-05"></span>
+      <span class="decorative-block decorative-block--filled block-06"></span>
+
+      <span class="decorative-block decorative-block--filled block-07"></span>
+      <span class="decorative-block decorative-block--filled block-08"></span>
+      <span class="decorative-block decorative-block--outline block-09"></span>
+    </div>
+  </section>
+
   <main id="inicio">
     <section class="section-curso container">
-      <div class="section-curso__decor" aria-hidden="true">
-        <span class="decor-square decor-square--fill"></span>
-        <span class="decor-square decor-square--fill"></span>
-        <span class="decor-square decor-square--outline"></span>
-        <span class="decor-square decor-square--fill"></span>
-        <span class="decor-square decor-square--outline"></span>
-        <span class="decor-square decor-square--outline"></span>
-      </div>
       <div class="section-curso__grid">
         <div class="section-curso__text">
           <h2 class="section-title">O Curso</h2>
@@ -209,15 +232,21 @@
   </main>
 
   <footer class="site-footer">
-    <img class="site-footer__pattern" src="./assets/img/backgrounds/footer-leaf-pattern.png" alt="" aria-hidden="true" />
     <div class="site-footer__content">
-      <div class="site-footer__mark">
-        <img src="./assets/img/logo/nmi-footer-mark.png" alt="NMI - Núcleo de Estudos em Políticas, Direito, Economia e Tecnologia das Comunicações" />
-      </div>
-      <div class="site-footer__apoio">
-        <span class="site-footer__apoio-label">Apoio</span>
-        <div class="site-footer__apoio-logos">
-          <img src="./assets/img/logo/apoio-logos.png" alt="Logos de apoio: FAPDF e UnB" />
+      <div class="site-footer__partners">
+        <div class="site-footer__partner-group">
+          <span class="site-footer__partner-label">Parceria:</span>
+          <div class="site-footer__partner-logos">
+            <img id="logo-ccom" class="imagem-footer" src="./assets/img/logo/logo-CCOM.png" alt="CCOM" />
+            <img id="logo-unb" class="imagem-footer" src="./assets/img/logo/logo-unb.png" alt="UnB" />
+          </div>
+        </div>
+        <div class="site-footer__partner-group">
+          <span id="realizacao" class="site-footer__partner-label">Realização:</span>
+          <div class="site-footer__partner-logos">
+            <img id="logo-arctel" class="imagem-footer" src="./assets/img/logo/logo-ARCTEL.png" alt="ArcTel" />
+            <img id="logo-anatel" class="imagem-footer" src="./assets/img/logo/logo-ANATEL.png" alt="Anatel" />
+          </div>
         </div>
       </div>
     </div>
