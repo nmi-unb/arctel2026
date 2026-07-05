@@ -3,3 +3,7 @@ Thumbs.db
 node_modules/
 *.log
 *.pdf
+
+caminhos.txt
+tree_focada.txt
+log
