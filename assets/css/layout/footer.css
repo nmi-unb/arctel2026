@@ -49,7 +49,22 @@
   gap: 16px;
 }
 
-.site-footer__partner-logos img {
-  height: 32px;
+.imagem-footer {
   width: auto;
+}
+
+#logo-ccom {
+  height: 60px;
+}
+
+#logo-unb {
+  height: 32px;
+}
+
+#logo-arctel {
+  height: 32px;
+}
+
+#logo-anatel {
+  height: 32px;
 }
