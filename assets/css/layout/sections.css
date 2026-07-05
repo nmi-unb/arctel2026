@@ -8,6 +8,17 @@ section {
   padding: 64px 0;
 }
 
+/* Ritmo vertical entre seções principais
+   (especificidade section.container > .container, pra vencer o `margin: 0 auto` do container) */
+main section.container {
+  margin-bottom: 60px;
+}
+
+/* Última seção não empurra o rodapé */
+main section.container:last-of-type {
+  margin-bottom: 0;
+}
+
 .section-curso {
   position: relative;
   overflow: hidden;
@@ -66,4 +77,5 @@ section {
 
 .section-aulas__footer {
   text-align: right;
+  margin-top: 24px;
 }

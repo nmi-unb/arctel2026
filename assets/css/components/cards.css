@@ -57,6 +57,11 @@
   margin: 0;
 }
 
+/* Espaço entre o texto e o botão de ação, quando quebram linha */
+.module__panel .btn {
+  margin-top: 24px;
+}
+
 /* Aulas - cards de aula */
 .lesson-card {
   background-color: var(--color-gray-200);

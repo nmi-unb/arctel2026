@@ -4,6 +4,7 @@
   color: var(--color-white);
   overflow: hidden;
   padding: 24px var(--grid-margin) 32px;
+  margin-top: 2rem;
 }
 
 .site-footer__content {
