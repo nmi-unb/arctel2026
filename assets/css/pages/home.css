@@ -1,0 +1,14 @@
+.home-hero-spacer {
+  height: 8px;
+}
+
+@media (max-width: 900px) {
+  .section-curso__decor {
+    display: none;
+  }
+
+  .site-header {
+    justify-content: center;
+    text-align: center;
+  }
+}

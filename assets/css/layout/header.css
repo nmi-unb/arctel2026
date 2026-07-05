@@ -1,0 +1,21 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px var(--grid-margin);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.site-header__logo img {
+  height: 70px;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
