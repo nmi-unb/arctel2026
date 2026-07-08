@@ -52,6 +52,18 @@ main section.container:last-of-type {
   justify-content: center;
   font-size: var(--text-display);
   font-weight: 800;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+/* "Desenvolvimento" (palavra única, sem quebra) estoura a largura em telas
+   estreitas — reduz o tamanho da fonte pra caber sem gerar scroll horizontal */
+@media (max-width: 480px) {
+  .section-cronograma__placeholder {
+    min-height: 200px;
+    font-size: var(--text-xl);
+    padding: 16px;
+  }
 }
 
 .section-aulas__header {

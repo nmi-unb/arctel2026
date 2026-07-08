@@ -29,3 +29,10 @@
   --radius-pill: 32px;
   --radius-sm: 4px;
 }
+
+/* Margem lateral menor em telas de celular, pra não comer largura de leitura */
+@media (max-width: 480px) {
+  :root {
+    --grid-margin: 16px;
+  }
+}

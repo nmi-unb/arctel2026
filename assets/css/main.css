@@ -181,3 +181,19 @@
     transform-origin: top center;
   }
 }
+
+/* Celular: a "prancheta" de 720px ainda não cabe — encolhe mais uma vez
+   pra composição inteira ficar visível em vez de cortada nas bordas. */
+@media (max-width: 480px) {
+  .hero-decoration {
+    height: 180px;
+  }
+
+  .hero-decoration__stage {
+    width: 720px;
+    height: 320px;
+    flex-basis: 720px;
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
+}

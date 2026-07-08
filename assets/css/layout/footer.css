@@ -73,3 +73,27 @@
 #realizacao {
   margin-bottom: 1rem;
 }
+
+/* Abaixo de 600px as duas marcas (Parceria/Realização) não cabem lado a lado
+   sem estourar a largura — deixa empilhar e centraliza. */
+@media (max-width: 600px) {
+  .site-footer__content {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer__partners {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    justify-items: center;
+    margin-left: 0;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .site-footer__partner-logos {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
