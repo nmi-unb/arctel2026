@@ -33,11 +33,28 @@ function setActiveNavLink() {
   });
 }
 
+function handleNavLinkClick(event) {
+  const href = this.getAttribute("href");
+  const isSectionLink = href.length > 1 && href.startsWith("#");
+
+  if (isSectionLink) {
+    const target = document.querySelector(href);
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", href);
+      setActiveNavLink();
+    }
+  }
+
+  closeMenu();
+}
+
 menuToggle.addEventListener("click", toggleMenu);
 menuBackdrop.addEventListener("click", closeMenu);
 
 navLinks.forEach((link) => {
-  link.addEventListener("click", closeMenu);
+  link.addEventListener("click", handleNavLinkClick);
 });
 
 document.addEventListener("keydown", (event) => {

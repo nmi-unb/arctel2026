@@ -91,3 +91,27 @@ main section.container:last-of-type {
   text-align: right;
   margin-top: 24px;
 }
+
+/* Placeholder genérico "em desenvolvimento" - mesmo padrão visual de
+   .section-cronograma__placeholder, reaproveitado pras seções novas
+   (Noticias/Matériais/Contato) sem tocar na classe original. */
+.section-placeholder {
+  background-color: var(--color-gray-200);
+  border-radius: var(--radius-sm);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-display);
+  font-weight: 800;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+  .section-placeholder {
+    min-height: 200px;
+    font-size: var(--text-xl);
+    padding: 16px;
+  }
+}
