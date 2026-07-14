@@ -54,23 +54,14 @@
         <div class="section-curso__text">
           <h2 class="section-title">O Curso</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus eu nibh et auctor.
-            Sed interdum ipsum nec nulla ultrices dignissim. Aenean hendrerit nunc a tortor fringilla,
-            ullamcorper feugiat felis imperdiet. Cras aliquet metus risus, pretium sollicitudin nulla
-            scelerisque eu. Praesent et felis egestas, porta nibh ac, scelerisque dui. Nam consectetur
-            placerat pretium. Sed sollicitudin ut massa ut commodo. Integer consectetur purus at nulla
-            placerat, vel porta mauris laoreet. Maecenas blandit aliquam condimentum. Cras sed porta orci.
-          </p>
-          <p>
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-            Nunc lectus metus, faucibus in felis ut, ultricies tristique erat. Curabitur sapien felis,
-            ullamcorper nec libero sit amet, tempor malesuada leo. Vivamus sed tristique nulla. Maecenas
-            tincidunt dui ut magna porta laoreet eget vel metus. Nam risus ipsum, blandit consequat ligula
-            at, congue tristique velit. Praesent nisi erat, congue quis nisi id, tempor mollis tortor.
-            Mauris aliquam ligula magna, ut sollicitudin elit vestibulum eget. Ut ut augue venenatis,
-            tempor arcu at, aliquam dolor. Duis eget varius felis, vitae bibendum tellus. Vivamus faucibus
-            feugiat eros, quis pulvinar augue sodales sit amet. Cras mollis eget orci cursus auctor.
-            Phasellus eu eros elit. Cras varius egestas imperdiet.
+            O curso intitulado Fortalecimento de Lideranças Femininas Regulatórias de Telecomunicações é ofertado
+            no momento em que as telecomunicações estão vivenciando rápidas transformações digitais que desafiam
+            aspectos regulatórios, econômicos, sociais e tecnológicos instados a serem revistos e aprofundados sob
+            a nova ótica de ecossistemas digitais dinâmicos e diversos. O curso inova ao apresentar temas
+            relevantes e atuais da regulação das comunicações para garantir eficiência e eficácia no desempenho da
+            função crucial dos reguladores na supervisão e controle das atividades do setor de (tele)comunicações,
+            garantindo o cumprimento das regulamentações, a concorrência justa e a qualidade dos serviços
+            oferecidos.
           </p>
           <div class="section-curso__cta">
             <a class="btn btn--solid" href="#modulos">Acessar o curso</a>
@@ -79,101 +70,222 @@
       </div>
     </section>
 
+    <!--
+      Módulos: dados extraídos de .info/modulos.md (título, ementa, duração,
+      modalidade, professor), cruzados com .info/cronograma.md (ordem,
+      duração e datas de encontro). Os dois arquivos batem em quantidade (11),
+      ordem e duração — sem divergência encontrada. cronograma.md abrevia o
+      título de alguns módulos (4 e 9); o título completo de modulos.md foi
+      priorizado, conforme pedido no prompt de retrofit.
+      [[SITE]] é placeholder para a URL-base do site, a ser substituída depois.
+    -->
     <section class="section-modulos container" id="modulos">
       <h2 class="section-title">Módulos</h2>
       <div class="modules-list">
-        <article class="module is-open">
-          <button class="module__toggle" aria-expanded="true">Módulo 1</button>
-          <div class="module__panel">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus eu nibh et auctor.
-              Sed interdum ipsum nec nulla ultrices dignissim. Aenean hendrerit nunc a tortor fringilla,
-              ullamcorper feugiat felis imperdiet. Cras aliquet metus risus, pretium sollicitudin nulla
-              scelerisque eu. Praesent et felis egestas, porta nibh ac, scelerisque dui. Nam consectetur
-              placerat pretium. Sed sollicitudin ut massa ut commodo. Integer consectetur purus at nulla
-              placerat, vel porta mauris laoreet. Maecenas blandit aliquam condimentum. Cras sed porta orci.
+        <article class="module is-open" id="modulo-1">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-1-toggle" type="button" aria-expanded="true" aria-controls="modulo-1-panel">
+              <span class="module__label">Módulo 1</span>
+              <span class="module__title">Impactos do Ecossistema Digital na Comunicação Social</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-1-panel" role="region" aria-labelledby="modulo-1-toggle">
+            <p class="module__ementa">
+              A exemplo do que ocorre em outras partes do mundo, o advento da internet provocou, e ainda provoca,
+              mudanças estruturais significativas nas formas de organização, produção, distribuição e consumo de
+              comunicação social – aqui entendida como o conjunto de instituições de rádio, televisão e imprensa,
+              genericamente chamado de Mídia. Nesta disciplina, se discutirá o estado atual das referidas mudanças,
+              a partir do caso mais representativo no Brasil: o do Grupo Globo e outros relevantes.
             </p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-1">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 2</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-2">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-2-toggle" type="button" aria-expanded="false" aria-controls="modulo-2-panel">
+              <span class="module__label">Módulo 2</span>
+              <span class="module__title">Desenho regulatório responsivo</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-2-panel" role="region" aria-labelledby="modulo-2-toggle">
+            <p class="module__ementa">
+              Conceitos fundamentais; Fluxo Regulatório. Os estágios da regulação responsiva. As pirâmides
+              responsivas. Estudo de Casos de modelos responsivos.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-2">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 3</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-3">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-3-toggle" type="button" aria-expanded="false" aria-controls="modulo-3-panel">
+              <span class="module__label">Módulo 3</span>
+              <span class="module__title">Modelo regulatório pró-inovação</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-3-panel" role="region" aria-labelledby="modulo-3-toggle">
+            <p class="module__ementa">
+              Ciência, Tecnologia e Inovação no Ecossistema Digital. Direito Administrativo e Direito Regulatório
+              da Experimentação. Sandbox regulatório. Regulamentação do Ambiente Regulatório Experimental. Estudo
+              de Casos de sandbox regulatório no setor público brasileiro.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-3">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 4</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-4">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-4-toggle" type="button" aria-expanded="false" aria-controls="modulo-4-panel">
+              <span class="module__label">Módulo 4</span>
+              <span class="module__title">Análise de Impacto Regulatório e Avaliação de Resultado Regulatório</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-4-panel" role="region" aria-labelledby="modulo-4-toggle">
+            <p class="module__ementa">
+              Regulação com base em evidência: o ciclo regulatório e sua relação com as etapas do processo de AIR
+              e ARR. Explorando as questões pertinentes a cada etapa. Qual o tipo de evidência é necessária para
+              endereçar cada questão? Os principais métodos que permitem gerar as evidências necessárias.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-4">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 5</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-5">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-5-toggle" type="button" aria-expanded="false" aria-controls="modulo-5-panel">
+              <span class="module__label">Módulo 5</span>
+              <span class="module__title">Tributação de Serviços Digitais</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-5-panel" role="region" aria-labelledby="modulo-5-toggle">
+            <p class="module__ementa">
+              Oportunidades fiscais dos serviços digitais. Modelos tributários para serviços digitais. Estudo de
+              casos de exação de serviços digitais ao redor do mundo.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-5">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 6</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-6">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-6-toggle" type="button" aria-expanded="false" aria-controls="modulo-6-panel">
+              <span class="module__label">Módulo 6</span>
+              <span class="module__title">Antitruste e Plataformas Digitais</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-6-panel" role="region" aria-labelledby="modulo-6-toggle">
+            <p class="module__ementa">
+              Os princípios regentes do direito da concorrência. Tratamento de posturas anticoncorrenciais a
+              partir de vertentes ex post e ex ante. O modelo inaugurado pelo Digital Markets Act. Casos de
+              aplicação do DMA e a experiência do CADE.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-6">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 7</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-7">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-7-toggle" type="button" aria-expanded="false" aria-controls="modulo-7-panel">
+              <span class="module__label">Módulo 7</span>
+              <span class="module__title">Cadeia de Valor da Internet e a corrida pela Liderança Digital</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-7-panel" role="region" aria-labelledby="modulo-7-toggle">
+            <p class="module__ementa">
+              Penetração da Internet. Arquitetura da cadeia de valor. Segmentos de serviços. Dinâmicas da cadeia
+              de valor. As estratégias de expansão das maiores empresas de tecnologia. Retornos na cadeia de
+              valor. Estudo de Casos.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-7">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 8</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-8">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-8-toggle" type="button" aria-expanded="false" aria-controls="modulo-8-panel">
+              <span class="module__label">Módulo 8</span>
+              <span class="module__title">Liberdade de Expressão no Ecossistema Digital</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-8-panel" role="region" aria-labelledby="modulo-8-toggle">
+            <p class="module__ementa">
+              A liberdade de expressão tem sido historicamente entendida como talvez o alicerce mais essencial
+              das democracias no liberalismo. O advento do que se convencionou chamar de Ecossistema Digital, em
+              especial das redes sociais, tem impactado sobremaneira a fruição desse alicerce, com chamamentos à
+              sua regulação, cujas fronteiras normativas podem derivar com relativa facilidade para a censura.
+              Como essa questão tem sido tratada no Brasil, em âmbito legislativo, será o objeto da disciplina.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-8">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 9</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-9">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-9-toggle" type="button" aria-expanded="false" aria-controls="modulo-9-panel">
+              <span class="module__label">Módulo 9</span>
+              <span class="module__title">Convergência tecnológica de serviços tradicionais e digitais: impacto das OTT's na indústria global de Telecomunicações</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-9-panel" role="region" aria-labelledby="modulo-9-toggle">
+            <p class="module__ementa">
+              Definições de diferentes agências reguladoras. Tipos de arquiteturas tecnológicas para a oferta de
+              serviços. Comparação das arquiteturas tecnológicas. Visão funcional do ecossistema da Internet.
+              Principais atores do ecossistema da Internet. Análise das dinâmicas de competição. Visão do
+              crescimento dos usuários e a diminuição do ARPU (Average Revenue Per User). Crescimento das OTT's.
+              Identificação das fontes de receita das operadoras e OTT's. Análise do crescimento das OTT's e o
+              impacto nas operadoras. Estratégias das operadoras para conviver com as OTT's, mediante estudo de
+              casos.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-9">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 10</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-10">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-10-toggle" type="button" aria-expanded="false" aria-controls="modulo-10-panel">
+              <span class="module__label">Módulo 10</span>
+              <span class="module__title">Cenários prospectivos do futuro da Internet</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-10-panel" role="region" aria-labelledby="modulo-10-toggle">
+            <p class="module__ementa">
+              Personalização da experiência, privacidade, confiança e Qualidade de Experiência (QoE). Crescimento
+              da tecnologia de nuvem e aproximação do usuário final. Evolução da Internet e da tecnologia Web.
+              Metaverso. Internet dos sentidos. Evolução na computação, conexão e nuvem. A Internet e a
+              eficiência energética. Blockchain. Topologia de rede para Web 3.0; Segurança cibernética e
+              geopolítica. Inteligência artificial.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-10">Acessar Módulo</a>
           </div>
         </article>
 
-        <article class="module">
-          <button class="module__toggle" aria-expanded="false">Módulo 11</button>
-          <div class="module__panel">
-            <p>Conteúdo do módulo em desenvolvimento.</p>
-            <a class="btn btn--solid btn--solid-square" href="#">Acessar Módulo</a>
+        <article class="module" id="modulo-11">
+          <h3 class="module__heading">
+            <button class="module__toggle" id="modulo-11-toggle" type="button" aria-expanded="false" aria-controls="modulo-11-panel">
+              <span class="module__label">Módulo 11</span>
+              <span class="module__title">Oficina com Lideranças Regulatórias</span>
+              <span class="module__icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="module__panel" id="modulo-11-panel" role="region" aria-labelledby="modulo-11-toggle">
+            <p class="module__ementa">
+              Uma oficina que reúne líderes do setor de telecomunicações para discutir o papel da mulher na
+              regulação e tecnologia. O programa foca em estratégias de liderança, inovação com equidade, e a
+              construção de redes de apoio, capacitando as pessoas participantes a enfrentar desafios e
+              aproveitar oportunidades para impulsionar a mudança.
+            </p>
+            <a class="btn btn--solid btn--solid-square module__cta" href="[[SITE]]/modulo-11">Acessar Módulo</a>
           </div>
         </article>
       </div>

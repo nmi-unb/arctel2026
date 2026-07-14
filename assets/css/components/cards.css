@@ -1,73 +1,155 @@
-/* Módulos - lista em acordeão */
+/* Módulos - lista em acordeão
+   --modulo-radius / --modulo-header-height ficam escopados aqui (não em
+   variables.css) por serem específicos deste componente; reaproveitam
+   --radius-pill já existente em vez de repetir o valor. */
 .modules-list {
+  --modulo-radius: var(--radius-pill);
+  --modulo-header-height: 76px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
 .module {
-  border-radius: var(--radius-pill);
+  border-radius: var(--modulo-radius);
   overflow: hidden;
   background-color: var(--verde-500);
 }
 
 .module.is-open {
-  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  border-radius: var(--modulo-radius) var(--modulo-radius) 0 0;
+}
+
+.module__heading {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .module__toggle {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 32px;
+  gap: 16px;
+  min-height: var(--modulo-header-height);
+  padding: 12px 32px;
   color: var(--color-white);
-  font-size: var(--text-xl);
+  text-align: left;
+}
+
+.module.is-open .module__toggle {
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.module__toggle:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: -4px;
+}
+
+.module__label {
+  flex: 0 0 auto;
+  font-size: var(--text-lg);
   font-weight: 800;
 }
 
-.module__toggle::after {
-  content: "+";
+/* Fechado: uma linha só, truncada. Aberto: quebra livre, sem reticências. */
+.module__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module.is-open .module__title {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.module__icon {
+  flex: 0 0 auto;
   font-size: var(--text-xl);
+  line-height: 1;
   transition: transform 0.2s ease;
 }
 
-.module.is-open .module__toggle::after {
+.module__icon::before {
+  content: "+";
+}
+
+.module.is-open .module__icon {
   transform: rotate(45deg);
 }
 
+/* max-height (em vez de display:none/block) permite a transição suave de
+   abertura/fechamento pedida, sem precisar medir altura via JS. */
 .module__panel {
-  display: none;
-  padding: 32px 66px 34px 41px;
-  border: 1px solid var(--navy-700);
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 66px;
+  border: 2px solid var(--navy-700);
   border-top: none;
   background-color: var(--color-white);
+  transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
 .module.is-open .module__panel {
-  display: block;
+  max-height: 2000px;
+  padding: 32px 66px 34px 41px;
 }
 
-.module__panel p {
+.module__ementa {
   margin: 0;
 }
 
 /* Espaço entre o texto e o botão de ação, quando quebram linha */
-.module__panel .btn {
+.module__cta {
   display: flex;
   width: fit-content;
   margin-top: 24px;
   margin-left: auto;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.module__cta:focus-visible {
+  outline: 2px solid var(--navy-700);
+  outline-offset: 2px;
+}
+
+.module__cta:active {
+  transform: scale(0.97);
 }
 
 /* Celular: o padding lateral assimétrico (66px/41px) sobra demais numa tela estreita */
 @media (max-width: 480px) {
+  .modules-list {
+    --modulo-header-height: 64px;
+  }
+
   .module__toggle {
-    padding: 16px 20px;
-    font-size: var(--text-lg);
+    padding: 10px 20px;
+  }
+
+  .module.is-open .module__toggle {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .module__label,
+  .module__title {
+    font-size: var(--text-md);
   }
 
   .module__panel {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .module.is-open .module__panel {
     padding: 24px 20px 28px;
   }
 }
