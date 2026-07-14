@@ -7,3 +7,5 @@ node_modules/
 
 caminhos.txt
 tree_focada.txt
+
+*.md
