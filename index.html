@@ -293,9 +293,31 @@
       </div>
     </section>
 
-    <section class="section-Avisos container" id="Avisos">
+    <section class="section-avisos container" id="avisos">
       <h2 class="section-title section-title--dark">Avisos</h2>
-      <div class="section-placeholder">Em Desenvolvimento</div>
+
+      <div data-notice-board>
+        <div class="notice-board__panel" data-notice-panel>
+          <div class="notice-board__col notice-board__col--highlight" data-notice-highlight>
+            <p class="notice-board__empty">Carregando avisos…</p>
+          </div>
+          <div class="notice-board__col notice-board__col--aula" data-notice-aula hidden></div>
+        </div>
+        <div class="notice-board__strip">
+          <span data-notice-updated></span>
+          <button type="button" class="notice-board__history-btn" id="notice-history-btn" aria-haspopup="dialog" aria-controls="notice-history-modal" disabled>Ver histórico de avisos</button>
+        </div>
+      </div>
+
+      <div class="notice-modal-overlay" id="notice-history-modal" role="dialog" aria-modal="true" aria-labelledby="notice-history-title" data-notice-modal hidden>
+        <div class="notice-modal">
+          <div class="notice-modal__header">
+            <h3 class="notice-modal__title" id="notice-history-title">Histórico de avisos</h3>
+            <button type="button" class="notice-modal__close" data-notice-modal-close aria-label="Fechar histórico">&times;</button>
+          </div>
+          <ul class="notice-modal__list" data-notice-history-list></ul>
+        </div>
+      </div>
     </section>
 
     <section class="section-contato container" id="contato">
