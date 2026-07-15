@@ -5,6 +5,9 @@ node_modules/
 *.log
 *.pdf
 
+_docs/
+_melhorias/
+.info/
 caminhos.txt
 tree_focada.txt
 

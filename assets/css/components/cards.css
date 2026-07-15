@@ -13,7 +13,6 @@
 .module {
   border-radius: var(--modulo-radius);
   overflow: hidden;
-  background-color: var(--verde-500);
 }
 
 .module.is-open {
@@ -33,6 +32,7 @@
   min-height: var(--modulo-header-height);
   padding: 12px 32px;
   color: var(--color-white);
+  background-color: var(--verde-500);
   text-align: left;
 }
 
@@ -74,25 +74,25 @@
   flex: 0 0 auto;
   font-size: var(--text-xl);
   line-height: 1;
-  transition: transform 0.2s ease;
 }
 
 .module__icon::before {
   content: "+";
 }
 
-.module.is-open .module__icon {
-  transform: rotate(45deg);
+.module.is-open .module__icon::before {
+  content: "\2212";
 }
 
 /* max-height (em vez de display:none/block) permite a transição suave de
-   abertura/fechamento pedida, sem precisar medir altura via JS. */
+   abertura/fechamento pedida, sem precisar medir altura via JS.
+   Sem borda no estado fechado (senão a borda 0-altura aparece como uma
+   linha escura colada embaixo do cabeçalho). */
 .module__panel {
   max-height: 0;
   overflow: hidden;
   padding: 0 66px;
-  border: 2px solid var(--navy-700);
-  border-top: none;
+  border: 2px solid transparent;
   background-color: var(--color-white);
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
@@ -100,6 +100,9 @@
 .module.is-open .module__panel {
   max-height: 2000px;
   padding: 32px 66px 34px 41px;
+  border: 2px solid color-mix(in srgb, var(--navy-700) 40%, transparent);
+  border-top: none;
+  border-radius: 0 0 var(--modulo-radius) var(--modulo-radius);
 }
 
 .module__ementa {

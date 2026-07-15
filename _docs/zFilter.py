@@ -8,7 +8,7 @@ DEFAULT_CONFIG: dict = {
         "3_data/1_processed",
         ],
     "visible_dirs": [],
-    "ignored_extensions": [".txt", ".jpeg", ".png"],
+    "ignored_extensions": [".txt"],
     "visible_extensions": [],
     "ignored_files": ["caminhos.txt", "tree_focada.txt"],
     "visible_files": [],
