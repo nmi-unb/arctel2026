@@ -1,0 +1,202 @@
+@import url("./base/reset.css");
+@import url("./base/variables.css");
+@import url("./base/typography.css");
+
+@import url("./layout/header.css");
+@import url("./layout/footer.css");
+@import url("./layout/sections.css");
+
+@import url("./components/buttons.css");
+@import url("./components/navigation.css");
+@import url("./components/cards.css");
+@import url("./components/back-to-top.css");
+@import url("./components/notice-board.css");
+
+@import url("./pages/home.css");
+@import url("./pages/module-page.css");
+
+/* ==========================================================================
+   ILUSTRAÇÃO DE BLOCOS RETANGULARES (FIGMA - GRUPO 3)
+   ========================================================================== */
+
+/* Faixa fixa entre o header/nav e a seção "O Curso" */
+.hero-decoration {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Área de composição dos blocos */
+.hero-decoration__stage {
+  position: relative;
+  width: 1180px;
+  height: 500px;
+  flex: 0 0 1180px;
+}
+
+/* Base dos blocos */
+.decorative-block {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.decorative-block--filled {
+  background-color: #5fbd7b;
+}
+
+.decorative-block--outline {
+  border: 8px solid #5fbd7b;
+  background-color: transparent;
+}
+
+/* Bloco inferior esquerdo */
+.block-01 {
+  left: 120px;
+  top: 285px;
+}
+
+/* Bloco central esquerdo */
+.block-02 {
+  left: 390px;
+  top: 145px;
+}
+
+/* Fileira superior direita */
+.block-03 {
+  left: 670px;
+  top: 0;
+}
+
+.block-04 {
+  left: 820px;
+  top: 0;
+}
+
+.block-05 {
+  left: 970px;
+  top: 0;
+}
+
+.block-06 {
+  left: 1120px;
+  top: 0;
+}
+
+/* Bloco abaixo da fileira superior */
+.block-07 {
+  left: 670px;
+  top: 145px;
+}
+
+/* Blocos inferiores direitos */
+.block-08 {
+  left: 810px;
+  top: 285px;
+}
+
+.block-09 {
+  left: 1030px;
+  top: 285px;
+}
+
+/* Responsividade: mantém a composição proporcional */
+@media (max-width: 1200px) {
+  .hero-decoration {
+    height: 420px;
+  }
+
+  .hero-decoration__stage {
+    width: 960px;
+    height: 420px;
+    flex-basis: 960px;
+  }
+
+  .decorative-block {
+    width: 100px;
+    height: 100px;
+  }
+
+  .decorative-block--outline {
+    border-width: 7px;
+  }
+
+  .block-01 {
+    left: 80px;
+    top: 260px;
+  }
+
+  .block-02 {
+    left: 300px;
+    top: 140px;
+  }
+
+  .block-03 {
+    left: 520px;
+    top: 0;
+  }
+
+  .block-04 {
+    left: 650px;
+    top: 0;
+  }
+
+  .block-05 {
+    left: 780px;
+    top: 0;
+  }
+
+  .block-06 {
+    left: 910px;
+    top: 0;
+  }
+
+  .block-07 {
+    left: 520px;
+    top: 125px;
+  }
+
+  .block-08 {
+    left: 640px;
+    top: 260px;
+  }
+
+  .block-09 {
+    left: 820px;
+    top: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-decoration {
+    height: 320px;
+  }
+
+  .hero-decoration__stage {
+    width: 720px;
+    height: 320px;
+    flex-basis: 720px;
+    transform: scale(0.82);
+    transform-origin: top center;
+  }
+}
+
+/* Celular: a "prancheta" de 720px ainda não cabe — encolhe mais uma vez
+   pra composição inteira ficar visível em vez de cortada nas bordas. */
+@media (max-width: 480px) {
+  .hero-decoration {
+    height: 180px;
+  }
+
+  .hero-decoration__stage {
+    width: 720px;
+    height: 320px;
+    flex-basis: 720px;
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
+}

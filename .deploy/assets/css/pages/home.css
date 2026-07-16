@@ -1,0 +1,10 @@
+.home-hero-spacer {
+  height: 8px;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    justify-content: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,191 @@
+/* Módulos - lista em acordeão
+   --modulo-radius / --modulo-header-height ficam escopados aqui (não em
+   variables.css) por serem específicos deste componente; reaproveitam
+   --radius-pill já existente em vez de repetir o valor. */
+.modules-list {
+  --modulo-radius: var(--radius-pill);
+  --modulo-header-height: 76px;
+  --modulo-border-color: color-mix(in srgb, var(--navy-700) 40%, transparent);
+  --modulo-open-duration: .5s;
+  --modulo-text-delay: .15s;
+  --modulo-text-duration: 0.4s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.module {
+  border-radius: var(--modulo-radius);
+  overflow: hidden;
+}
+
+.module__heading {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* align-items sempre flex-start (não só quando aberto): mantém a primeira
+   linha do título fixa no topo quando o texto quebra em várias linhas ao
+   abrir, evitando o "pulo pra cima" que acontecia ao trocar de center para
+   flex-start no clique. */
+.module__toggle {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-height: var(--modulo-header-height);
+  padding: 20px 32px;
+  color: var(--color-white);
+  background-color: var(--verde-500);
+  text-align: left;
+}
+
+.module__toggle:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: -4px;
+}
+
+.module__label {
+  flex: 0 0 auto;
+  font-size: var(--text-lg);
+  font-weight: 800;
+}
+
+.module__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--text-lg);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module.is-open .module__title {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.module__icon {
+  flex: 0 0 auto;
+  font-size: var(--text-xl);
+  line-height: 1;
+}
+
+.module__icon::before {
+  content: "+";
+}
+
+.module.is-open .module__icon::before {
+  content: "\2212";
+}
+
+.module__panel {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 66px;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  background-color: var(--color-white);
+  transition: max-height var(--modulo-open-duration) ease,
+    padding var(--modulo-open-duration) ease,
+    border-width var(--modulo-open-duration) ease,
+    border-color var(--modulo-open-duration) ease;
+}
+
+.module.is-open .module__panel {
+  max-height: 2000px;
+  padding: 32px 66px 34px 41px;
+  border-width: 2px;
+  border-color: transparent var(--modulo-border-color) var(--modulo-border-color)
+    var(--modulo-border-color);
+  border-radius: 0 0 var(--modulo-radius) var(--modulo-radius);
+}
+
+/* Texto só aparece 1s depois do fim da animação de abertura (controlado via
+   JS, classe .is-reveal, ver module-accordion.js) — evita o conteúdo
+   "pipocar" junto com o painel ainda se abrindo. */
+.module__ementa,
+.module__cta {
+  opacity: 0;
+  transition: opacity var(--modulo-text-duration) ease;
+}
+
+.module.is-reveal .module__ementa,
+.module.is-reveal .module__cta {
+  opacity: 1;
+}
+
+.module__ementa {
+  margin: 0;
+}
+
+/* Espaço entre o texto e o botão de ação, quando quebram linha */
+.module__cta {
+  display: flex;
+  width: fit-content;
+  margin-top: 24px;
+  margin-left: auto;
+  transition: opacity var(--modulo-text-duration) ease, transform 0.15s ease;
+}
+
+.module__cta:focus-visible {
+  outline: 2px solid var(--navy-700);
+  outline-offset: 2px;
+}
+
+.module__cta:active {
+  transform: scale(0.97);
+}
+
+/* Celular: o padding lateral assimétrico (66px/41px) sobra demais numa tela estreita */
+@media (max-width: 480px) {
+  .modules-list {
+    --modulo-header-height: 64px;
+  }
+
+  .module__toggle {
+    padding: 16px 20px;
+  }
+
+  .module__label,
+  .module__title {
+    font-size: var(--text-md);
+  }
+
+  .module__panel {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .module.is-open .module__panel {
+    padding: 24px 20px 28px;
+  }
+}
+
+/* Aulas - cards de aula */
+.lesson-card {
+  background-color: var(--color-gray-200);
+  padding: 259px 20px 20px 21px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  border-radius: var(--radius-sm);
+}
+
+.lesson-card__info {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.lesson-card__title {
+  margin: 0 0 12px;
+}
+
+.lesson-card__module {
+  margin: 0;
+}

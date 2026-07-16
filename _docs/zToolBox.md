@@ -71,3 +71,9 @@ toolbox run file_tree -- "$REPO_ALVO" --config "$CONFIG_FILE"
 ```pwsh
     toolbox run init_generator "[TAGET_DIR]"
 ```
+
+### deploy
+
+```pwsh
+    toolbox run init_generator "[TAGET_DIR]"
+```

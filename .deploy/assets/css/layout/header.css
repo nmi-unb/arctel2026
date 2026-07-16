@@ -1,0 +1,253 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px var(--grid-margin);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  transition: padding 0.2s ease;
+}
+
+/* Ao rolar, header inteiro (logo + nav) acompanha fixo no topo, igual ao
+   original só um pouco mais compacto, com fundo sólido. Mobile mantém o
+   drawer normal (regra só entra em min-width: 901px). */
+@media (min-width: 901px) {
+  .site-header.is-pinned {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0 var(--grid-margin);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-sm);
+    z-index: 1050;
+  }
+}
+
+.site-header__logo img {
+  height: 70px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Abaixo de 480px o logo (proporção larga) não cabe em 70px de altura
+   sem estourar a largura — deixa a altura encolher mantendo a proporção. */
+@media (max-width: 480px) {
+  .site-header__logo img {
+    height: auto;
+    max-height: 56px;
+    max-width: 100%;
+  }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (min-width: 901px) {
+  .site-header.is-pinned .site-nav__link {
+    padding: 10px 16px;
+  }
+}
+
+/* Botão hambúrguer mobile - fixo no topo, verde, some no desktop */
+.menu-toggle {
+  display: none;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--verde-500);
+  cursor: pointer;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1200;
+  opacity: 1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.menu-toggle span {
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-pill);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.25s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 17px;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 25px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 33px;
+}
+
+/* Ao rolar a página, o botão fica bem mais discreto */
+.menu-toggle.is-scrolled {
+  opacity: 0.4;
+}
+
+/* Volta a ficar bem visível ao passar o mouse */
+.menu-toggle:hover {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+/* Animação do X quando o drawer está aberto */
+.site-header.menu-is-open .menu-toggle {
+  opacity: 1;
+}
+
+.site-header.menu-is-open .menu-toggle span:nth-child(1) {
+  top: 25px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.site-header.menu-is-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.menu-is-open .menu-toggle span:nth-child(3) {
+  top: 25px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-toggle {
+    width: 48px;
+    height: 48px;
+    top: 18px;
+    right: 18px;
+    border-radius: 18px;
+  }
+
+  .menu-toggle span:nth-child(1) {
+    top: 15px;
+  }
+
+  .menu-toggle span:nth-child(2) {
+    top: 23px;
+  }
+
+  .menu-toggle span:nth-child(3) {
+    top: 31px;
+  }
+
+  .site-header.menu-is-open .menu-toggle span:nth-child(1),
+  .site-header.menu-is-open .menu-toggle span:nth-child(3) {
+    top: 23px;
+  }
+}
+
+.menu-backdrop {
+  display: none;
+}
+
+/* Abaixo de 900px: nav vira um drawer que desliza da direita */
+@media (max-width: 900px) {
+  .menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
+    z-index: 900;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(78vw, 340px);
+    height: 100vh;
+    padding: 110px 28px 32px;
+    background-color: var(--color-white);
+    box-shadow: -16px 0 40px rgba(0, 0, 0, 0.08);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+    transform: translateX(100%);
+    transition: transform 0.32s ease;
+    z-index: 1000;
+  }
+
+  .site-header.menu-is-open .site-nav {
+    transform: translateX(0);
+  }
+
+  .site-header.menu-is-open .menu-backdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* especificidade .site-nav + .site-nav__link vence o .btn de buttons.css */
+  .site-nav .site-nav__link {
+    width: 100%;
+    min-width: unset;
+    padding: 14px 18px;
+    text-align: right;
+    border: none;
+    border-radius: 0;
+    font-size: var(--text-lg);
+    color: var(--navy-700);
+  }
+
+  .site-nav .site-nav__link:hover,
+  .site-nav .site-nav__link.is-active {
+    background-color: transparent;
+    color: var(--verde-500);
+  }
+
+  .site-nav .site-nav__link.is-active {
+    font-weight: 700;
+  }
+
+  .site-nav .site-nav__link.is-active::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin-top: 8px;
+    margin-left: auto;
+    border-radius: var(--radius-pill);
+    background-color: var(--verde-500);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-nav {
+    width: 82vw;
+    padding-top: 96px;
+  }
+}
