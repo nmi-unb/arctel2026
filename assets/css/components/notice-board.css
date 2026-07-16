@@ -1,0 +1,320 @@
+/* Mural de Avisos (seção #avisos) — layout "painel dividido" de
+   _melhorias/mural-referencia.html: 2 colunas + faixa inferior com o
+   histórico em modal. Dados vêm de assets/data/avisos.json via
+   assets/js/components/notice-board.js. */
+
+.notice-board__panel {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.notice-board__panel--single {
+  grid-template-columns: 1fr;
+}
+
+.notice-board__col {
+  padding: 20px 22px;
+  background-color: var(--color-white);
+}
+
+.notice-board__col--highlight {
+  border-right: 1px solid var(--color-gray-200);
+}
+
+.notice-board__panel--single .notice-board__col--highlight {
+  border-right: none;
+}
+
+.notice-board__col--aula {
+  background-color: #f6fbf8;
+}
+
+.notice-board__title {
+  font-size: var(--text-md);
+  font-weight: 800;
+  color: var(--navy-700);
+  margin: 8px 0 4px;
+}
+
+.notice-board__message {
+  font-size: var(--text-sm);
+  color: #555;
+  margin: 0;
+}
+
+.notice-board__empty {
+  font-size: var(--text-sm);
+  color: #777;
+  margin: 0;
+}
+
+.notice-board__cta {
+  margin-top: 8px;
+  display: inline-flex;
+}
+
+.notice-board__strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px;
+  font-size: var(--text-xs);
+  color: #777;
+  border: 1px solid var(--color-gray-200);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.notice-board__history-btn {
+  background: none;
+  border: 1px solid var(--verde-600);
+  color: var(--verde-700);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.notice-board__history-btn:hover {
+  background-color: var(--verde-600);
+  color: var(--color-white);
+}
+
+.notice-board__history-btn:focus-visible {
+  outline: 2px solid var(--navy-700);
+  outline-offset: 2px;
+}
+
+.notice-board__history-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Badge de tipo do aviso — a cor nunca é a única informação, o texto
+   do badge sempre acompanha (ver README de _melhorias). */
+.notice-board__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 14px;
+  white-space: nowrap;
+}
+
+.notice-board__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notice-board__badge--confirmacao {
+  background-color: #e9f8ee;
+  color: var(--verde-700);
+}
+
+.notice-board__badge--confirmacao .notice-board__badge-dot {
+  background-color: var(--verde-600);
+}
+
+.notice-board__badge--ao_vivo {
+  background-color: var(--navy-700);
+  color: var(--color-white);
+}
+
+.notice-board__badge--ao_vivo .notice-board__badge-dot {
+  background-color: #ff6161;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .notice-board__badge--ao_vivo .notice-board__badge-dot {
+    animation: notice-board-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes notice-board-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.notice-board__badge--alteracao {
+  background-color: #fff4e0;
+  color: #8a5a00;
+}
+
+.notice-board__badge--alteracao .notice-board__badge-dot {
+  background-color: #e0a300;
+}
+
+.notice-board__badge--alerta {
+  background-color: #fdeaea;
+  color: #a12b2b;
+}
+
+.notice-board__badge--alerta .notice-board__badge-dot {
+  background-color: #d64545;
+}
+
+.notice-board__badge--material {
+  background-color: #eaf3ff;
+  color: #1f5c9e;
+}
+
+.notice-board__badge--material .notice-board__badge-dot {
+  background-color: #3f83c9;
+}
+
+.notice-board__badge--encerrado {
+  background-color: #f0eee9;
+  color: #7a7a7a;
+}
+
+.notice-board__badge--encerrado .notice-board__badge-dot {
+  background-color: #aaa;
+}
+
+@media (max-width: 640px) {
+  .notice-board__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .notice-board__col--highlight {
+    border-right: none;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .notice-board__strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Modal do histórico de avisos */
+.notice-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--grid-margin);
+  z-index: 1300;
+}
+
+.notice-modal-overlay[hidden] {
+  display: none;
+}
+
+.notice-modal {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  width: min(560px, 100%);
+  max-height: min(80vh, 640px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.notice-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.notice-modal__title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--navy-700);
+  margin: 0;
+}
+
+.notice-modal__close {
+  background: none;
+  border: none;
+  font-size: var(--text-xl);
+  line-height: 1;
+  color: var(--navy-700);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.notice-modal__close:hover {
+  opacity: 0.7;
+}
+
+.notice-modal__close:focus-visible {
+  outline: 2px solid var(--navy-700);
+  outline-offset: 2px;
+}
+
+.notice-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 22px 22px;
+  overflow-y: auto;
+}
+
+.notice-modal__item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.notice-modal__item:last-child {
+  border-bottom: none;
+}
+
+.notice-modal__item-title {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--navy-700);
+  margin: 8px 0 4px;
+}
+
+.notice-modal__item-message {
+  font-size: var(--text-sm);
+  color: #555;
+  margin: 0 0 4px;
+}
+
+.notice-modal__item-date {
+  font-size: var(--text-xs);
+  color: #888;
+}
+
+.notice-modal__item-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--verde-700);
+}
+
+.notice-modal__empty {
+  font-size: var(--text-sm);
+  color: #777;
+  padding: 0 22px 22px;
+  margin: 0;
+}
+
+body.notice-modal-open {
+  overflow: hidden;
+}

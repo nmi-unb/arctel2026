@@ -13,6 +13,7 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray-200: #d9d9d9;
+  --bg-page: #f1f1f1;
 
   /* Tipografia */
   --font-base: "Roboto", "Inter", Arial, sans-serif;
@@ -21,14 +22,14 @@
   --text-md: 16px;
   --text-lg: 20px;
   --text-xl: 24px;
-  --text-display: 40px;
+  --text-display: 36px;
 
   /* Espaçamento / grid */
   --container-max-width: 1140px;
   --grid-gutter: 24px;
   --grid-margin: 32px;
   --radius-pill: 32px;
-  --radius-sm: 4px;
+  --radius-sm: 32px;
 }
 
 /* Margem lateral menor em telas de celular, pra não comer largura de leitura */
