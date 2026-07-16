@@ -51,7 +51,6 @@
   font-weight: 800;
 }
 
-/* Fechado: uma linha só, truncada. Aberto: quebra livre, sem reticências. */
 .module__title {
   flex: 1 1 auto;
   min-width: 0;
@@ -82,29 +81,24 @@
   content: "\2212";
 }
 
-/* max-height (em vez de display:none/block) permite a transição suave de
-   abertura/fechamento pedida, sem precisar medir altura via JS.
-   Largura da borda fica sempre em 2px (só a cor muda) para não haver salto
-   de layout quando o estado muda; o topo some via border-top-color
-   transparent em vez de border-top:none, pelo mesmo motivo. Borda e o
-   raio inferior do painel acompanham o mesmo --modulo-radius do
-   container, então a máscara do overflow:hidden bate exatamente com o
-   arredondado do painel (sem isso sobrava uma linha branca de 1px na
-   borda inferior, onde o container ficava quadrado e o painel arredondado). */
 .module__panel {
   max-height: 0;
   overflow: hidden;
   padding: 0 66px;
-  border: 2px solid transparent;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
   background-color: var(--color-white);
   transition: max-height var(--modulo-open-duration) ease,
     padding var(--modulo-open-duration) ease,
+    border-width var(--modulo-open-duration) ease,
     border-color var(--modulo-open-duration) ease;
 }
 
 .module.is-open .module__panel {
   max-height: 2000px;
   padding: 32px 66px 34px 41px;
+  border-width: 2px;
   border-color: transparent var(--modulo-border-color) var(--modulo-border-color)
     var(--modulo-border-color);
   border-radius: 0 0 var(--modulo-radius) var(--modulo-radius);
