@@ -5,6 +5,10 @@
 .modules-list {
   --modulo-radius: var(--radius-pill);
   --modulo-header-height: 76px;
+  --modulo-border-color: color-mix(in srgb, var(--navy-700) 40%, transparent);
+  --modulo-open-duration: .5s;
+  --modulo-text-delay: .15s;
+  --modulo-text-duration: 0.4s;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -15,31 +19,25 @@
   overflow: hidden;
 }
 
-.module.is-open {
-  border-radius: var(--modulo-radius) var(--modulo-radius) 0 0;
-}
-
 .module__heading {
   font-size: inherit;
   font-weight: inherit;
 }
 
+/* align-items sempre flex-start (não só quando aberto): mantém a primeira
+   linha do título fixa no topo quando o texto quebra em várias linhas ao
+   abrir, evitando o "pulo pra cima" que acontecia ao trocar de center para
+   flex-start no clique. */
 .module__toggle {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   min-height: var(--modulo-header-height);
-  padding: 12px 32px;
+  padding: 20px 32px;
   color: var(--color-white);
   background-color: var(--verde-500);
   text-align: left;
-}
-
-.module.is-open .module__toggle {
-  align-items: flex-start;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .module__toggle:focus-visible {
@@ -58,7 +56,7 @@
   flex: 1 1 auto;
   min-width: 0;
   font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,23 +84,44 @@
 
 /* max-height (em vez de display:none/block) permite a transição suave de
    abertura/fechamento pedida, sem precisar medir altura via JS.
-   Sem borda no estado fechado (senão a borda 0-altura aparece como uma
-   linha escura colada embaixo do cabeçalho). */
+   Largura da borda fica sempre em 2px (só a cor muda) para não haver salto
+   de layout quando o estado muda; o topo some via border-top-color
+   transparent em vez de border-top:none, pelo mesmo motivo. Borda e o
+   raio inferior do painel acompanham o mesmo --modulo-radius do
+   container, então a máscara do overflow:hidden bate exatamente com o
+   arredondado do painel (sem isso sobrava uma linha branca de 1px na
+   borda inferior, onde o container ficava quadrado e o painel arredondado). */
 .module__panel {
   max-height: 0;
   overflow: hidden;
   padding: 0 66px;
   border: 2px solid transparent;
   background-color: var(--color-white);
-  transition: max-height 0.3s ease, padding 0.3s ease;
+  transition: max-height var(--modulo-open-duration) ease,
+    padding var(--modulo-open-duration) ease,
+    border-color var(--modulo-open-duration) ease;
 }
 
 .module.is-open .module__panel {
   max-height: 2000px;
   padding: 32px 66px 34px 41px;
-  border: 2px solid color-mix(in srgb, var(--navy-700) 40%, transparent);
-  border-top: none;
+  border-color: transparent var(--modulo-border-color) var(--modulo-border-color)
+    var(--modulo-border-color);
   border-radius: 0 0 var(--modulo-radius) var(--modulo-radius);
+}
+
+/* Texto só aparece 1s depois do fim da animação de abertura (controlado via
+   JS, classe .is-reveal, ver module-accordion.js) — evita o conteúdo
+   "pipocar" junto com o painel ainda se abrindo. */
+.module__ementa,
+.module__cta {
+  opacity: 0;
+  transition: opacity var(--modulo-text-duration) ease;
+}
+
+.module.is-reveal .module__ementa,
+.module.is-reveal .module__cta {
+  opacity: 1;
 }
 
 .module__ementa {
@@ -115,7 +134,7 @@
   width: fit-content;
   margin-top: 24px;
   margin-left: auto;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: opacity var(--modulo-text-duration) ease, transform 0.15s ease;
 }
 
 .module__cta:focus-visible {
@@ -134,12 +153,7 @@
   }
 
   .module__toggle {
-    padding: 10px 20px;
-  }
-
-  .module.is-open .module__toggle {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px 20px;
   }
 
   .module__label,

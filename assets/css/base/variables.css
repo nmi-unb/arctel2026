@@ -29,7 +29,7 @@
   --grid-gutter: 24px;
   --grid-margin: 32px;
   --radius-pill: 32px;
-  --radius-sm: 4px;
+  --radius-sm: 32px;
 }
 
 /* Margem lateral menor em telas de celular, pra não comer largura de leitura */
