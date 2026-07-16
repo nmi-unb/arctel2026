@@ -79,3 +79,11 @@ function handleMenuButtonScroll() {
 
 window.addEventListener("scroll", handleMenuButtonScroll);
 handleMenuButtonScroll();
+
+function handlePinnedHeader() {
+  const shouldPin = window.scrollY > 80;
+  header.classList.toggle("is-pinned", shouldPin);
+}
+
+window.addEventListener("scroll", handlePinnedHeader);
+handlePinnedHeader();
