@@ -1,13 +1,13 @@
 # Deploy Report
 
-**Data:** 2026-07-16 16:49:51  
+**Data:** 2026-07-17 10:18:31  
 **Origem:** `C:\Users\anton\OneDrive\Documentos\GitHub\arctel2026`  
 **Destino:** `C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026`  
 **Modo:** Execução  
 
 ---
 
-## Incluídos — 46 arquivo(s)
+## Incluídos — 48 arquivo(s)
 
 ```
 arctel2026/
@@ -36,14 +36,17 @@ arctel2026/
 │   │   └── avisos.json
 │   ├── img/
 │   │   ├── backgrounds/
-│   │   │   └── footer-leaf-pattern.png
+│   │   │   └── wallpaper1.svg
+│   │   ├── favicon/
+│   │   │   └── favicon.ico
 │   │   ├── logo/
 │   │   │   ├── apoio-logos.png
 │   │   │   ├── logo-ANATEL.png
 │   │   │   ├── logo-ARCTEL.png
 │   │   │   ├── logo-CCOM.png
 │   │   │   ├── logo-nmi.png
-│   │   │   ├── logo-unb.svg
+│   │   │   ├── logo-nmi.svg
+│   │   │   ├── logo-unb.png
 │   │   │   ├── nmi-footer-mark.png
 │   │   │   └── selo-cepedi.svg
 │   │   ├── professores/
@@ -81,7 +84,6 @@ arctel2026/
 ├── .claude/
 ├── .codex/
 ├── .css/
-├── .deploy/
 ├── .docs/
 ├── .filter/
 ├── .git/
@@ -93,6 +95,7 @@ arctel2026/
 ├── .vscode/
 ├── README.md
 ├── _docs/
+├── _melhorias/
 ├── caminhos.txt
 ├── deploy_report.md
 └── tree_focada.txt

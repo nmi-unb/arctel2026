@@ -4,7 +4,8 @@
 
 @media (max-width: 900px) {
   .site-header {
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 20px;
   }
 }
