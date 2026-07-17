@@ -10,20 +10,29 @@
   transition: padding 0.2s ease;
 }
 
-/* Ao rolar, header inteiro (logo + nav) acompanha fixo no topo, igual ao
-   original só um pouco mais compacto, com fundo sólido. Mobile mantém o
-   drawer normal (regra só entra em min-width: 901px). */
+/* Header (logo + nav) fica "sticky" no topo ao rolar — igual ao original,
+   só um pouco mais compacto quando rolado. Mobile mantém o drawer normal
+   (regra só entra em min-width: 901px).
+
+   Usa `position: sticky`, não `fixed`: sticky mantém o espaço do header
+   reservado no fluxo do documento. `fixed` (versão anterior) o REMOVE do
+   fluxo ao "pinar", encolhendo a altura total da página — em página curta
+   com pouco espaço de scroll (ex: modulos/*.html numa tela larga), isso
+   empurra o scrollY abaixo do threshold, desliga o pin, a página cresce de
+   volta, o scrollY sobe de novo, religa... loop infinito que pisca o
+   header e trava a rolagem. `sticky` não remove do fluxo, então não entra
+   nesse loop. */
 @media (min-width: 901px) {
+  .site-header {
+    position: sticky;
+    top: 5px;
+    z-index: 1050;
+  }
+
   .site-header.is-pinned {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
     background-color: var(--color-white);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
-    z-index: 1050;
     padding: 10px;
   }
 }
