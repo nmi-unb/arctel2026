@@ -35,11 +35,8 @@
   opacity: 0.85;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .back-to-top {
-    width: 44px;
-    height: 44px;
-    right: 18px;
-    bottom: 18px;
+    display: none;
   }
 }

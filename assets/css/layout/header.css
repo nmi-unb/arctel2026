@@ -20,26 +20,29 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    padding: 0 var(--grid-margin);
     background-color: var(--color-white);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
     z-index: 1050;
+    padding: 10px;
   }
 }
 
 .site-header__logo img {
-  height: 70px;
+  height: 55px;
   width: auto;
   max-width: 100%;
 }
 
-/* Abaixo de 480px o logo (proporção larga) não cabe em 70px de altura
-   sem estourar a largura — deixa a altura encolher mantendo a proporção. */
+/* Abaixo de 480px, a logo (proporção larga) encolhe pra caber sem estourar
+   a largura. Usa altura FIXA (não auto) — esse SVG não tem width/height no
+   elemento raiz (só viewBox), e height:auto nele some (fica 0x0) quando o
+   ancestral é display:flex (é o caso do .site-header). Bug de navegador,
+   contornado assim. */
 @media (max-width: 480px) {
   .site-header__logo img {
-    height: auto;
-    max-height: 56px;
+    height: 55px;
+    width: auto;
     max-width: 100%;
   }
 }
