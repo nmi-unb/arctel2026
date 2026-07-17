@@ -1,4 +1,4 @@
-DEFAULT_CONFIG: dict = {
+CONFIG_SOURCE: dict = {
     "ignored_dirs": [],
     "visible_dirs": ["assets", "modulos"],
     "ignored_extensions": [],
@@ -10,4 +10,16 @@ DEFAULT_CONFIG: dict = {
         "tree_focada.txt",
     ],
     "visible_files": ["index.html"],
+}
+
+CONFIG_TARGET: dict = {
+    "ignored_dirs": [".git"],
+    "visible_dirs": [],
+    "ignored_extensions": [],
+    "visible_extensions": [],
+    "ignored_files": [
+        ".gitignore",
+        "./README.md",
+    ],
+    "visible_files": [],
 }

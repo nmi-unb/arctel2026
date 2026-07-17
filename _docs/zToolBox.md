@@ -75,5 +75,5 @@ toolbox run file_tree -- "$REPO_ALVO" --config "$CONFIG_FILE"
 ### deploy
 
 ```pwsh
-    toolbox run init_generator "[TAGET_DIR]"
+    toolbox run deploy_filter -- ../arctel2026 --config .\_docs\dFilter.py
 ```
