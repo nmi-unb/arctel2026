@@ -43,7 +43,7 @@ arctel2026/
 │   │   │   ├── logo-ARCTEL.png
 │   │   │   ├── logo-CCOM.png
 │   │   │   ├── logo-nmi.png
-│   │   │   ├── logo-unb.png
+│   │   │   ├── logo-unb.svg
 │   │   │   ├── nmi-footer-mark.png
 │   │   │   └── selo-cepedi.svg
 │   │   ├── professores/

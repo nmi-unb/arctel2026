@@ -20,16 +20,16 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    padding: 0 var(--grid-margin);
     background-color: var(--color-white);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
     z-index: 1050;
+    padding: 10px;
   }
 }
 
 .site-header__logo img {
-  height: 70px;
+  height: 55px;
   width: auto;
   max-width: 100%;
 }
