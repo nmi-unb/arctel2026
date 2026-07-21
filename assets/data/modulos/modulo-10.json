@@ -1,0 +1,66 @@
+{
+  "modulo": 10,
+  "titulo": "Cenários prospectivos do futuro da Internet",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-10-24T07:30:00-03:00",
+      "dataFim": "2026-10-24T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-10-29T07:30:00-03:00",
+      "dataFim": "2026-10-29T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/221232043114894?p=LcDFHCGHhEPfCxxTr7",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 3,
+      "titulo": "Aula 3",
+      "dataInicio": "2026-11-03T07:30:00-03:00",
+      "dataFim": "2026-11-03T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 4,
+      "titulo": "Aula 4",
+      "dataInicio": "2026-11-05T07:30:00-03:00",
+      "dataFim": "2026-11-05T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

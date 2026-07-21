@@ -1,0 +1,66 @@
+{
+  "modulo": 9,
+  "titulo": "Convergência tecnológica de serviços tradicionais e digitais: impacto das OTT's na indústria global de Telecomunicações",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-10-10T07:30:00-03:00",
+      "dataFim": "2026-10-10T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/223337149942064?p=zVOEcB5PgMKzngK3AQ",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-10-15T07:30:00-03:00",
+      "dataFim": "2026-10-15T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/27191828360552?p=Xk019df77KNS5Wkq3z",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 3,
+      "titulo": "Aula 3",
+      "dataInicio": "2026-10-17T07:30:00-03:00",
+      "dataFim": "2026-10-17T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 4,
+      "titulo": "Aula 4",
+      "dataInicio": "2026-10-22T07:30:00-03:00",
+      "dataFim": "2026-10-22T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/272223791649605?p=oFbvzJi1x7qJdaeEcu",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

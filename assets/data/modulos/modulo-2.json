@@ -1,0 +1,36 @@
+{
+  "modulo": 2,
+  "titulo": "Desenho regulatório responsivo",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-08-11T07:30:00-03:00",
+      "dataFim": "2026-08-11T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-08-13T07:30:00-03:00",
+      "dataFim": "2026-08-13T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

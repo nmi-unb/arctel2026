@@ -34,7 +34,7 @@ const BADGES = {
    Por isso exigimos offset (ou "Z") em toda data vinda do JSON. */
 const ISO_OFFSET_PATTERN = /(Z|[+-]\d{2}:\d{2})$/;
 
-function parseDate(value) {
+export function parseDate(value) {
   if (!value) return null;
 
   if (typeof value === "string" && !ISO_OFFSET_PATTERN.test(value)) {

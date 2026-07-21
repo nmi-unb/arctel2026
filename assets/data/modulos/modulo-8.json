@@ -1,0 +1,36 @@
+{
+  "modulo": 8,
+  "titulo": "Liberdade de Expressão no Ecossistema Digital",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-10-03T07:30:00-03:00",
+      "dataFim": "2026-10-03T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/261201745670347?p=rNiuV2ybaBMHSulKXg",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-10-08T07:30:00-03:00",
+      "dataFim": "2026-10-08T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/2421574592161?p=3P0OJYfQpVhBDo1kaX",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}
