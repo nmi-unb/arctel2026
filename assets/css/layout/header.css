@@ -43,6 +43,10 @@
   max-width: 100%;
 }
 
+.site-nav__close {
+    display: none;
+  }
+
 /* Abaixo de 480px, a logo (proporção larga) encolhe pra caber sem estourar
    a largura. Usa altura FIXA (não auto) — esse SVG não tem width/height no
    elemento raiz (só viewBox), e height:auto nele some (fica 0x0) quando o
