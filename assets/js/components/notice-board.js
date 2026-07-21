@@ -20,7 +20,7 @@ function withBrasiliaNote(text) {
 }
 
 const BADGES = {
-  confirmacao: { className: "notice-board__badge--confirmacao", label: "Aula confirmada" },
+  confirmacao: { className: "notice-board__badge--confirmacao", label: "Aula programada" },
   ao_vivo: { className: "notice-board__badge--ao_vivo", label: "Ao vivo agora" },
   alteracao: { className: "notice-board__badge--alteracao", label: "Alteração importante" },
   alerta: { className: "notice-board__badge--alerta", label: "Alerta" },
