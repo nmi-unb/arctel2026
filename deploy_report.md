@@ -1,13 +1,13 @@
 # Deploy Report
 
-**Data:** 2026-07-17 10:18:31  
-**Origem:** `C:\Users\anton\OneDrive\Documentos\GitHub\arctel2026`  
-**Destino:** `C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026`  
+**Data:** 2026-07-21 15:08:08  
+**Origem:** `C:\Users\Cadu\Documents\GitHub\arctel2026`  
+**Destino:** `C:\Users\Cadu\Documents\GitHub\.deploy\arctel2026`  
 **Modo:** Execução  
 
 ---
 
-## Incluídos — 48 arquivo(s)
+## Incluídos — 77 arquivo(s)
 
 ```
 arctel2026/
@@ -21,6 +21,8 @@ arctel2026/
 │   │   │   ├── back-to-top.css
 │   │   │   ├── buttons.css
 │   │   │   ├── cards.css
+│   │   │   ├── contact-card.css
+│   │   │   ├── lesson-accordion.css
 │   │   │   ├── navigation.css
 │   │   │   └── notice-board.css
 │   │   ├── layout/
@@ -33,11 +35,25 @@ arctel2026/
 │   │   ├── main.css
 │   │   └── README.md
 │   ├── data/
+│   │   ├── modulos/
+│   │   │   ├── modulo-1.json
+│   │   │   ├── modulo-10.json
+│   │   │   ├── modulo-11.json
+│   │   │   ├── modulo-2.json
+│   │   │   ├── modulo-3.json
+│   │   │   ├── modulo-4.json
+│   │   │   ├── modulo-5.json
+│   │   │   ├── modulo-6.json
+│   │   │   ├── modulo-7.json
+│   │   │   ├── modulo-8.json
+│   │   │   └── modulo-9.json
 │   │   └── avisos.json
 │   ├── img/
 │   │   ├── backgrounds/
 │   │   │   └── wallpaper1.svg
 │   │   ├── favicon/
+│   │   │   ├── favicon-32x32.png
+│   │   │   ├── favicon-64x64.png
 │   │   │   └── favicon.ico
 │   │   ├── logo/
 │   │   │   ├── apoio-logos.png
@@ -58,26 +74,40 @@ arctel2026/
 │   │   │   ├── NeliaDelBianco.gif
 │   │   │   ├── PriscilaAmericaSolisMendezBarreto.gif
 │   │   │   ├── SimoneHenriquetaCossetinScholze.gif
+│   │   │   ├── SimoneHenriquetaCossetinScholze.jpg
 │   │   │   └── VaniaLuciaRibeiroVieira.jpg
 │   │   └── README.md
 │   ├── js/
 │   │   ├── components/
 │   │   │   ├── hamburger-menu.js
+│   │   │   ├── lesson-accordion.js
 │   │   │   ├── module-accordion.js
-│   │   │   └── notice-board.js
+│   │   │   ├── notice-board.js
+│   │   │   └── notice-board.md
 │   │   ├── pages/
-│   │   │   └── home-page.js
+│   │   │   ├── home-page.js
+│   │   │   └── module-page.js
 │   │   ├── app.js
 │   │   ├── back-to-top.js
 │   │   ├── menu.js
 │   │   └── README.md
 │   └── README.md
 ├── modulos/
-│   └── modulo-1.html
+│   ├── modulo-1.html
+│   ├── modulo-10.html
+│   ├── modulo-11.html
+│   ├── modulo-2.html
+│   ├── modulo-3.html
+│   ├── modulo-4.html
+│   ├── modulo-5.html
+│   ├── modulo-6.html
+│   ├── modulo-7.html
+│   ├── modulo-8.html
+│   └── modulo-9.html
 └── index.html
 ```
 
-## Excluídos — 19 item(ns)
+## Excluídos — 17 item(ns)
 
 ```
 ├── .agents/
@@ -90,12 +120,10 @@ arctel2026/
 ├── .gitignore
 ├── .info/
 ├── .prompt/
-├── .ref/
 ├── .report/
 ├── .vscode/
 ├── README.md
 ├── _docs/
-├── _melhorias/
 ├── caminhos.txt
 ├── deploy_report.md
 └── tree_focada.txt

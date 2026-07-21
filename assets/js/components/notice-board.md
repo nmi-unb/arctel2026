@@ -57,13 +57,20 @@ Na prática, o componente trabalha com duas áreas visuais:
 
 O aviso principal vem da função `pickPrincipal(current)`.
 
-Ela recebe apenas os avisos considerados atuais e escolhe um único aviso usando esta regra:
+Ela recebe os avisos considerados atuais, **descarta os que têm `dataInicio` e `dataFim`
+válidos** (esses são avisos de aula — ver seção 2, eles não concorrem ao destaque principal) e
+escolhe um único aviso entre os restantes usando esta regra:
 
 1. maior `prioridade`;
 2. em caso de empate, maior `dataPublicacao`;
-3. se não houver nenhum aviso atual, aparece a mensagem `Nenhum aviso disponível no momento.`
+3. se não houver nenhum aviso elegível, aparece a mensagem `Nenhum aviso disponível no momento.`
 
-Importante: o aviso principal pode ser qualquer tipo de aviso atual. Ele não precisa ter `dataInicio` ou `dataFim`.
+Por que descartar avisos de aula: `dataPublicacao` no futuro não impede um aviso de aparecer como
+atual (ver seção "É possível agendar mensagens?" mais abaixo). Com 30 avisos de aula cadastrados,
+prioridade empatada e `dataPublicacao` espalhada de agosto a novembro, o destaque principal sempre
+escolheria a aula com a publicação mais distante no futuro — um evento isolado, sem contexto, meses
+antes de acontecer. O destaque principal é para comunicados institucionais/vigentes; a aula
+específica já tem sua própria coluna (`pickAula`).
 
 No painel principal aparecem:
 
@@ -131,14 +138,12 @@ Essa classe faz o mural usar apenas uma coluna visual.
 
 ## Um mesmo aviso pode aparecer nos dois painéis?
 
-Sim.
+Não.
 
-O código não remove do painel principal o aviso escolhido para o painel de aula.
-
-Isso significa que, se uma aula for o aviso atual com maior `prioridade`, ela pode aparecer ao mesmo tempo:
-
-- no aviso principal;
-- no painel de aula.
+`pickPrincipal` descarta explicitamente qualquer aviso com `dataInicio`+`dataFim` válidos (ver
+seção 1), e só esses avisos entram em `pickAula`. Os dois painéis usam conjuntos de avisos
+mutuamente exclusivos — um aviso de aula nunca aparece no destaque principal, e um aviso sem
+horário nunca aparece na coluna de aula.
 
 ## O que é um aviso atual?
 
