@@ -105,10 +105,16 @@ function classifyAvisos(avisos, now) {
   return { current, archived };
 }
 
-/* Maior prioridade primeiro; empate resolvido pela publicação mais recente. */
+/* Maior prioridade primeiro; empate resolvido pela publicação mais recente.
+   Avisos "de aula" (com dataInicio+dataFim) ficam de fora daqui — eles já
+   têm coluna própria via pickAula(). Sem esse filtro, a aula com o
+   dataPublicacao mais distante no futuro vence o destaque principal, o que
+   produz um card sem contexto (ex.: uma aula isolada do Módulo 11 aparecendo
+   como manchete em julho, meses antes de acontecer). */
 function pickPrincipal(current) {
-  if (!current.length) return null;
-  return current
+  const elegiveis = current.filter((a) => !(parseDate(a.dataInicio) && parseDate(a.dataFim)));
+  if (!elegiveis.length) return null;
+  return elegiveis
     .slice()
     .sort((a, b) => {
       const prioridadeDiff = (b.prioridade || 0) - (a.prioridade || 0);
