@@ -72,6 +72,8 @@
 /* Botão hambúrguer mobile - fixo no topo, verde, some no desktop */
 .menu-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
   width: 52px;
   height: 52px;
   border: none;
@@ -87,7 +89,8 @@
   transition:
     opacity 0.25s ease,
     transform 0.25s ease,
-    background-color 0.25s ease;
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .menu-toggle span {
@@ -99,6 +102,14 @@
   left: 50%;
   transform: translateX(-50%);
   transition: 0.25s ease;
+}
+
+/* Vestígio de uma versão anterior do ícone aberto/fechado — o span ainda
+   existe no HTML de todas as páginas, mas não é mais usado (o fechar agora
+   é .site-nav__close). display:none evita que o caractere "‹" apareça
+   solto dentro do botão. */
+.menu-toggle__icon {
+  display: none;
 }
 
 .menu-toggle span:nth-child(1) {
@@ -124,28 +135,16 @@
   transform: scale(1.03);
 }
 
-/* Animação do X quando o drawer está aberto */
+/* Com o drawer aberto o fechar passa a ser o botão .site-nav__close (canto
+   superior esquerdo do próprio painel) — o hambúrguer some pra não duplicar
+   o controle de fechar. */
 .site-header.menu-is-open .menu-toggle {
-  opacity: 1;
-}
-
-.site-header.menu-is-open .menu-toggle span:nth-child(1) {
-  top: 25px;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.site-header.menu-is-open .menu-toggle span:nth-child(2) {
-  opacity: 0;
-}
-
-.site-header.menu-is-open .menu-toggle span:nth-child(3) {
-  top: 25px;
-  transform: translateX(-50%) rotate(-45deg);
+  display: none;
 }
 
 @media (max-width: 900px) {
   .menu-toggle {
-    display: block;
+    display: flex;
   }
 }
 
@@ -169,18 +168,15 @@
   .menu-toggle span:nth-child(3) {
     top: 31px;
   }
-
-  .site-header.menu-is-open .menu-toggle span:nth-child(1),
-  .site-header.menu-is-open .menu-toggle span:nth-child(3) {
-    top: 23px;
-  }
 }
 
 .menu-backdrop {
   display: none;
 }
 
-/* Abaixo de 900px: nav vira um drawer que desliza da direita */
+/* Abaixo de 900px: nav vira um painel verde ocupando até 55% da largura da
+   tela, entrando com um slide da direita pra esquerda (só transform, sem
+   fade — animação breve e limpa). */
 @media (max-width: 900px) {
   .menu-backdrop {
     display: block;
@@ -197,16 +193,18 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: min(78vw, 340px);
+    width: 55vw;
     height: 100vh;
-    padding: 110px 28px 32px;
-    background-color: var(--color-white);
-    box-shadow: -16px 0 40px rgba(0, 0, 0, 0.08);
+    padding: 72px 32px 24px;
+    background-color: var(--verde-500);
+    box-shadow: none;
+    display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
     transform: translateX(100%);
-    transition: transform 0.32s ease;
+    transition: transform 0.3s ease;
     z-index: 1000;
   }
 
@@ -219,37 +217,65 @@
     visibility: visible;
   }
 
-  /* especificidade .site-nav + .site-nav__link vence o .btn de buttons.css */
-  .site-nav .site-nav__link {
-    width: 100%;
-    min-width: unset;
-    padding: 14px 18px;
-    text-align: right;
+  /* Botão de fechar dentro do próprio painel (canto superior esquerdo). */
+  .site-nav__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
     border: none;
-    border-radius: 0;
-    font-size: var(--text-lg);
-    color: var(--navy-700);
+    background: none;
+    color: var(--color-white);
+    font-size: 24px;
+    cursor: pointer;
   }
 
-  .site-nav .site-nav__link:hover,
-  .site-nav .site-nav__link.is-active {
+  .site-nav__close:hover,
+  .site-nav__close:focus-visible {
+    opacity: 0.8;
+  }
+
+  /* especificidade .site-nav + .site-nav__link vence o .btn de buttons.css */
+  .site-nav .site-nav__link {
+    width: auto;
+    min-width: unset;
+    padding: 0;
+    text-align: center;
     background-color: transparent;
-    color: var(--verde-500);
+    border: 2px solid transparent;
+    border-radius: 0;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--color-white);
+  }
+
+  /* "Inicio" continua com a pill contornada; os demais ficam só como texto —
+     usa classe própria (não :first-child) porque .site-nav__close agora
+     é o primeiro filho real do <nav>. */
+  .site-nav .site-nav__link--pill {
+    padding: 14px 32px;
+    border-color: var(--color-white);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-lg);
+    font-weight: 700;
   }
 
   .site-nav .site-nav__link.is-active {
     font-weight: 700;
   }
 
-  .site-nav .site-nav__link.is-active::after {
-    content: "";
-    display: block;
-    width: 44px;
-    height: 3px;
-    margin-top: 8px;
-    margin-left: auto;
-    border-radius: var(--radius-pill);
-    background-color: var(--verde-500);
+  /* Hover/selecionado: a borda (invisível nos links simples, branca na
+     pill) vira bg-page — em qualquer um dos dois, sempre depois da regra
+     da pill acima pra vencer em especificidade igual. */
+  .site-nav .site-nav__link:hover,
+  .site-nav .site-nav__link:focus-visible,
+  .site-nav .site-nav__link.is-active {
+    background-color: transparent;
+    border-color: var(--bg-page);
   }
 
   body.menu-open {
@@ -259,7 +285,12 @@
 
 @media (max-width: 480px) {
   .site-nav {
-    width: 82vw;
-    padding-top: 96px;
+    width: 68vw;
+    gap: 24px;
+    padding-top: 64px;
+  }
+
+  .site-nav .site-nav__link {
+    font-size: 22px;
   }
 }
