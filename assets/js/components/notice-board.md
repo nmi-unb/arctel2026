@@ -407,21 +407,46 @@ Ele não indica necessariamente a hora em que o arquivo JSON foi carregado. Indi
 
 ## Datas e fuso horário
 
-As datas são lidas com `new Date(value)`.
+Todas as comparações (`ao vivo`, `próxima aula`, arquivamento, liberação de link) são feitas
+entre objetos `Date`, que representam um instante absoluto (timestamp UTC internamente) — não
+uma string formatada. Por isso a comparação em si já funciona igual para qualquer usuário, em
+qualquer país: `dataInicio <= agora <= dataFim` dá o mesmo resultado em São Paulo, Lisboa ou Tóquio,
+**desde que a data cadastrada tenha o offset de fuso explícito**.
 
-As datas exibidas na tela usam o fuso:
+As datas exibidas na tela (formatação, não comparação) usam o fuso:
 
 ```text
 America/Sao_Paulo
 ```
 
-Por isso, o formato recomendado no JSON é ISO com fuso explícito:
+Por isso o formato **obrigatório** no JSON é ISO com fuso explícito:
 
 ```text
 2026-08-04T09:30:00-03:00
 ```
 
-Evite datas sem fuso horário, porque o navegador pode interpretá-las de forma diferente dependendo do ambiente.
+`parseDate(value)` valida isso: se a string não terminar em `Z` ou em um offset (`±HH:MM`), a
+data é **rejeitada** (tratada como ausente) e um aviso é registrado no console com o prefixo
+`[notice-board]`. Motivo: uma data sem offset, tipo `"2026-08-04T09:30:00"`, é interpretada pelo
+`new Date()` do navegador na hora **local de quem está vendo a página**, não em Brasília — isso
+faria a mesma aula parecer "ao vivo" em horários diferentes pra usuários em fusos diferentes.
+
+Limite que a validação não resolve: a comparação depende do relógio do próprio dispositivo do
+usuário (`new Date()` local). Se esse relógio estiver errado, o "agora" calculado também erra —
+isso é inerente a qualquer lógica 100% client-side, sem servidor de hora, e está fora do que este
+componente estático consegue garantir.
+
+### Aviso de fuso para quem não está em Brasília
+
+Forçar a formatação pra `America/Sao_Paulo` resolve o cálculo, mas cria um problema de
+comunicação: um usuário em outro fuso vê a mesma hora renderizada e, sem contexto, tende a lê-la
+como sendo a hora local dele — o que é falso.
+
+`VIEWER_IS_IN_ANOTHER_TIMEZONE` compara o fuso do navegador
+(`Intl.DateTimeFormat().resolvedOptions().timeZone`) com `America/Sao_Paulo`. Quando diferem,
+`withBrasiliaNote(texto)` acrescenta o sufixo `(horário de Brasília)` em toda data/hora exibida
+(aviso principal, aula ao vivo/próxima, "Última atualização" e histórico). Para quem já está em
+Brasília, o sufixo não aparece — a hora mostrada já é a hora local dele, o aviso seria ruído.
 
 ## O que acontece se o JSON falhar?
 
