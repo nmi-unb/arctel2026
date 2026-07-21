@@ -1,0 +1,36 @@
+{
+  "modulo": 11,
+  "titulo": "Oficina com Lideranças Regulatórias",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-11-10T07:30:00-03:00",
+      "dataFim": "2026-11-10T10:30:00-03:00",
+      "links": {
+        "teams": null,
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-11-12T07:30:00-03:00",
+      "dataFim": "2026-11-12T10:30:00-03:00",
+      "links": {
+        "teams": null,
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

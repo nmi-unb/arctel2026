@@ -11,6 +11,7 @@
 @import url("./components/cards.css");
 @import url("./components/back-to-top.css");
 @import url("./components/notice-board.css");
+@import url("./components/lesson-accordion.css");
 
 @import url("./pages/home.css");
 @import url("./pages/module-page.css");

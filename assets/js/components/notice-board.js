@@ -2,6 +2,23 @@ const DATA_URL = "./assets/data/avisos.json";
 const REFRESH_INTERVAL_MS = 60000;
 const TIMEZONE = "America/Sao_Paulo";
 
+/* Todo horário exibido é forçado para Brasília (ver formatDateTime/formatDate/
+   formatTime). Para quem já está nesse fuso isso é transparente — a hora
+   mostrada já é a hora local dele, não precisa de aviso. Para quem acessa de
+   outro fuso, a mesma hora mostrada NÃO é a hora local dele, então deixamos
+   isso explícito só nesse caso, pra não confundir com prazo/horário errado. */
+const VIEWER_IS_IN_ANOTHER_TIMEZONE = (() => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone !== TIMEZONE;
+  } catch {
+    return false;
+  }
+})();
+
+function withBrasiliaNote(text) {
+  return VIEWER_IS_IN_ANOTHER_TIMEZONE ? `${text} (horário de Brasília)` : text;
+}
+
 const BADGES = {
   confirmacao: { className: "notice-board__badge--confirmacao", label: "Aula confirmada" },
   ao_vivo: { className: "notice-board__badge--ao_vivo", label: "Ao vivo agora" },
@@ -11,8 +28,23 @@ const BADGES = {
   encerrado: { className: "notice-board__badge--encerrado", label: "Encerrado" },
 };
 
-function parseDate(value) {
+/* Datas sem offset explícito (ex.: "2026-08-04T07:30:00", sem "-03:00")
+   são interpretadas pelo navegador no fuso LOCAL de quem está vendo a
+   página, não em Brasília — quebraria a regra de negócio por usuário.
+   Por isso exigimos offset (ou "Z") em toda data vinda do JSON. */
+const ISO_OFFSET_PATTERN = /(Z|[+-]\d{2}:\d{2})$/;
+
+export function parseDate(value) {
   if (!value) return null;
+
+  if (typeof value === "string" && !ISO_OFFSET_PATTERN.test(value)) {
+    console.warn(
+      `[notice-board] data sem fuso horário explícito ignorada: "${value}". ` +
+        "Use ISO com offset, ex.: 2026-08-04T07:30:00-03:00."
+    );
+    return null;
+  }
+
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date;
 }
@@ -143,7 +175,7 @@ function renderHighlight(container, principal) {
   message.className = "notice-board__message";
   const dataPublicacao = parseDate(principal.dataPublicacao);
   message.textContent = dataPublicacao
-    ? `${principal.mensagem} · ${formatDateTime(dataPublicacao)}`
+    ? `${principal.mensagem} · ${withBrasiliaNote(formatDateTime(dataPublicacao))}`
     : principal.mensagem;
 
   container.append(renderBadge(principal.tipo), title, message);
@@ -171,8 +203,8 @@ function renderAula(container, aulaInfo, now) {
   message.className = "notice-board__message";
   message.textContent =
     status === "ao_vivo"
-      ? `Até ${formatTime(fim)}`
-      : `${formatDate(inicio)} · ${formatTime(inicio)}–${formatTime(fim)}`;
+      ? withBrasiliaNote(`Até ${formatTime(fim)}`)
+      : withBrasiliaNote(`${formatDate(inicio)} · ${formatTime(inicio)}–${formatTime(fim)}`);
 
   container.append(renderBadge(status === "ao_vivo" ? "ao_vivo" : "confirmacao"), title, message);
 
@@ -186,7 +218,7 @@ function renderUpdatedAt(el, avisos) {
     .filter(Boolean)
     .sort((a, b) => b - a)[0];
 
-  el.textContent = latest ? `Última atualização: ${formatDateTime(latest)}` : "";
+  el.textContent = latest ? withBrasiliaNote(`Última atualização: ${formatDateTime(latest)}`) : "";
 }
 
 function renderHistoryList(listEl, archived) {
@@ -221,7 +253,7 @@ function renderHistoryList(listEl, archived) {
     const date = document.createElement("p");
     date.className = "notice-modal__item-date";
     const dataPublicacao = parseDate(aviso.dataPublicacao);
-    date.textContent = dataPublicacao ? formatDateTime(dataPublicacao) : "";
+    date.textContent = dataPublicacao ? withBrasiliaNote(formatDateTime(dataPublicacao)) : "";
 
     item.append(renderBadge(aviso.tipo), title, message, date);
 

@@ -1,0 +1,36 @@
+{
+  "modulo": 5,
+  "titulo": "Tributação de Serviços Digitais",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-09-03T07:30:00-03:00",
+      "dataFim": "2026-09-03T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/2216236358191?p=eh7Cj5mdPAlnqJm4xo",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-09-10T07:30:00-03:00",
+      "dataFim": "2026-09-10T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/224941917665953?p=oozouSYXwhJhdLdaNJ",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}
