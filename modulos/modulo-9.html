@@ -13,6 +13,12 @@
   <!-- FavIcon png 64 -->
   <link rel="icon" type="image/png" href="../assets/img/favicon/favicon-64x64.png" sizes="64x64" />
   
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 <body>
@@ -25,12 +31,16 @@
       <span></span>
       <span></span>
       <span></span>
+      <span class="menu-toggle__icon" aria-hidden="true">&#8249;</span>
     </button>
 
     <div class="menu-backdrop"></div>
 
     <nav class="site-nav" aria-label="Navegação principal">
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#inicio">inicio</a>
+      <button type="button" class="site-nav__close" aria-label="Fechar menu">
+        <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn--outline btn--outline-nav site-nav__link site-nav__link--pill" href="../index#inicio">inicio</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#modulos">módulos</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#avisos">avisos</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#contato">contato</a>

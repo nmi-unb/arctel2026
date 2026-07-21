@@ -31,12 +31,16 @@
       <span></span>
       <span></span>
       <span></span>
+      <span class="menu-toggle__icon" aria-hidden="true">&#8249;</span>
     </button>
 
     <div class="menu-backdrop"></div>
 
     <nav class="site-nav" aria-label="Navegação principal">
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#inicio">Inicio</a>
+      <button type="button" class="site-nav__close" aria-label="Fechar menu">
+        <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn--outline btn--outline-nav site-nav__link site-nav__link--pill" href="#inicio">Inicio</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#modulos">Módulos</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#avisos">Avisos</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#contato">Contato</a>
@@ -329,6 +333,7 @@
         </div>
       </div>
     </section>
+    <div style="margin-bottom: 100px;"></div>
   </main>
 
   <button type="button" id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
