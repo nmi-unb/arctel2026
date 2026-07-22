@@ -1,5 +1,5 @@
 CONFIG_SOURCE: dict = {
-    "ignored_dirs": [],
+    "ignored_dirs": [""],
     "visible_dirs": ["assets", "modulos"],
     "ignored_extensions": [],
     "visible_extensions": [],
@@ -8,6 +8,7 @@ CONFIG_SOURCE: dict = {
         "caminhos.txt",
         "./README.md",
         "tree_focada.txt",
+        "assets\css\pages\convite.css",
     ],
     "visible_files": ["index.html"],
 }

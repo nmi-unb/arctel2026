@@ -1,0 +1,177 @@
+/* Página "Convite de turma" - header simplificado (sem nav) + convite */
+
+body {
+  background-color: #fff;
+}
+
+.site-header__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-header__logo-subtitle {
+  font-size: var(--text-sm);
+  color: var(--navy-700);
+  margin: 0;
+}
+
+.site-header__logo-title {
+  font-size: var(--text-xl);
+  margin: 0;
+}
+
+.convite {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 48px var(--grid-margin) 64px;
+}
+
+.convite section {
+  padding: 0;
+  margin-bottom: 48px;
+}
+
+.convite__eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--verde-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.convite__title {
+  font-size: var(--text-display);
+  margin: 0 0 16px;
+}
+
+.convite__lead {
+  margin-bottom: 16px;
+}
+
+.convite__lead:last-child {
+  margin-bottom: 0;
+}
+
+.convite__deadline {
+  color: #c0392b;
+}
+
+.convite__section-title {
+  font-size: var(--text-xl);
+  margin: 0 0 16px;
+}
+
+/* Cartão com o horário fixo da turma */
+.schedule-card {
+  background-color: var(--navy-500);
+  border-radius: var(--radius-sm);
+  padding: 24px 32px;
+  margin: 48px auto 32px;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+.schedule-card__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 0 4px;
+}
+
+.schedule-card__sub {
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  margin: 0;
+}
+
+/* Tabela de equivalência de horários */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+
+.tz-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-white);
+}
+
+.tz-table th,
+.tz-table td {
+  padding: 14px 24px;
+  text-align: left;
+  font-size: var(--text-md);
+  color: var(--navy-700);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.tz-table th {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-black);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tz-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tz-table__highlight td {
+  font-weight: 700;
+  color: var(--color-black);
+  background-color: color-mix(in srgb, var(--verde-500) 12%, transparent);
+}
+
+.tz-note {
+  font-size: var(--text-sm);
+  margin-top: 12px;
+}
+
+/* Chamada para confirmação (CTA) */
+.convite__cta {
+  background-color: var(--color-white);
+  border-radius: var(--radius-sm);
+  padding: 32px 32px 64px;
+}
+
+.convite__cta-text {
+  max-width: 640px;
+  margin: 0 0 24px;
+}
+
+.convite__cta-btn {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 14px 28px;
+  font-size: var(--text-md);
+}
+
+/* Encerramento / assinatura */
+.convite__closing p {
+  margin: 0 0 16px;
+}
+
+.convite__signature {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .convite {
+    padding: 32px var(--grid-margin) 48px;
+  }
+
+  .schedule-card,
+  .convite__cta {
+    padding: 20px;
+  }
+
+  .tz-table th,
+  .tz-table td {
+    padding: 12px 16px;
+  }
+}

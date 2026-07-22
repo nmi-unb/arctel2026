@@ -1,13 +1,13 @@
 # Deploy Report
 
-**Data:** 2026-07-17 10:18:31  
+**Data:** 2026-07-17 14:18:56  
 **Origem:** `C:\Users\anton\OneDrive\Documentos\GitHub\arctel2026`  
 **Destino:** `C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026`  
 **Modo:** Execução  
 
 ---
 
-## Incluídos — 48 arquivo(s)
+## Incluídos — 59 arquivo(s)
 
 ```
 arctel2026/
@@ -58,6 +58,7 @@ arctel2026/
 │   │   │   ├── NeliaDelBianco.gif
 │   │   │   ├── PriscilaAmericaSolisMendezBarreto.gif
 │   │   │   ├── SimoneHenriquetaCossetinScholze.gif
+│   │   │   ├── SimoneHenriquetaCossetinScholze.jpg
 │   │   │   └── VaniaLuciaRibeiroVieira.jpg
 │   │   └── README.md
 │   ├── js/
@@ -73,7 +74,17 @@ arctel2026/
 │   │   └── README.md
 │   └── README.md
 ├── modulos/
-│   └── modulo-1.html
+│   ├── modulo-1.html
+│   ├── modulo-10.html
+│   ├── modulo-11.html
+│   ├── modulo-2.html
+│   ├── modulo-3.html
+│   ├── modulo-4.html
+│   ├── modulo-5.html
+│   ├── modulo-6.html
+│   ├── modulo-7.html
+│   ├── modulo-8.html
+│   └── modulo-9.html
 └── index.html
 ```
 
