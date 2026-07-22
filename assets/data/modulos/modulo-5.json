@@ -5,10 +5,10 @@
     {
       "numero": 1,
       "titulo": "Aula 1",
-      "dataInicio": "2026-09-03T07:30:00-03:00",
-      "dataFim": "2026-09-03T10:30:00-03:00",
+      "dataInicio": "2026-09-08T07:30:00-03:00",
+      "dataFim": "2026-09-08T10:30:00-03:00",
       "links": {
-        "teams": "https://teams.microsoft.com/meet/2216236358191?p=eh7Cj5mdPAlnqJm4xo",
+        "teams": "https://teams.microsoft.com/meet/265717928354071?p=p2ozBgLlMeXRgPBA2p",
         "youtubeLive": null,
         "youtubeRecorded": null
       },
@@ -20,10 +20,25 @@
     {
       "numero": 2,
       "titulo": "Aula 2",
-      "dataInicio": "2026-09-10T07:30:00-03:00",
-      "dataFim": "2026-09-10T10:30:00-03:00",
+      "dataInicio": "2026-09-15T07:30:00-03:00",
+      "dataFim": "2026-09-15T10:30:00-03:00",
       "links": {
-        "teams": "https://teams.microsoft.com/meet/224941917665953?p=oozouSYXwhJhdLdaNJ",
+        "teams": "https://teams.microsoft.com/meet/29754870339274?p=oiNYjm4Kr5vgRFEHUC",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 3,
+      "titulo": "Aula 3",
+      "dataInicio": "2026-09-17T07:30:00-03:00",
+      "dataFim": "2026-09-17T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/248617763073881?p=3PcsivJgHkFn1Mqcwu",
         "youtubeLive": null,
         "youtubeRecorded": null
       },
