@@ -14,7 +14,7 @@
 | 05 | 08/09 | Parte 1 | https://teams.microsoft.com/meet/265717928354071?p=p2ozBgLlMeXRgPBA2p |    Antitruste e Plataformas Digitais                                                                                                                    |
 | 06 | 10/09 | Parte 2 | https://teams.microsoft.com/meet/224941917665953?p=oozouSYXwhJhdLdaNJ | |
 | 05 | 15/09 | Parte 2 | https://teams.microsoft.com/meet/29754870339274?p=oiNYjm4Kr5vgRFEHUC  | |
-|    | 17/09 | Parte 3 | https://teams.microsoft.com/meet/248617763073881?p=3PcsivJgHkFn1Mqcwu | |
+| 05 | 17/09 | Parte 3 | https://teams.microsoft.com/meet/248617763073881?p=3PcsivJgHkFn1Mqcwu | |
 | 07 | 22/09 | Parte 1 | https://teams.microsoft.com/meet/27404076549794?p=b7f9mnpmxi6xx27W3P  | [Cadeia de Valor da Internet e a corrida pela Liderança Digital](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing) |
 |    | 24/09 | Parte 2 | https://teams.microsoft.com/meet/236519130651261?p=pB8sSfdnKnFsHFZnwy | |
 |    | 29/09 | Parte 3 | https://teams.microsoft.com/meet/292016512995698?p=JxeYx9YWv5r5O9hW1K | |
