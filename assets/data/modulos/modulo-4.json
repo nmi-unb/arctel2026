@@ -1,0 +1,36 @@
+{
+  "modulo": 4,
+  "titulo": "Análise de Impacto Regulatório e Avaliação de Resultado Regulatório",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-08-27T07:30:00-03:00",
+      "dataFim": "2026-08-27T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/276375285420830?p=EPNbCPvbCAp62GnzyL",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-09-01T07:30:00-03:00",
+      "dataFim": "2026-09-01T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/243604603397655?p=qJQahuXs5sfSrHZwSR",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

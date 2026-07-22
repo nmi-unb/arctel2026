@@ -21,6 +21,7 @@ CONFIG_TARGET: dict = {
     "ignored_files": [
         ".gitignore",
         "./README.md",
+        "_config.yml",
     ],
     "visible_files": [],
 }

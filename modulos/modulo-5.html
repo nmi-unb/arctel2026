@@ -5,28 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Módulo 5 — Tributação de Serviços Digitais | NMI</title>
   <meta name="description" content="Módulo 5 do curso: Tributação de Serviços Digitais." />
+  
+  <!-- FavIcon ico -->
   <link rel="icon" href="../assets/img/favicon/favicon.ico" />
+  <!-- FavIcon png 32 -->  
+  <link rel="icon" type="image/png" href="../assets/img/favicon/favicon-32x32.png" sizes="32x32" />
+  <!-- FavIcon png 64 -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon/favicon-64x64.png" sizes="64x64" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="site-header__logo" href="../index.html">
-      <img src="../assets/img/logo/logo-nmi.png" alt="NMI - Núcleo de Estudos em Políticas, Direito, Economia e Tecnologia das Comunicações" />
+    <a class="site-header__logo" href="./index">
+      <img src="../assets/img/logo/logo-nmi.svg" alt="NMI - Núcleo de Estudos em Políticas, Direito, Economia e Tecnologia das Comunicações" />
     </a>
 
     <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
+      <span class="menu-toggle__icon" aria-hidden="true">&#8249;</span>
     </button>
 
     <div class="menu-backdrop"></div>
 
     <nav class="site-nav" aria-label="Navegação principal">
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index.html#inicio">inicio</a>
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index.html#modulos">módulos</a>
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index.html#avisos">avisos</a>
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index.html#contato">contato</a>
+      <button type="button" class="site-nav__close" aria-label="Fechar menu">
+        <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn--outline btn--outline-nav site-nav__link site-nav__link--pill" href="../index#inicio">inicio</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#modulos">módulos</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#avisos">avisos</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="../index#contato">contato</a>
     </nav>
   </header>
 
@@ -66,16 +83,16 @@
           </div>
           <div class="module-page-stats__item">
             <div class="module-page-stats__label">Encontros</div>
-            <div class="module-page-stats__value">3 encontros</div>
+            <div class="module-page-stats__value">2 encontros</div>
           </div>
           <div class="module-page-stats__item">
             <div class="module-page-stats__label">Datas</div>
-            <div class="module-page-stats__value">03/09, 08/09 e 10/09</div>
+            <div class="module-page-stats__value">03/09 e 10/09</div>
           </div>
         </div>
 
         <h3>Aulas, gravações e recursos</h3>
-        <p class="module-page-materials">Os materiais, aulas e recursos deste módulo serão adicionados posteriormente.</p>
+        <div class="lesson-accordion" data-lesson-accordion data-modulo="5"></div>
       </section>
     </div>
   </main>

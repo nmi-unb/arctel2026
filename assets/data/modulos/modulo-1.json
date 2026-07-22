@@ -1,0 +1,36 @@
+{
+  "modulo": 1,
+  "titulo": "Impactos do Ecossistema Digital na Comunicação Social",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-08-04T07:30:00-03:00",
+      "dataFim": "2026-08-04T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/236209397406231?p=ROMe7QamstNlzcHSL0",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-08-06T07:30:00-03:00",
+      "dataFim": "2026-08-06T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/221374634084643?p=wYxSJBe5e38rGR21x5",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

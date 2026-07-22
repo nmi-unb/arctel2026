@@ -1,6 +1,7 @@
 const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const menuBackdrop = document.querySelector(".menu-backdrop");
+const menuClose = document.querySelector(".site-nav__close");
 const navLinks = document.querySelectorAll(".site-nav__link");
 
 function openMenu() {
@@ -52,6 +53,7 @@ function handleNavLinkClick(event) {
 
 menuToggle.addEventListener("click", toggleMenu);
 menuBackdrop.addEventListener("click", closeMenu);
+menuClose?.addEventListener("click", closeMenu);
 
 navLinks.forEach((link) => {
   link.addEventListener("click", handleNavLinkClick);

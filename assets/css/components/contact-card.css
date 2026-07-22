@@ -1,0 +1,59 @@
+/* Cartão de contato da seção "Contato" (#contato). */
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.contact-card__avatar {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: var(--color-gray-200);
+}
+
+.contact-card__name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0 0 8px;
+}
+
+.contact-card__line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-lg);
+  color: var(--color-black);
+  margin: 4px 0;
+}
+
+.contact-card__line i {
+  width: 20px;
+  text-align: center;
+}
+
+.contact-card__line a {
+  color: inherit;
+}
+
+.contact-card__line a:hover,
+.contact-card__line a:focus-visible {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .contact-card__line {
+    justify-content: center;
+  }
+}

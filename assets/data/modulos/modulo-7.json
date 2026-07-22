@@ -1,0 +1,66 @@
+{
+  "modulo": 7,
+  "titulo": "Cadeia de Valor da Internet e a corrida pela Liderança Digital",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-09-22T07:30:00-03:00",
+      "dataFim": "2026-09-22T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/27404076549794?p=b7f9mnpmxi6xx27W3P",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-09-24T07:30:00-03:00",
+      "dataFim": "2026-09-24T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/236519130651261?p=pB8sSfdnKnFsHFZnwy",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 3,
+      "titulo": "Aula 3",
+      "dataInicio": "2026-09-29T07:30:00-03:00",
+      "dataFim": "2026-09-29T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/292016512995698?p=JxeYx9YWv5r5O9hW1K",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 4,
+      "titulo": "Aula 4",
+      "dataInicio": "2026-10-01T07:30:00-03:00",
+      "dataFim": "2026-10-01T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/246670935871693?p=ikhsMvQ5i7K0QZ8Oru",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "modulo": 3,
+  "titulo": "Modelo regulatório pró-inovação",
+  "lessons": [
+    {
+      "numero": 1,
+      "titulo": "Aula 1",
+      "dataInicio": "2026-08-18T07:30:00-03:00",
+      "dataFim": "2026-08-18T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": "2026-08-20T07:30:00-03:00",
+      "dataFim": "2026-08-20T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/230309599603786?p=MCOB8w1EjqjEFKOenO",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    },
+    {
+      "numero": 3,
+      "titulo": "Aula 3",
+      "dataInicio": "2026-08-25T07:30:00-03:00",
+      "dataFim": "2026-08-25T10:30:00-03:00",
+      "links": {
+        "teams": "https://teams.microsoft.com/meet/286222844758846?p=g7mQhQgkfQ7r5EvjEl",
+        "youtubeLive": null,
+        "youtubeRecorded": null
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
+      }
+    }
+  ]
+}
