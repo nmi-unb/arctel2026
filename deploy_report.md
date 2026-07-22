@@ -1,13 +1,13 @@
 # Deploy Report
 
-**Data:** 2026-07-17 10:18:31  
-**Origem:** `C:\Users\anton\OneDrive\Documentos\GitHub\arctel2026`  
-**Destino:** `C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026`  
+**Data:** 2026-07-22 20:07:54  
+**Origem:** `C:\Users\Cadu\Documents\GitHub\arctel2026`  
+**Destino:** `C:\Users\Cadu\Documents\GitHub\.deploy\arctel2026`  
 **Modo:** Execução  
 
 ---
 
-## Incluídos — 48 arquivo(s)
+## Incluídos — 79 arquivo(s)
 
 ```
 arctel2026/
@@ -104,10 +104,12 @@ arctel2026/
 │   ├── modulo-7.html
 │   ├── modulo-8.html
 │   └── modulo-9.html
+├── ArcTel2026.csv
+├── convite-turma.html
 └── index.html
 ```
 
-## Excluídos — 17 item(ns)
+## Excluídos — 18 item(ns)
 
 ```
 ├── .agents/
@@ -124,6 +126,7 @@ arctel2026/
 ├── .vscode/
 ├── README.md
 ├── _docs/
+├── assets/css/pages/convite.css
 ├── caminhos.txt
 ├── deploy_report.md
 └── tree_focada.txt
