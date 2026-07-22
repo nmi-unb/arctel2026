@@ -1,13 +1,13 @@
 # Deploy Report
 
-**Data:** 2026-07-21 15:08:08  
-**Origem:** `C:\Users\Cadu\Documents\GitHub\arctel2026`  
-**Destino:** `C:\Users\Cadu\Documents\GitHub\.deploy\arctel2026`  
+**Data:** 2026-07-17 10:18:31  
+**Origem:** `C:\Users\anton\OneDrive\Documentos\GitHub\arctel2026`  
+**Destino:** `C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026`  
 **Modo:** Execução  
 
 ---
 
-## Incluídos — 77 arquivo(s)
+## Incluídos — 48 arquivo(s)
 
 ```
 arctel2026/
