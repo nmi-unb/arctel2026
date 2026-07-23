@@ -6,9 +6,12 @@ CONFIG_SOURCE: dict = {
     "ignored_files": [
         ".gitignore",
         "caminhos.txt",
+        "deploy_report.md",
         "./README.md",
         "tree_focada.txt",
         "assets\css\pages\convite.css",
+        "convite-turma.html",
+        "ArcTel2026.csv",
     ],
     "visible_files": ["index.html"],
 }
