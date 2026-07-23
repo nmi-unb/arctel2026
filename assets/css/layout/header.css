@@ -257,28 +257,28 @@
     color: var(--color-white);
   }
 
-  /* "Inicio" continua com a pill contornada; os demais ficam só como texto —
-     usa classe própria (não :first-child) porque .site-nav__close agora
-     é o primeiro filho real do <nav>. */
-  .site-nav .site-nav__link--pill {
+  /* --first é só posicionamento estrutural (sempre no link do topo, hoje
+     "Início") — usa classe própria (não :first-child) porque .site-nav__close
+     agora é o primeiro filho real do <nav>. Sobe o grupo de links 1/4 da tela
+     a partir do centro vertical: margin negativo no primeiro item empurra o
+     bloco inteiro pra cima dentro do justify-content:center do .site-nav. */
+  .site-nav .site-nav__link--first {
+    margin-top: -45vh;
+  }
+
+  /* Pílula visual acompanha a seção ativa (scrollspy em menu.js), não fica
+     presa num link fixo. */
+  .site-nav .site-nav__link.is-active {
     padding: 14px 32px;
     border-color: var(--color-white);
     border-radius: var(--radius-pill);
     font-size: var(--text-lg);
     font-weight: 700;
-    /* Sobe o grupo de links 1/4 da tela a partir do centro vertical —
-       margin negativo no primeiro item empurra o bloco inteiro pra cima
-       dentro do justify-content:center do .site-nav. */
-    margin-top: -45vh;
-  }
-
-  .site-nav .site-nav__link.is-active {
-    font-weight: 700;
   }
 
   /* Hover/selecionado: a borda (invisível nos links simples, branca na
-     pill) vira bg-page — em qualquer um dos dois, sempre depois da regra
-     da pill acima pra vencer em especificidade igual. */
+     pill) vira bg-page — sempre depois da regra da pill acima pra vencer
+     em especificidade igual. */
   .site-nav .site-nav__link:hover,
   .site-nav .site-nav__link:focus-visible,
   .site-nav .site-nav__link.is-active {

@@ -26,12 +26,54 @@ function toggleMenu() {
   }
 }
 
-function setActiveNavLink() {
-  const currentHash = window.location.hash || "#inicio";
+function setActiveNavLink(hash) {
+  const currentHash = hash || window.location.hash || "#inicio";
 
   navLinks.forEach((link) => {
     link.classList.toggle("is-active", link.getAttribute("href") === currentHash);
   });
+}
+
+/* Scrollspy: pílula acompanha a seção visível, não fica presa no "Início".
+   Só roda na home (onde as seções #inicio/#modulos/#avisos/#contato existem
+   de fato); nas páginas de módulo os links apontam pra ../index#... e não há
+   seção correspondente no DOM local.
+   Não dá pra usar IntersectionObserver por intersectionRatio aqui: #inicio é
+   o <main>, ancestral das outras seções, então sua própria área é a página
+   inteira — a razão de interseção dele fica sempre menor que a de uma seção
+   pequena, mesmo quando #inicio é visualmente quem está no topo. Em vez
+   disso, pega a última seção cujo topo já passou de uma linha de referência
+   (clássico scrollspy por posição). */
+const sectionIds = ["inicio", "modulos", "avisos", "contato"];
+const sections = sectionIds
+  .map((id) => document.getElementById(id))
+  .filter(Boolean);
+
+function updateActiveSection() {
+  /* Linha de referência logo abaixo do header sticky, não no meio da tela —
+     com o header fixo no topo, é essa faixa que decide qual seção "conta"
+     como visível; usar 40% da viewport fazia a próxima seção ganhar assim
+     que só espiava por baixo, mesmo com a seção anterior ainda dominando
+     a tela (ex: "O Curso" é curto, "Módulos" some por virava ativo cedo
+     demais). */
+  const referenceLine = 130;
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  let currentId = atBottom ? sections[sections.length - 1].id : sections[0].id;
+
+  if (!atBottom) {
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= referenceLine) {
+        currentId = section.id;
+      }
+    });
+  }
+
+  setActiveNavLink(`#${currentId}`);
+}
+
+if (sections.length === sectionIds.length) {
+  window.addEventListener("scroll", updateActiveSection);
+  updateActiveSection();
 }
 
 function handleNavLinkClick(event) {
