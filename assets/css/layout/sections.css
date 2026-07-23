@@ -8,6 +8,12 @@ section {
   padding: 64px 0;
 }
 
+@media (max-width: 640px) {
+  section {
+    padding: 0;
+  }
+}
+
 /* Ritmo vertical entre seções principais
    (especificidade section.container > .container, pra vencer o `margin: 0 auto` do container) */
 main section.container {
