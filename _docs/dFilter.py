@@ -12,6 +12,8 @@ CONFIG_SOURCE: dict = {
         "assets\css\pages\convite.css",
         "convite-turma.html",
         "ArcTel2026.csv",
+        "forms.js",
+        "convite-turma.html",
     ],
     "visible_files": ["index.html"],
 }
