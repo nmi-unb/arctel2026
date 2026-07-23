@@ -38,6 +38,10 @@
   margin-right: auto;
 }
 
+main {
+  padding-top: 5px;
+}
+
 @media (max-width: 1200px) {
   .hero-decoration {
     height: 420px;
