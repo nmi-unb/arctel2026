@@ -18,16 +18,21 @@ Array de objetos. Cada aviso:
 | `lessonId` | string | não | ex.: `"aula-1"` (padrão `aula-{numero}`, sem zero à esquerda) |
 | `linkType` | `"teams"` \| `"youtubeLive"` \| `"youtubeRecorded"` | não | qual link da aula buscar |
 | `staticLink` | string | não | link fixo que **não** pertence a uma aula (ex.: `"#modulos"`). Não passa pelo `module-data-service.js` |
+| `liveLinks` | `{ teams: string\|null, youtubeLive: string\|null }` | não | **só para aulas "ao vivo" sem `moduleId`/`lessonId`** (ex.: transmissão de teste, evento avulso). Fornece os 2 links diretamente; a coluna "Ao vivo" do quadro de avisos sempre mostra as 2 pills (Teams e YouTube), deixando indisponível (sem `href`) o lado que vier `null`. Pelo menos um dos dois deve existir |
 | `url` | string | não, **legado** | ver seção "Formato legado" abaixo |
-| `textoLink` | string | não | texto do botão/link. Padrão `"Acessar"` |
+| `textoLink` | string | não | texto do botão/link. Padrão `"Acessar"`. Ignorado quando `liveLinks` está ativo (os rótulos das pills são fixos: "Teams" / "YouTube") |
 | `prioridade` | number | não | maior vence em caso de empate na exibição principal |
 | `ativo` | boolean | sim | `false` move o aviso para o histórico |
 | `arquivarApos` | string ISO com offset ou `null` | não | após essa data o aviso vai para o histórico |
-| `exibirLinkAPartirDe` | string ISO com offset ou `null` | não | antes dessa data o botão de link fica oculto, mesmo que o link já exista |
+| `exibirLinkAPartirDe` | string ISO com offset ou `null` | não | antes dessa data o(s) botão(ões) de link ficam ocultos/indisponíveis, mesmo que o link já exista |
 
-Um aviso referencia no máximo **uma** fonte de link: `moduleId`+`lessonId`+`linkType`, **ou** `staticLink`, **ou** `url` (legado). Um aviso sem nenhum dos três é válido — é um aviso informativo sem botão.
+Um aviso referencia no máximo **uma** fonte de link: `moduleId`+`lessonId`+`linkType`, **ou** `staticLink`, **ou** `liveLinks`, **ou** `url` (legado). Um aviso sem nenhuma delas é válido — é um aviso informativo sem botão.
 
-Nenhuma URL de aula ou material é armazenada diretamente neste arquivo.
+Nenhuma URL de aula ou material é armazenada diretamente neste arquivo, **exceto** via `liveLinks` — única exceção proposital, pois existe justamente para aulas "ao vivo" avulsas que não têm um `modulo-N.json` correspondente.
+
+### Aula "ao vivo" com `moduleId`/`lessonId` (caso normal)
+
+Quando um aviso de aula (`dataInicio`+`dataFim`) atinge o status "ao vivo" (`pickAula` em `notice-board.js`), a coluna "Ao vivo" **sempre** busca Teams e YouTube diretamente via `moduleId`+`lessonId` — o campo `linkType` do aviso é ignorado nesse momento (ele só vale para o CTA único exibido enquanto a aula está "programada"/histórico). Não é preciso adicionar nada ao aviso além de `moduleId`/`lessonId` já existentes; os 2 links vêm de `assets/data/modulos/modulo-N.json`.
 
 ## Contrato de referência — `assets/data/modulos/modulo-1.json`
 
@@ -68,10 +73,13 @@ Em `notice-board.js`, `resolveNoticeLink(aviso)`:
 
 1. Se `aviso.url` (legado) existir, usa-o e registra aviso no console.
 2. Senão, se `aviso.staticLink` existir, usa-o diretamente.
-3. Senão, se `moduleId`+`lessonId`+`linkType` existirem, chama `getLessonLink(...)`.
-4. Qualquer falha (aula não encontrada, `linkType` inválido, erro de rede) é capturada, registrada com `console.warn` e resolve para `null` — nunca lança para fora da função.
+3. Senão, se `aviso.liveLinks` existir, usa `teams` ou, na falta dele, `youtubeLive` (fallback só para o link único de histórico/CTA "programada" — a coluna "Ao vivo" em si mostra os 2, ver `resolveLiveLinks`).
+4. Senão, se `moduleId`+`lessonId`+`linkType` existirem, chama `getLessonLink(...)`.
+5. Qualquer falha (aula não encontrada, `linkType` inválido, erro de rede) é capturada, registrada com `console.warn` e resolve para `null` — nunca lança para fora da função.
 
 O resultado fica em `aviso._link`. O aviso continua visível (título, mensagem, badge, datas); apenas o botão de ação some quando `aviso._link` é `null`. Nunca é usado `href="#"` como fallback — o botão simplesmente não é criado (ver `renderLink`/`linkPodeAparecer` em `notice-board.js`).
+
+Separadamente, `resolveLiveLinks(aviso)` monta `aviso._liveLinks = { teams, youtubeLive }` para a coluna "Ao vivo": usa `aviso.liveLinks` diretamente se existir, senão busca os 2 tipos via `moduleId`+`lessonId`. Cada lado ausente/`null` vira uma pill com `aria-disabled="true"` e sem `href`, nunca oculta a pill inteira.
 
 ## Como cadastrar um novo aviso
 
@@ -99,7 +107,26 @@ Para um aviso de aula, adicionar em `assets/data/avisos.json`:
 
 O link em si (URL do Teams/YouTube) deve existir em `assets/data/modulos/modulo-2.json`, na aula correspondente — nunca colado diretamente no aviso.
 
-Para um aviso informativo sem link, basta omitir `moduleId`/`lessonId`/`linkType`/`staticLink`/`url`.
+Para um aviso informativo sem link, basta omitir `moduleId`/`lessonId`/`linkType`/`staticLink`/`liveLinks`/`url`.
+
+Para uma transmissão "ao vivo" avulsa, sem módulo/aula cadastrada (ex.: teste de transmissão):
+
+```json
+{
+  "id": "aula-teste",
+  "titulo": "Aula Teste",
+  "mensagem": "...",
+  "tipo": "ao_vivo",
+  "dataPublicacao": "2026-07-26T08:00:00-03:00",
+  "dataInicio": "2026-07-26T08:00:00-03:00",
+  "dataFim": "2026-07-26T16:00:00-03:00",
+  "liveLinks": { "teams": null, "youtubeLive": "https://www.youtube.com/watch?v=..." },
+  "prioridade": 1,
+  "ativo": true,
+  "arquivarApos": "2026-07-26T23:01:00-03:00",
+  "exibirLinkAPartirDe": "2026-07-26T08:00:00-03:00"
+}
+```
 
 ## Formato legado a remover
 

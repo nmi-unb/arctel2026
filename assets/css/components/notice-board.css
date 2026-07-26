@@ -56,6 +56,61 @@
   display: inline-flex;
 }
 
+/* Grid interno da coluna "Ao vivo" — só entra quando a aula está ao vivo
+   (2 links, Teams + YouTube); aula "programada" segue com CTA único. */
+.notice-board__live-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.notice-board__live-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.notice-board__live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  border: 1.5px solid currentColor;
+}
+
+.notice-board__live-link i {
+  font-size: 14px;
+}
+
+.notice-board__live-link--teams {
+  color: var(--navy-500);
+}
+
+.notice-board__live-link--youtube {
+  color: #a12b2b;
+}
+
+.notice-board__live-link:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.notice-board__live-link:focus-visible {
+  outline: 2px solid var(--navy-700);
+  outline-offset: 2px;
+}
+
+.notice-board__live-link--unavailable {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 .notice-board__strip {
   display: flex;
   justify-content: space-between;
@@ -200,6 +255,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+
+  .notice-board__live-grid {
+    grid-template-columns: 1fr;
   }
 }
 
