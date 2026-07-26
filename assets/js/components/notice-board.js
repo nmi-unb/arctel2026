@@ -1,3 +1,5 @@
+import { getLessonLink } from "../services/module-data-service.js";
+
 const DATA_URL = "./assets/data/avisos.json";
 const REFRESH_INTERVAL_MS = 60000;
 const TIMEZONE = "America/Sao_Paulo";
@@ -143,8 +145,12 @@ function pickAula(current, now) {
   return null;
 }
 
+/* Substitui a antiga URL direta do aviso: `link` de aula/material agora é
+   resolvido em resolveNoticeLink() a partir de moduleId+lessonId+linkType
+   e guardado aqui. `staticLink` (ex.: "#modulos") não passa pelo serviço
+   de módulos por não pertencer a uma aula específica. */
 function linkPodeAparecer(aviso, now) {
-  if (!aviso.link) return false;
+  if (!aviso._link) return false;
   const exibirA_partir = parseDate(aviso.exibirLinkAPartirDe);
   return !exibirA_partir || now >= exibirA_partir;
 }
@@ -153,13 +159,40 @@ function renderLink(aviso, now, className) {
   if (!linkPodeAparecer(aviso, now)) return null;
   const a = document.createElement("a");
   a.className = className;
-  a.href = aviso.link;
+  a.href = aviso._link;
   a.textContent = aviso.textoLink || "Acessar";
-  if (/^https?:\/\//i.test(aviso.link)) {
+  if (/^https?:\/\//i.test(aviso._link)) {
     a.target = "_blank";
     a.rel = "noopener noreferrer";
   }
   return a;
+}
+
+/* Resolve o link de um aviso, na ordem:
+   1. `url` legado (compatibilidade temporária, ver docs/NOTICE_LINK_INTEGRATION.md);
+   2. `staticLink` (link fixo que não pertence a uma aula, ex.: "#modulos");
+   3. moduleId + lessonId + linkType, via module-data-service.
+   Nunca lança: falha de resolução apenas oculta o botão, aviso continua visível. */
+async function resolveNoticeLink(aviso) {
+  if (aviso.url) {
+    console.warn(`[notice-board] URL legada encontrada no aviso ${aviso.id}`);
+    return aviso.url;
+  }
+
+  if (aviso.staticLink) {
+    return aviso.staticLink;
+  }
+
+  if (!aviso.moduleId || !aviso.lessonId || !aviso.linkType) {
+    return null;
+  }
+
+  try {
+    return await getLessonLink(aviso.moduleId, aviso.lessonId, aviso.linkType);
+  } catch (error) {
+    console.warn(`[notice-board] link não encontrado para o aviso ${aviso.id}`, error);
+    return null;
+  }
 }
 
 function renderHighlight(container, principal) {
@@ -371,9 +404,15 @@ export function initNoticeBoard() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         const avisos = Array.isArray(data) ? data.filter(isValidAviso) : [];
         if (!avisos.length) throw new Error("Nenhum aviso válido encontrado em avisos.json");
+
+        const links = await Promise.all(avisos.map(resolveNoticeLink));
+        avisos.forEach((aviso, index) => {
+          aviso._link = links[index];
+        });
+
         render(avisos, refs);
       })
       .catch((error) => {

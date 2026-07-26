@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "modules": [
+    { "id": "modulo-1", "number": 1, "title": "Impactos do Ecossistema Digital na Comunicação Social", "dataFile": "modulo-1.json", "active": true },
+    { "id": "modulo-2", "number": 2, "title": "Desenho regulatório responsivo", "dataFile": "modulo-2.json", "active": true },
+    { "id": "modulo-3", "number": 3, "title": "Modelo regulatório pró-inovação", "dataFile": "modulo-3.json", "active": true },
+    { "id": "modulo-4", "number": 4, "title": "Análise de Impacto Regulatório e Avaliação de Resultado Regulatório", "dataFile": "modulo-4.json", "active": true },
+    { "id": "modulo-5", "number": 5, "title": "Tributação de Serviços Digitais", "dataFile": "modulo-5.json", "active": true },
+    { "id": "modulo-6", "number": 6, "title": "Antitruste e Plataformas Digitais", "dataFile": "modulo-6.json", "active": true },
+    { "id": "modulo-7", "number": 7, "title": "Cadeia de Valor da Internet e a corrida pela Liderança Digital", "dataFile": "modulo-7.json", "active": true },
+    { "id": "modulo-8", "number": 8, "title": "Liberdade de Expressão no Ecossistema Digital", "dataFile": "modulo-8.json", "active": true },
+    { "id": "modulo-9", "number": 9, "title": "Convergência tecnológica de serviços tradicionais e digitais: impacto das OTT's na indústria global de Telecomunicações", "dataFile": "modulo-9.json", "active": true },
+    { "id": "modulo-10", "number": 10, "title": "Cenários prospectivos do futuro da Internet", "dataFile": "modulo-10.json", "active": true },
+    { "id": "modulo-11", "number": 11, "title": "Oficina com Lideranças Regulatórias", "dataFile": "modulo-11.json", "active": true }
+  ]
+}

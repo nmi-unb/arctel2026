@@ -136,7 +136,8 @@ docs/NOTICE_LINK_INTEGRATION.md
 
 Documentar somente:
 
-* contrato atualizado de `avisos.json`;
+* contrato atualizado de `assets\data\avisos.json`;
+* contrato atualizado de `assets\data\modulos\modulo-1.json` (os demais se comportam da mesma forma);
 * campos obrigatórios e opcionais;
 * integração com `module-data-service.js`;
 * comportamento quando o link não existir;
