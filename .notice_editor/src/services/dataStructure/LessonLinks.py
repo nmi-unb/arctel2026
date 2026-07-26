@@ -31,5 +31,12 @@ class LessonLinks:
             youtube_recorded=data.get("youtubeRecorded"),
         )
 
+    def to_dict(self) -> dict:
+        return {
+            "teams": self.teams,
+            "youtubeLive": self.youtube_live,
+            "youtubeRecorded": self.youtube_recorded,
+        }
+
 
 __all__ = ["LessonLinks"]

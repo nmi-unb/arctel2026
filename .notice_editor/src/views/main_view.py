@@ -3,23 +3,32 @@ from __future__ import annotations
 import flet as ft
 
 from app_state import AppState, ExternalChangeError, SaveBlockedError
+from services.module_state import ModuleState
 from services.notice_repository import NoticeRepositoryError
 from views import confirmation_dialog
 from views.diagnostics_view import DiagnosticsView
+from views.module_diagnostics_view import ModuleDiagnosticsView
+from views.module_view import ModuleView
 from views.notice_form import NoticeFormView
 from views.notice_list import NoticeListView
 from views.notice_preview import NoticePreviewView
+
+AREA_AVISOS = "avisos"
+AREA_MODULOS = "modulos"
 
 
 class MainView:
     def __init__(self, page: ft.Page) -> None:
         self.page = page
         self.state = AppState()
+        self.module_state = ModuleState()
 
         self.list_view = NoticeListView(self)
         self.form = NoticeFormView(self)
         self.preview = NoticePreviewView()
         self.diagnostics = DiagnosticsView(self)
+        self.module_view = ModuleView(self)
+        self.module_diagnostics = ModuleDiagnosticsView(self)
 
         self.status_text = ft.Text("", size=14)
         self.save_button = ft.FilledButton("Salvar arquivo", icon=ft.Icons.SAVE, on_click=self._on_save_click)
@@ -29,12 +38,25 @@ class MainView:
         self.diagnostics_button = ft.TextButton(
             "Diagnóstico de URLs legadas", on_click=lambda e: self.diagnostics.open()
         )
+        self.module_diagnostics_button = ft.TextButton(
+            "Diagnóstico de módulos", visible=False, on_click=lambda e: self.module_diagnostics.open()
+        )
 
         self._list_expanded = True
         self.toggle_list_button = ft.IconButton(
             ft.Icons.MENU_OPEN,
             tooltip="Recolher lista de avisos",
             on_click=self._on_toggle_list_click,
+        )
+
+        self._current_area = AREA_AVISOS
+        self.area_selector = ft.SegmentedButton(
+            selected=[AREA_AVISOS],
+            segments=[
+                ft.Segment(value=AREA_AVISOS, label="Avisos"),
+                ft.Segment(value=AREA_MODULOS, label="Módulos e aulas"),
+            ],
+            on_change=self._on_area_change,
         )
 
         self._build_layout()
@@ -47,9 +69,11 @@ class MainView:
             content=ft.Row(
                 [
                     self.toggle_list_button,
+                    self.area_selector,
                     ft.Container(expand=True),
                     self.status_text,
                     self.diagnostics_button,
+                    self.module_diagnostics_button,
                     self.reload_button,
                     self.save_button,
                 ]
@@ -57,7 +81,7 @@ class MainView:
             padding=ft.Padding.only(top=5, left=12, right=12, bottom=8),
         )
         self.list_container = ft.Container(content=self.list_view.container, width=320, padding=12)
-        body = ft.Row(
+        self.avisos_body = ft.Row(
             [
                 self.list_container,
                 ft.VerticalDivider(),
@@ -67,7 +91,23 @@ class MainView:
             ],
             expand=True,
         )
+        self.modulos_body = ft.Container(content=self.module_view.container, expand=True, visible=False)
+        body = ft.Stack([self.avisos_body, self.modulos_body], expand=True)
         self.page.add(ft.Column([header, ft.Divider(height=16 / 3), body], expand=True))
+
+    def _on_area_change(self, e: ft.Event) -> None:
+        selected = self.area_selector.selected
+        area = selected[0] if selected else AREA_AVISOS
+        self._current_area = area
+        self.avisos_body.visible = area == AREA_AVISOS
+        self.modulos_body.visible = area == AREA_MODULOS
+        self.toggle_list_button.visible = area == AREA_AVISOS
+        self.diagnostics_button.visible = area == AREA_AVISOS
+        self.reload_button.visible = area == AREA_AVISOS
+        self.save_button.visible = area == AREA_AVISOS
+        self.module_diagnostics_button.visible = area == AREA_MODULOS
+        if area == AREA_MODULOS:
+            self.module_view.refresh()
 
     def _on_toggle_list_click(self, e: ft.Event) -> None:
         self._list_expanded = not self._list_expanded
@@ -84,10 +124,12 @@ class MainView:
             self.status_text.value = f"Erro ao carregar avisos.json: {exc}"
             self.status_text.color = ft.Colors.RED_700
             return
-        self._refresh_status()
+        self.refresh_status()
         self.list_view.refresh()
+        self.module_state.load_index()
+        self.module_view.refresh()
 
-    def _refresh_status(self) -> None:
+    def refresh_status(self) -> None:
         suffix = " — alterações não salvas" if self.state.dirty else ""
         self.status_text.value = f"{len(self.state.notices)} avisos carregados{suffix}"
         self.status_text.color = ft.Colors.AMBER_700 if self.state.dirty else ft.Colors.ON_SURFACE_VARIANT
@@ -126,7 +168,7 @@ class MainView:
 
     def apply_notice_from_form(self, notice, index) -> None:
         self.state.apply_notice(notice, index)
-        self._refresh_status()
+        self.refresh_status()
         self.list_view.refresh()
         self.preview.render(notice)
 
@@ -140,7 +182,7 @@ class MainView:
             new_id = f"{base_new_id}-{counter}"
             counter += 1
         clone = self.state.duplicate_notice(index, new_id)
-        self._refresh_status()
+        self.refresh_status()
         self.form.load_notice(clone, index + 1)
         self.preview.render(clone)
         self.list_view.refresh()
@@ -148,7 +190,7 @@ class MainView:
     def toggle_active(self, index: int) -> None:
         notice = self.state.notices[index]
         self.state.set_active(index, not notice.ativo)
-        self._refresh_status()
+        self.refresh_status()
         if self.form.editing_index == index:
             self.form.load_notice(self.state.notices[index], index)
             self.preview.render(self.state.notices[index])
@@ -165,7 +207,7 @@ class MainView:
         elif self.form.editing_index == index + direction:
             self.form.editing_index = index
 
-        self._refresh_status()
+        self.refresh_status()
         self.list_view.refresh()
 
     def request_delete(self, index: int) -> None:
@@ -178,7 +220,7 @@ class MainView:
                 self.preview.clear()
             elif self.form.editing_index is not None and self.form.editing_index > index:
                 self.form.editing_index -= 1
-            self._refresh_status()
+            self.refresh_status()
             self.list_view.refresh()
 
         confirmation_dialog.confirm_delete(self.page, notice_id=notice.id, on_confirm=_confirm)
@@ -188,7 +230,7 @@ class MainView:
             self.state.sort_by_publicacao()
             self.form.load_notice(None, None)
             self.preview.clear()
-            self._refresh_status()
+            self.refresh_status()
             self.list_view.refresh()
 
         confirmation_dialog.confirm_sort(self.page, label="Ordenar por publicação", on_confirm=_confirm)
@@ -198,7 +240,7 @@ class MainView:
             self.state.sort_by_prioridade()
             self.form.load_notice(None, None)
             self.preview.clear()
-            self._refresh_status()
+            self.refresh_status()
             self.list_view.refresh()
 
         confirmation_dialog.confirm_sort(self.page, label="Ordenar por prioridade", on_confirm=_confirm)
@@ -207,7 +249,7 @@ class MainView:
 
     def migrate_legacy_to_static(self, index: int, static_link: str) -> None:
         self.state.migrate_to_static_link(index, static_link)
-        self._refresh_status()
+        self.refresh_status()
         if self.form.editing_index == index:
             self.form.load_notice(self.state.notices[index], index)
             self.preview.render(self.state.notices[index])
@@ -215,7 +257,7 @@ class MainView:
 
     def migrate_legacy_to_lesson(self, index: int, module_id: str, lesson_id: str, link_type: str) -> None:
         self.state.migrate_to_lesson_reference(index, module_id, lesson_id, link_type)
-        self._refresh_status()
+        self.refresh_status()
         if self.form.editing_index == index:
             self.form.load_notice(self.state.notices[index], index)
             self.preview.render(self.state.notices[index])
@@ -232,7 +274,7 @@ class MainView:
                 return
             self.form.load_notice(None, None)
             self.preview.clear()
-            self._refresh_status()
+            self.refresh_status()
             self.list_view.refresh()
 
         if self.state.dirty:
@@ -255,7 +297,7 @@ class MainView:
             except NoticeRepositoryError as exc:
                 confirmation_dialog.show_message(self.page, title="Erro ao salvar", message=str(exc))
                 return
-            self._refresh_status()
+            self.refresh_status()
             confirmation_dialog.show_message(
                 self.page, title="Salvo", message="assets/data/avisos.json atualizado com sucesso."
             )
@@ -280,7 +322,7 @@ class MainView:
             self.state.load()
             self.form.load_notice(None, None)
             self.preview.clear()
-            self._refresh_status()
+            self.refresh_status()
             self.list_view.refresh()
 
         def _overwrite() -> None:
@@ -289,7 +331,7 @@ class MainView:
             except SaveBlockedError as exc:
                 self._show_save_blocked(exc)
                 return
-            self._refresh_status()
+            self.refresh_status()
             confirmation_dialog.show_message(
                 self.page, title="Salvo", message="assets/data/avisos.json atualizado com sucesso."
             )

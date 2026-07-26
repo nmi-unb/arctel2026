@@ -63,6 +63,10 @@ class AppState:
         self.notices[index].ativo = active
         self._mark_dirty()
 
+    def update_notice_lesson_id(self, index: int, lesson_id: str) -> None:
+        self.notices[index].lesson_id = lesson_id
+        self._mark_dirty()
+
     def delete_notice(self, index: int) -> None:
         del self.notices[index]
         self._mark_dirty()

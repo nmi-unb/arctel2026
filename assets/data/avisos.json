@@ -518,22 +518,5 @@
     "prioridade": 3,
     "ativo": true,
     "arquivarApos": "2026-08-04T13:00:00-03:00"
-  },
-  {
-    "id": "aula-teste",
-    "titulo": "Aula Teste",
-    "mensagem": "A equipe organizadora estará executando uma bateria de testes para validar a transmissão.",
-    "tipo": "ao_vivo",
-    "dataPublicacao": "2026-07-26T08:00:00-03:00",
-    "dataInicio": "2026-07-26T08:00:00-03:00",
-    "dataFim": "2026-07-26T16:00:00-03:00",
-    "prioridade": 1,
-    "ativo": true,
-    "arquivarApos": "2026-07-26T23:01:00-03:00",
-    "exibirLinkAPartirDe": "2026-07-26T08:00:00-03:00",
-    "liveLinks": {
-      "teams": null,
-      "youtubeLive": "https://www.youtube.com/watch?v=LYI3eegIJlI"
-    }
   }
 ]

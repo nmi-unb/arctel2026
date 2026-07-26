@@ -188,6 +188,153 @@ def confirm_external_change(
     page.show_dialog(dialog)
 
 
+def confirm_save_module(page: ft.Page, *, module_id: str, on_confirm: Callable[[], None]) -> None:
+    show_confirmation(
+        page,
+        title="Salvar módulo",
+        message=(
+            f"Esta ação sobrescreverá assets/data/modulos/{module_id}.json.\n\n"
+            "Antes de continuar, recomenda-se criar um commit com o estado atual do "
+            "repositório.\n\n"
+            "Deseja realmente salvar as alterações?"
+        ),
+        on_confirm=on_confirm,
+        confirm_label="Salvar mesmo assim",
+        cancel_label="Cancelar",
+    )
+
+
+def confirm_reload_module(page: ft.Page, on_confirm: Callable[[], None]) -> None:
+    show_confirmation(
+        page,
+        title="Recarregar módulo",
+        message=(
+            "Há alterações não salvas neste módulo. Recarregar descartará essas "
+            "alterações em memória. Deseja continuar?"
+        ),
+        on_confirm=on_confirm,
+        confirm_label="Recarregar mesmo assim",
+        cancel_label="Cancelar",
+        danger=True,
+    )
+
+
+def confirm_module_external_change(
+    page: ft.Page,
+    *,
+    on_reload: Callable[[], None],
+    on_overwrite: Callable[[], None],
+) -> None:
+    def _on_reload(e: ft.Event) -> None:
+        _close(page)
+        on_reload()
+
+    def _on_overwrite(e: ft.Event) -> None:
+        _close(page)
+        on_overwrite()
+
+    def _on_cancel(e: ft.Event) -> None:
+        _close(page)
+
+    dialog = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Módulo alterado externamente"),
+        content=ft.Text(
+            "O arquivo do módulo foi alterado fora deste editor desde o último "
+            "carregamento. Salvar agora poderá substituir essas alterações externas."
+        ),
+        actions=[
+            ft.TextButton("Cancelar", on_click=_on_cancel),
+            ft.TextButton("Recarregar e perder edições locais", on_click=_on_reload),
+            ft.FilledButton(
+                "Salvar mesmo assim",
+                on_click=_on_overwrite,
+                style=ft.ButtonStyle(bgcolor=ft.Colors.RED_700),
+            ),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+    page.show_dialog(dialog)
+
+
+def confirm_lesson_removal(
+    page: ft.Page,
+    *,
+    message: str,
+    on_keep_invalid: Callable[[], None],
+    on_deactivate: Callable[[], None],
+) -> None:
+    def _on_cancel(e: ft.Event) -> None:
+        _close(page)
+
+    def _on_keep_invalid(e: ft.Event) -> None:
+        _close(page)
+        show_confirmation(
+            page,
+            title="Confirmar avisos inválidos",
+            message=(
+                "Os avisos listados ficarão apontando para uma aula que não existe "
+                "mais. Confirma mesmo assim?"
+            ),
+            on_confirm=on_keep_invalid,
+            confirm_label="Confirmar",
+            danger=True,
+        )
+
+    def _on_deactivate(e: ft.Event) -> None:
+        _close(page)
+        on_deactivate()
+
+    dialog = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Remover aula"),
+        content=ft.Text(message),
+        actions=[
+            ft.TextButton("Cancelar", on_click=_on_cancel),
+            ft.TextButton("Remover e manter avisos inválidos", on_click=_on_keep_invalid),
+            ft.FilledButton(
+                "Remover e desativar avisos",
+                on_click=_on_deactivate,
+                style=ft.ButtonStyle(bgcolor=ft.Colors.RED_700),
+            ),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+    page.show_dialog(dialog)
+
+
+def confirm_lesson_renumber(
+    page: ft.Page,
+    *,
+    message: str,
+    on_lesson_only: Callable[[], None],
+    on_lesson_and_notices: Callable[[], None],
+) -> None:
+    def _on_cancel(e: ft.Event) -> None:
+        _close(page)
+
+    def _on_lesson_only(e: ft.Event) -> None:
+        _close(page)
+        on_lesson_only()
+
+    def _on_lesson_and_notices(e: ft.Event) -> None:
+        _close(page)
+        on_lesson_and_notices()
+
+    dialog = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Alterar número da aula"),
+        content=ft.Text(message),
+        actions=[
+            ft.TextButton("Cancelar", on_click=_on_cancel),
+            ft.TextButton("Alterar apenas a aula", on_click=_on_lesson_only),
+            ft.FilledButton("Alterar a aula e atualizar os avisos em memória", on_click=_on_lesson_and_notices),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+    page.show_dialog(dialog)
+
+
 __all__ = [
     "show_confirmation",
     "show_message",
@@ -198,4 +345,9 @@ __all__ = [
     "confirm_id_change",
     "confirm_sort",
     "confirm_external_change",
+    "confirm_save_module",
+    "confirm_reload_module",
+    "confirm_module_external_change",
+    "confirm_lesson_removal",
+    "confirm_lesson_renumber",
 ]

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
 
 from .dataStructure.notice import Notice
+from .generic.file_fingerprint import FileFingerprint, read_fingerprint
 from .generic.paths.target import get_avisos_path
 
 
@@ -11,15 +11,8 @@ class NoticeRepositoryError(Exception):
     pass
 
 
-@dataclass(frozen=True)
-class FileFingerprint:
-    mtime_ns: int
-    size: int
-
-
 def _read_fingerprint() -> FileFingerprint:
-    stat = get_avisos_path().stat()
-    return FileFingerprint(mtime_ns=stat.st_mtime_ns, size=stat.st_size)
+    return read_fingerprint(get_avisos_path())
 
 
 def load_notices() -> tuple[list[Notice], FileFingerprint]:
