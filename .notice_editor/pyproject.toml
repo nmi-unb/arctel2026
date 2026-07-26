@@ -1,0 +1,11 @@
+[project]
+name = "notice-editor"
+version = "0.1.0"
+description = "Editor local de assets/data/avisos.json (MVP 1.0, FASE 1)"
+requires-python = ">=3.10"
+dependencies = [
+    "flet>=0.28.0",
+]
+
+[tool.uv]
+package = false
