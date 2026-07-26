@@ -30,25 +30,36 @@ class MainView:
             "Diagnóstico de URLs legadas", on_click=lambda e: self.diagnostics.open()
         )
 
+        self._list_expanded = True
+        self.toggle_list_button = ft.IconButton(
+            ft.Icons.MENU_OPEN,
+            tooltip="Recolher lista de avisos",
+            on_click=self._on_toggle_list_click,
+        )
+
         self._build_layout()
         self._initial_load()
 
     # ------------------------------------------------------------- layout
 
     def _build_layout(self) -> None:
-        header = ft.Row(
-            [
-                ft.Text("Notice Editor — avisos.json (FASE 1)", size=18, weight=ft.FontWeight.BOLD),
-                ft.Container(expand=True),
-                self.status_text,
-                self.diagnostics_button,
-                self.reload_button,
-                self.save_button,
-            ]
+        header = ft.Container(
+            content=ft.Row(
+                [
+                    self.toggle_list_button,
+                    ft.Container(expand=True),
+                    self.status_text,
+                    self.diagnostics_button,
+                    self.reload_button,
+                    self.save_button,
+                ]
+            ),
+            padding=ft.Padding.only(top=5, left=12, right=12, bottom=8),
         )
+        self.list_container = ft.Container(content=self.list_view.container, width=320, padding=12)
         body = ft.Row(
             [
-                ft.Container(content=self.list_view.container, expand=1, padding=12),
+                self.list_container,
                 ft.VerticalDivider(),
                 ft.Container(content=self.form.container, expand=1, padding=12),
                 ft.VerticalDivider(),
@@ -57,6 +68,14 @@ class MainView:
             expand=True,
         )
         self.page.add(ft.Column([header, ft.Divider(), body], expand=True))
+
+    def _on_toggle_list_click(self, e: ft.Event) -> None:
+        self._list_expanded = not self._list_expanded
+        self.list_container.visible = self._list_expanded
+        self.toggle_list_button.icon = ft.Icons.MENU_OPEN if self._list_expanded else ft.Icons.MENU
+        self.toggle_list_button.tooltip = (
+            "Recolher lista de avisos" if self._list_expanded else "Expandir lista de avisos"
+        )
 
     def _initial_load(self) -> None:
         try:

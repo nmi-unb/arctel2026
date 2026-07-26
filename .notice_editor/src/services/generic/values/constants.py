@@ -18,14 +18,19 @@ LINK_TYPE_LABELS: dict[str, str] = {
 LINK_SOURCE_NONE = "none"
 LINK_SOURCE_LESSON = "lesson"
 LINK_SOURCE_STATIC = "static"
+LINK_SOURCE_LIVE = "live"
 LINK_SOURCE_LEGACY = "legacy"
 
 LINK_SOURCE_LABELS: dict[str, str] = {
     LINK_SOURCE_NONE: "Sem link",
     LINK_SOURCE_LESSON: "Referência de aula",
     LINK_SOURCE_STATIC: "Link estático",
+    LINK_SOURCE_LIVE: "Ao vivo avulso (Teams + YouTube)",
     LINK_SOURCE_LEGACY: "URL legada",
 }
+
+DATE_OFFSET_OPTIONS: tuple[str, ...] = ("-05:00", "-04:00", "-03:00", "-02:00", "+00:00")
+DEFAULT_DATE_OFFSET = "-03:00"
 
 DEFAULT_TEXTO_LINK = "Acessar"
 
@@ -62,6 +67,7 @@ __all__ = [
     "LINK_SOURCE_NONE",
     "LINK_SOURCE_LESSON",
     "LINK_SOURCE_STATIC",
+    "LINK_SOURCE_LIVE",
     "LINK_SOURCE_LEGACY",
     "LINK_SOURCE_LABELS",
     "DEFAULT_TEXTO_LINK",
@@ -70,4 +76,6 @@ __all__ = [
     "NOTICE_REQUIRED_FIELDS",
     "LIST_FILTERS",
     "AVISOS_ID_FORBIDDEN_CHARS",
+    "DATE_OFFSET_OPTIONS",
+    "DEFAULT_DATE_OFFSET",
 ]

@@ -69,7 +69,7 @@ toolbox run file_tree -- "$REPO_ALVO" --config "$CONFIG_FILE"
 ### init_gen
 
 ```pwsh
-    toolbox run init_generator "[TAGET_DIR]"
+    toolbox run init_generator "[TAGET_DIR]" --recursive
 ```
 
 ### deploy

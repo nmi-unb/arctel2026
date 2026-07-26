@@ -93,13 +93,6 @@ class NoticeListView:
                 ft.Text(str(index + 1), width=28),
                 status_icon,
                 ft.Text(notice.titulo or "(sem título)", weight=ft.FontWeight.BOLD, expand=True),
-                ft.Text(notice.tipo, size=11, color=ft.Colors.ON_SURFACE_VARIANT),
-                ft.Text(notice.data_publicacao or "", size=11, color=ft.Colors.ON_SURFACE_VARIANT),
-                ft.Text(
-                    "" if notice.prioridade is None else f"prior. {notice.prioridade}",
-                    size=11,
-                    color=ft.Colors.ON_SURFACE_VARIANT,
-                ),
                 *badges,
             ],
             spacing=8,

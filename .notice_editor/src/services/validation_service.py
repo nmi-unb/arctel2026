@@ -77,6 +77,7 @@ def validate_notice(notice: Notice, *, all_notices: Optional[list[Notice]] = Non
         for present in (
             bool(notice.module_id or notice.lesson_id or notice.link_type),
             bool(notice.static_link),
+            bool(notice.live_link_teams or notice.live_link_youtube_live),
             bool(notice.url),
         )
         if present
@@ -84,7 +85,8 @@ def validate_notice(notice: Notice, *, all_notices: Optional[list[Notice]] = Non
     if sources_present > 1:
         errors.append(
             ValidationIssue(
-                "linkSource", "apenas uma fonte de link é permitida: referência de aula, staticLink ou url"
+                "linkSource",
+                "apenas uma fonte de link é permitida: referência de aula, staticLink, liveLinks ou url",
             )
         )
 

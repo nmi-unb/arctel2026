@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from datetime import datetime
 from typing import Optional
 
 import flet as ft
@@ -8,10 +9,13 @@ import flet as ft
 from services import module_repository
 from services.dataStructure.notice import Notice
 from services.generic.values.constants import (
+    DATE_OFFSET_OPTIONS,
+    DEFAULT_DATE_OFFSET,
     DEFAULT_TEXTO_LINK,
     LINK_SOURCE_LABELS,
     LINK_SOURCE_LEGACY,
     LINK_SOURCE_LESSON,
+    LINK_SOURCE_LIVE,
     LINK_SOURCE_NONE,
     LINK_SOURCE_STATIC,
     LINK_TYPE_LABELS,
@@ -32,6 +36,76 @@ def _group(title: str, controls: list[ft.Control]) -> ft.Column:
         [ft.Text(title, weight=ft.FontWeight.BOLD, size=13), *controls, ft.Divider()],
         spacing=8,
     )
+
+
+def _info(control: ft.Control, explanation: str) -> ft.Row:
+    return ft.Row(
+        [
+            ft.Container(content=control, expand=True),
+            ft.Icon(ft.Icons.INFO_OUTLINE, tooltip=explanation, size=18, color=ft.Colors.ON_SURFACE_VARIANT),
+        ],
+        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+        spacing=6,
+    )
+
+
+class _DateTimeInput:
+    """Campo composto data + hora + fuso; produz/consome uma string ISO 8601 com offset."""
+
+    def __init__(self, label: str) -> None:
+        self.date_field = ft.TextField(label=f"{label} — data", hint_text="dd/mm/aaaa", width=140)
+        self.time_field = ft.TextField(label="hora", hint_text="hh:mm", width=90)
+        self.offset_dropdown = ft.Dropdown(
+            label="fuso",
+            value=DEFAULT_DATE_OFFSET,
+            options=[ft.DropdownOption(key=value, text=value) for value in DATE_OFFSET_OPTIONS],
+            width=110,
+        )
+        self.control = ft.Row([self.date_field, self.time_field, self.offset_dropdown], spacing=8)
+
+    def get_iso(self) -> Optional[str]:
+        date_raw = (self.date_field.value or "").strip()
+        if not date_raw:
+            return None
+        time_raw = (self.time_field.value or "").strip() or "00:00"
+        offset = self.offset_dropdown.value or DEFAULT_DATE_OFFSET
+        try:
+            day_str, month_str, year_str = date_raw.split("/")
+            hour_str, minute_str = time_raw.split(":")
+            day, month, year = int(day_str), int(month_str), int(year_str)
+            hour, minute = int(hour_str), int(minute_str)
+            return f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:00{offset}"
+        except ValueError:
+            # Mantém o texto bruto: validation_service rejeita, o usuário vê o erro
+            # em vez do formulário "engolir" silenciosamente uma data malformada.
+            return f"{date_raw}T{time_raw}{offset}"
+
+    def set_iso(self, value: Optional[str]) -> None:
+        if not value:
+            self.date_field.value = ""
+            self.time_field.value = ""
+            self.offset_dropdown.value = DEFAULT_DATE_OFFSET
+            return
+        try:
+            parsed = datetime.fromisoformat(value)
+        except ValueError:
+            self.date_field.value = value
+            self.time_field.value = ""
+            return
+
+        self.date_field.value = f"{parsed.day:02d}/{parsed.month:02d}/{parsed.year:04d}"
+        self.time_field.value = f"{parsed.hour:02d}:{parsed.minute:02d}"
+
+        offset_text = DEFAULT_DATE_OFFSET
+        utc_offset = parsed.utcoffset()
+        if utc_offset is not None:
+            total_minutes = int(utc_offset.total_seconds() // 60)
+            sign = "+" if total_minutes >= 0 else "-"
+            total_minutes = abs(total_minutes)
+            offset_text = f"{sign}{total_minutes // 60:02d}:{total_minutes % 60:02d}"
+        if offset_text not in DATE_OFFSET_OPTIONS:
+            self.offset_dropdown.options.append(ft.DropdownOption(key=offset_text, text=offset_text))
+        self.offset_dropdown.value = offset_text
 
 
 class NoticeFormView:
@@ -63,15 +137,9 @@ class NoticeFormView:
         self.ativo_checkbox = ft.Checkbox(label="ativo", value=True)
 
         # Agendamento
-        self.data_publicacao_field = ft.TextField(
-            label="dataPublicacao", hint_text="2026-08-21T08:00:00-03:00"
-        )
-        self.data_inicio_field = ft.TextField(
-            label="dataInicio (opcional, aula)", hint_text="2026-08-21T08:00:00-03:00"
-        )
-        self.data_fim_field = ft.TextField(
-            label="dataFim (opcional, aula)", hint_text="2026-08-21T10:00:00-03:00"
-        )
+        self.data_publicacao_input = _DateTimeInput("dataPublicacao")
+        self.data_inicio_input = _DateTimeInput("dataInicio (aula, opcional)")
+        self.data_fim_input = _DateTimeInput("dataFim (aula, opcional)")
 
         # Fonte do link
         self._radio_legacy = ft.Radio(value=LINK_SOURCE_LEGACY, label=LINK_SOURCE_LABELS[LINK_SOURCE_LEGACY])
@@ -81,6 +149,7 @@ class NoticeFormView:
                     ft.Radio(value=LINK_SOURCE_NONE, label=LINK_SOURCE_LABELS[LINK_SOURCE_NONE]),
                     ft.Radio(value=LINK_SOURCE_LESSON, label=LINK_SOURCE_LABELS[LINK_SOURCE_LESSON]),
                     ft.Radio(value=LINK_SOURCE_STATIC, label=LINK_SOURCE_LABELS[LINK_SOURCE_STATIC]),
+                    ft.Radio(value=LINK_SOURCE_LIVE, label=LINK_SOURCE_LABELS[LINK_SOURCE_LIVE]),
                     self._radio_legacy,
                 ]
             ),
@@ -105,6 +174,12 @@ class NoticeFormView:
         self.static_link_field = ft.TextField(label="staticLink", hint_text="#modulos")
         self.static_group = ft.Column([self.static_link_field], visible=False)
 
+        self.live_teams_field = ft.TextField(label="liveLinks.teams (opcional)", hint_text="https://teams...")
+        self.live_youtube_field = ft.TextField(
+            label="liveLinks.youtubeLive (opcional)", hint_text="https://youtube.com/watch?v=..."
+        )
+        self.live_group = ft.Column([self.live_teams_field, self.live_youtube_field], visible=False)
+
         self.legacy_url_field = ft.TextField(label="url (legado)", read_only=True)
         self.legacy_group = ft.Column(
             [
@@ -120,8 +195,8 @@ class NoticeFormView:
         )
 
         # Arquivamento
-        self.arquivar_apos_field = ft.TextField(label="arquivarApos (opcional)")
-        self.exibir_link_field = ft.TextField(label="exibirLinkAPartirDe (opcional)")
+        self.arquivar_apos_input = _DateTimeInput("arquivarApos (opcional)")
+        self.exibir_link_input = _DateTimeInput("exibirLinkAPartirDe (opcional)")
 
         self.error_column = ft.Column([], spacing=2)
         self.warning_column = ft.Column([], spacing=2)
@@ -130,28 +205,125 @@ class NoticeFormView:
         self.cancel_button = ft.OutlinedButton("Cancelar edição", on_click=self._on_cancel_click)
         self.clear_button = ft.TextButton("Limpar formulário", on_click=self._on_clear_click)
 
-        self.container = ft.Column(
+        scrollable = ft.Column(
             [
                 ft.Text("Formulário de edição", weight=ft.FontWeight.BOLD, size=15),
-                _group("Identificação", [self.id_field, self.suggest_id_button]),
-                _group("Conteúdo", [self.titulo_field, self.mensagem_field, self.texto_link_field]),
-                _group("Classificação", [self.tipo_dropdown, self.prioridade_field, self.ativo_checkbox]),
+                _group(
+                    "Identificação",
+                    [
+                        _info(
+                            self.id_field,
+                            "Identificador único e estável do aviso, usado para detectar duplicados. "
+                            "Evite espaços.",
+                        ),
+                        self.suggest_id_button,
+                    ],
+                ),
+                _group(
+                    "Conteúdo",
+                    [
+                        _info(self.titulo_field, "Título em destaque, mostrado no quadro de avisos do site."),
+                        _info(self.mensagem_field, "Texto do aviso (sem HTML), exibido abaixo do título."),
+                        _info(
+                            self.texto_link_field,
+                            "Texto do botão de ação (ex.: 'Entrar na aula'). Se vazio, usa "
+                            f"'{DEFAULT_TEXTO_LINK}'.",
+                        ),
+                    ],
+                ),
+                _group(
+                    "Classificação",
+                    [
+                        _info(
+                            self.tipo_dropdown,
+                            "Define o selo (badge) exibido: confirmação, ao vivo, alteração, alerta, "
+                            "material ou encerrado.",
+                        ),
+                        _info(
+                            self.prioridade_field,
+                            "Número usado para desempate quando 2+ avisos disputam o destaque principal "
+                            "— o maior vence.",
+                        ),
+                        _info(
+                            self.ativo_checkbox,
+                            "Se desmarcado, o aviso some do destaque/aula do site e vai para o histórico "
+                            "— não é excluído, pode reativar depois.",
+                        ),
+                    ],
+                ),
                 _group(
                     "Agendamento",
-                    [self.data_publicacao_field, self.data_inicio_field, self.data_fim_field],
+                    [
+                        _info(
+                            self.data_publicacao_input.control,
+                            "Data/hora consideradas a publicação — define a ordem no histórico e o "
+                            "desempate de prioridade. Use o fuso -03:00 (Brasília), salvo exceção.",
+                        ),
+                        _info(
+                            self.data_inicio_input.control,
+                            "Início da aula. Preencha junto com 'dataFim' para o site tratar este aviso "
+                            "como aula com horário (mostra coluna própria 'Ao vivo'/'Aula programada').",
+                        ),
+                        _info(self.data_fim_input.control, "Fim da aula — deve ser posterior ao início."),
+                    ],
                 ),
                 _group(
                     "Fonte do link",
-                    [self.link_source_radio, self.lesson_group, self.static_group, self.legacy_group],
+                    [
+                        _info(
+                            self.link_source_radio,
+                            "Escolha no máximo uma origem para o botão do aviso: aula cadastrada num "
+                            "módulo, link fixo, transmissão ao vivo avulsa (Teams + YouTube) ou o "
+                            "formato legado (url).",
+                        ),
+                        _info(
+                            self.lesson_group,
+                            "Aponta para uma aula já cadastrada em assets/data/modulos/modulo-N.json — "
+                            "o link real (Teams/YouTube) vem de lá, nunca é digitado aqui.",
+                        ),
+                        _info(self.static_group, "Link fixo que não pertence a uma aula específica (ex.: '#modulos')."),
+                        _info(
+                            self.live_group,
+                            "Só para aula 'ao vivo' avulsa, sem módulo cadastrado (ex.: transmissão de "
+                            "teste). Informe Teams e/ou YouTube — o lado deixado em branco aparece "
+                            "indisponível no site.",
+                        ),
+                        _info(
+                            self.legacy_group,
+                            "Formato antigo, mantido só por compatibilidade — migre pelo Diagnóstico de "
+                            "URLs legadas.",
+                        ),
+                    ],
                 ),
-                _group("Arquivamento", [self.arquivar_apos_field, self.exibir_link_field]),
+                _group(
+                    "Arquivamento",
+                    [
+                        _info(
+                            self.arquivar_apos_input.control,
+                            "Após esta data/hora, o aviso passa automaticamente para o histórico do site.",
+                        ),
+                        _info(
+                            self.exibir_link_input.control,
+                            "Antes desta data/hora, o(s) botão(ões) de link ficam ocultos/indisponíveis, "
+                            "mesmo que o link já exista.",
+                        ),
+                    ],
+                ),
                 self.error_column,
                 self.warning_column,
-                ft.Row([self.apply_button, self.cancel_button, self.clear_button]),
             ],
             spacing=10,
             scroll=ft.ScrollMode.AUTO,
+            expand=True,
         )
+
+        footer = ft.Container(
+            content=ft.Row([self.apply_button, self.cancel_button, self.clear_button]),
+            padding=ft.Padding.only(top=10, left=0, right=0, bottom=0),
+            border=ft.Border.only(top=ft.BorderSide(width=1, color=ft.Colors.OUTLINE_VARIANT)),
+        )
+
+        self.container = ft.Column([scrollable, footer], expand=True, spacing=10)
 
         self._populate_module_options()
         self.load_notice(None, None)
@@ -173,14 +345,16 @@ class NoticeFormView:
         self.tipo_dropdown.value = base.tipo
         self.prioridade_field.value = "" if base.prioridade is None else str(base.prioridade)
         self.ativo_checkbox.value = base.ativo
-        self.data_publicacao_field.value = base.data_publicacao
-        self.data_inicio_field.value = base.data_inicio or ""
-        self.data_fim_field.value = base.data_fim or ""
-        self.arquivar_apos_field.value = base.arquivar_apos or ""
-        self.exibir_link_field.value = base.exibir_link_a_partir_de or ""
+        self.data_publicacao_input.set_iso(base.data_publicacao or None)
+        self.data_inicio_input.set_iso(base.data_inicio)
+        self.data_fim_input.set_iso(base.data_fim)
+        self.arquivar_apos_input.set_iso(base.arquivar_apos)
+        self.exibir_link_input.set_iso(base.exibir_link_a_partir_de)
 
         self.legacy_url_field.value = base.url or ""
         self.static_link_field.value = base.static_link or ""
+        self.live_teams_field.value = base.live_link_teams or ""
+        self.live_youtube_field.value = base.live_link_youtube_live or ""
         self._radio_legacy.disabled = not bool(base.url)
 
         self.module_dropdown.value = base.module_id
@@ -225,6 +399,7 @@ class NoticeFormView:
         source = self.link_source_radio.value
         self.lesson_group.visible = source == LINK_SOURCE_LESSON
         self.static_group.visible = source == LINK_SOURCE_STATIC
+        self.live_group.visible = source == LINK_SOURCE_LIVE
         self.legacy_group.visible = source == LINK_SOURCE_LEGACY
 
     def _update_link_availability(self) -> None:
@@ -266,6 +441,8 @@ class NoticeFormView:
             return bool(self.module_dropdown.value or self.lesson_dropdown.value or self.link_type_dropdown.value)
         if source == LINK_SOURCE_STATIC:
             return bool(self.static_link_field.value)
+        if source == LINK_SOURCE_LIVE:
+            return bool(self.live_teams_field.value or self.live_youtube_field.value)
         if source == LINK_SOURCE_LEGACY:
             return bool(self.legacy_url_field.value)
         return False
@@ -280,6 +457,9 @@ class NoticeFormView:
             self.link_type_dropdown.disabled = True
         elif source == LINK_SOURCE_STATIC:
             self.static_link_field.value = ""
+        elif source == LINK_SOURCE_LIVE:
+            self.live_teams_field.value = ""
+            self.live_youtube_field.value = ""
         elif source == LINK_SOURCE_LEGACY:
             self.legacy_url_field.value = ""
 
@@ -319,12 +499,16 @@ class NoticeFormView:
     def build_notice(self) -> Notice:
         source = self.link_source_radio.value
         module_id = lesson_id = link_type = static_link = url = None
+        live_teams = live_youtube = None
         if source == LINK_SOURCE_LESSON:
             module_id = self.module_dropdown.value or None
             lesson_id = self.lesson_dropdown.value or None
             link_type = self.link_type_dropdown.value or None
         elif source == LINK_SOURCE_STATIC:
             static_link = (self.static_link_field.value or "").strip() or None
+        elif source == LINK_SOURCE_LIVE:
+            live_teams = (self.live_teams_field.value or "").strip() or None
+            live_youtube = (self.live_youtube_field.value or "").strip() or None
         elif source == LINK_SOURCE_LEGACY:
             url = (self.legacy_url_field.value or "").strip() or None
 
@@ -336,19 +520,21 @@ class NoticeFormView:
             titulo=(self.titulo_field.value or "").strip(),
             mensagem=(self.mensagem_field.value or "").strip(),
             tipo=self.tipo_dropdown.value or "",
-            data_publicacao=(self.data_publicacao_field.value or "").strip(),
+            data_publicacao=self.data_publicacao_input.get_iso() or "",
             ativo=bool(self.ativo_checkbox.value),
-            data_inicio=(self.data_inicio_field.value or "").strip() or None,
-            data_fim=(self.data_fim_field.value or "").strip() or None,
+            data_inicio=self.data_inicio_input.get_iso(),
+            data_fim=self.data_fim_input.get_iso(),
             module_id=module_id,
             lesson_id=lesson_id,
             link_type=link_type,
             static_link=static_link,
+            live_link_teams=live_teams,
+            live_link_youtube_live=live_youtube,
             url=url,
             texto_link=(self.texto_link_field.value or "").strip() or None,
             prioridade=prioridade,
-            arquivar_apos=(self.arquivar_apos_field.value or "").strip() or None,
-            exibir_link_a_partir_de=(self.exibir_link_field.value or "").strip() or None,
+            arquivar_apos=self.arquivar_apos_input.get_iso(),
+            exibir_link_a_partir_de=self.exibir_link_input.get_iso(),
         )
 
     def _show_errors(self, messages: list[str]) -> None:
