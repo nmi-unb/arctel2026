@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../.css/style.css">
+
 # Integração de `avisos.json` com os links de módulo
 
 ## Contrato atualizado — `assets/data/avisos.json`
