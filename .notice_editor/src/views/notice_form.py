@@ -38,9 +38,13 @@ def _group(title: str, controls: list[ft.Control]) -> ft.Column:
     )
 
 
-def _info(control: ft.Control, explanation: str) -> ft.Row:
+def _info(control: ft.Control, explanation: str, required: bool = False) -> ft.Row:
+    prefix: list[ft.Control] = []
+    if required:
+        prefix.append(ft.Text("*", color=ft.Colors.BLUE, weight=ft.FontWeight.BOLD, size=16))
     return ft.Row(
         [
+            *prefix,
             ft.Container(content=control, expand=True),
             ft.Icon(ft.Icons.INFO_OUTLINE, tooltip=explanation, size=18, color=ft.Colors.ON_SURFACE_VARIANT),
         ],
@@ -53,13 +57,13 @@ class _DateTimeInput:
     """Campo composto data + hora + fuso; produz/consome uma string ISO 8601 com offset."""
 
     def __init__(self, label: str) -> None:
-        self.date_field = ft.TextField(label=f"{label} — data", hint_text="dd/mm/aaaa", width=140)
+        self.date_field = ft.TextField(label=label, hint_text="dd/mm/aaaa", width=190)
         self.time_field = ft.TextField(label="hora", hint_text="hh:mm", width=90)
         self.offset_dropdown = ft.Dropdown(
             label="fuso",
             value=DEFAULT_DATE_OFFSET,
             options=[ft.DropdownOption(key=value, text=value) for value in DATE_OFFSET_OPTIONS],
-            width=110,
+            width=125,
         )
         self.control = ft.Row([self.date_field, self.time_field, self.offset_dropdown], spacing=8)
 
@@ -138,8 +142,8 @@ class NoticeFormView:
 
         # Agendamento
         self.data_publicacao_input = _DateTimeInput("dataPublicacao")
-        self.data_inicio_input = _DateTimeInput("dataInicio (aula, opcional)")
-        self.data_fim_input = _DateTimeInput("dataFim (aula, opcional)")
+        self.data_inicio_input = _DateTimeInput("dataInicio (aula)")
+        self.data_fim_input = _DateTimeInput("dataFim (aula)")
 
         # Fonte do link
         self._radio_legacy = ft.Radio(value=LINK_SOURCE_LEGACY, label=LINK_SOURCE_LABELS[LINK_SOURCE_LEGACY])
@@ -195,8 +199,8 @@ class NoticeFormView:
         )
 
         # Arquivamento
-        self.arquivar_apos_input = _DateTimeInput("arquivarApos (opcional)")
-        self.exibir_link_input = _DateTimeInput("exibirLinkAPartirDe (opcional)")
+        self.arquivar_apos_input = _DateTimeInput("arquivarApos")
+        self.exibir_link_input = _DateTimeInput("exibirLinkAPartirDe")
 
         self.error_column = ft.Column([], spacing=2)
         self.warning_column = ft.Column([], spacing=2)
@@ -215,6 +219,7 @@ class NoticeFormView:
                             self.id_field,
                             "Identificador único e estável do aviso, usado para detectar duplicados. "
                             "Evite espaços.",
+                            required=True,
                         ),
                         self.suggest_id_button,
                     ],
@@ -222,8 +227,16 @@ class NoticeFormView:
                 _group(
                     "Conteúdo",
                     [
-                        _info(self.titulo_field, "Título em destaque, mostrado no quadro de avisos do site."),
-                        _info(self.mensagem_field, "Texto do aviso (sem HTML), exibido abaixo do título."),
+                        _info(
+                            self.titulo_field,
+                            "Título em destaque, mostrado no quadro de avisos do site.",
+                            required=True,
+                        ),
+                        _info(
+                            self.mensagem_field,
+                            "Texto do aviso (sem HTML), exibido abaixo do título.",
+                            required=True,
+                        ),
                         _info(
                             self.texto_link_field,
                             "Texto do botão de ação (ex.: 'Entrar na aula'). Se vazio, usa "
@@ -238,6 +251,7 @@ class NoticeFormView:
                             self.tipo_dropdown,
                             "Define o selo (badge) exibido: confirmação, ao vivo, alteração, alerta, "
                             "material ou encerrado.",
+                            required=True,
                         ),
                         _info(
                             self.prioridade_field,
@@ -258,6 +272,7 @@ class NoticeFormView:
                             self.data_publicacao_input.control,
                             "Data/hora consideradas a publicação — define a ordem no histórico e o "
                             "desempate de prioridade. Use o fuso -03:00 (Brasília), salvo exceção.",
+                            required=True,
                         ),
                         _info(
                             self.data_inicio_input.control,
@@ -276,23 +291,10 @@ class NoticeFormView:
                             "módulo, link fixo, transmissão ao vivo avulsa (Teams + YouTube) ou o "
                             "formato legado (url).",
                         ),
-                        _info(
-                            self.lesson_group,
-                            "Aponta para uma aula já cadastrada em assets/data/modulos/modulo-N.json — "
-                            "o link real (Teams/YouTube) vem de lá, nunca é digitado aqui.",
-                        ),
-                        _info(self.static_group, "Link fixo que não pertence a uma aula específica (ex.: '#modulos')."),
-                        _info(
-                            self.live_group,
-                            "Só para aula 'ao vivo' avulsa, sem módulo cadastrado (ex.: transmissão de "
-                            "teste). Informe Teams e/ou YouTube — o lado deixado em branco aparece "
-                            "indisponível no site.",
-                        ),
-                        _info(
-                            self.legacy_group,
-                            "Formato antigo, mantido só por compatibilidade — migre pelo Diagnóstico de "
-                            "URLs legadas.",
-                        ),
+                        self.lesson_group,
+                        self.static_group,
+                        self.live_group,
+                        self.legacy_group,
                     ],
                 ),
                 _group(
@@ -323,7 +325,8 @@ class NoticeFormView:
             border=ft.Border.only(top=ft.BorderSide(width=1, color=ft.Colors.OUTLINE_VARIANT)),
         )
 
-        self.container = ft.Column([scrollable, footer], expand=True, spacing=10)
+        scrollable_container = ft.Container(content=scrollable, padding=ft.Padding.only(right=16), expand=True)
+        self.container = ft.Column([scrollable_container, footer], expand=True, spacing=10)
 
         self._populate_module_options()
         self.load_notice(None, None)

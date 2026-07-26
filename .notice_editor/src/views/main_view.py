@@ -21,7 +21,7 @@ class MainView:
         self.preview = NoticePreviewView()
         self.diagnostics = DiagnosticsView(self)
 
-        self.status_text = ft.Text("", size=12)
+        self.status_text = ft.Text("", size=14)
         self.save_button = ft.FilledButton("Salvar arquivo", icon=ft.Icons.SAVE, on_click=self._on_save_click)
         self.reload_button = ft.OutlinedButton(
             "Recarregar", icon=ft.Icons.REFRESH, on_click=self._on_reload_click
@@ -61,13 +61,13 @@ class MainView:
             [
                 self.list_container,
                 ft.VerticalDivider(),
-                ft.Container(content=self.form.container, expand=1, padding=12),
+                ft.Container(content=self.form.container, expand=3, padding=12),
                 ft.VerticalDivider(),
-                ft.Container(content=self.preview.container, expand=1, padding=12),
+                ft.Container(content=self.preview.container, expand=2, padding=12),
             ],
             expand=True,
         )
-        self.page.add(ft.Column([header, ft.Divider(), body], expand=True))
+        self.page.add(ft.Column([header, ft.Divider(height=16 / 3), body], expand=True))
 
     def _on_toggle_list_click(self, e: ft.Event) -> None:
         self._list_expanded = not self._list_expanded

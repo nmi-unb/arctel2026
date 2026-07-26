@@ -29,7 +29,7 @@ class NoticeListView:
         self.container = ft.Column(
             [
                 ft.Row([self.filter_dropdown, self.new_button]),
-                ft.Row([self.sort_publicacao_button, self.sort_prioridade_button]),
+                ft.Column([self.sort_publicacao_button, self.sort_prioridade_button], spacing=6),
                 ft.Divider(),
                 self.rows_column,
             ],
