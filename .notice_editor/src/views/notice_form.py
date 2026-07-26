@@ -39,14 +39,15 @@ def _group(title: str, controls: list[ft.Control]) -> ft.Column:
 
 
 def _info(control: ft.Control, explanation: str, required: bool = False) -> ft.Row:
-    prefix: list[ft.Control] = []
+    marker: list[ft.Control] = []
     if required:
-        prefix.append(ft.Text("*", color=ft.Colors.BLUE, weight=ft.FontWeight.BOLD, size=16))
+        marker.append(ft.Text("*", color=ft.Colors.BLUE, weight=ft.FontWeight.BOLD, size=16))
     return ft.Row(
         [
-            *prefix,
             ft.Container(content=control, expand=True),
+            *marker,
             ft.Icon(ft.Icons.INFO_OUTLINE, tooltip=explanation, size=18, color=ft.Colors.ON_SURFACE_VARIANT),
+            ft.Container(width=16),
         ],
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
         spacing=6,

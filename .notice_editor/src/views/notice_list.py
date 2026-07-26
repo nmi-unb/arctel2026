@@ -17,7 +17,7 @@ class NoticeListView:
             options=[ft.DropdownOption(key=name, text=name) for name in LIST_FILTERS],
             on_select=self._on_filter_change,
         )
-        self.new_button = ft.FilledButton("Novo aviso", icon=ft.Icons.ADD, on_click=self._on_new_click)
+        self.new_button = ft.FilledButton("Aviso", icon=ft.Icons.ADD, on_click=self._on_new_click)
         self.sort_publicacao_button = ft.OutlinedButton(
             "Ordenar por publicação", on_click=self._on_sort_publicacao_click
         )
