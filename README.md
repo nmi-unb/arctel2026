@@ -22,3 +22,11 @@ Basta abrir `index.html` no navegador, ou servir a raiz com qualquer servidor es
 ## Publicação
 
 GitHub Pages configurado para publicar a partir da raiz do repositório (`index.html`).
+
+## Editar Avisos e Módulos
+
+```pwsh
+  cd .notice_editor
+  uv sync
+  uv run flet run src/main.py
+```
