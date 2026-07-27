@@ -524,12 +524,12 @@
     "titulo": "Aula Teste",
     "mensagem": "Aula Teste",
     "tipo": "ao_vivo",
-    "dataPublicacao": "2026-07-27T08:00-03:00",
-    "dataInicio": "2026-07-27T09:00-03:00",
-    "dataFim": "2026-07-27T12:00-03:00",
+    "dataPublicacao": "2026-07-27T08:00:00-03:00",
+    "dataInicio": "2026-07-27T09:00:00-03:00",
+    "dataFim": "2026-07-27T12:00:00-03:00",
     "prioridade": 1,
     "ativo": true,
-    "arquivarApos": "2026-07-27T13h-03:00",
+    "arquivarApos": "2026-07-27T12:00:00-03:00",
     "liveLinks": {
       "teams": null,
       "youtubeLive": "https://www.youtube.com/watch?v=LYI3eegIJlI"

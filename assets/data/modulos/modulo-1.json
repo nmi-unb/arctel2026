@@ -13,7 +13,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Slide",
+            "url": "https://docs.google.com/presentation/d/15YzqKLmjj0zy-F1qdVPpnAx6-gGxNR4i/edit?usp=sharing&ouid=112114478657596215007&rtpof=true&sd=true"
+          }
+        ],
         "replacementCourses": []
       }
     },
@@ -28,7 +33,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Slide",
+            "url": "https://docs.google.com/presentation/d/1kgrUI9GOSimx-l_X_2QFpLDycMDXszny/edit?usp=sharing&ouid=112114478657596215007&rtpof=true&sd=true"
+          }
+        ],
         "replacementCourses": []
       }
     }
