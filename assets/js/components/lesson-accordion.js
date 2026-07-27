@@ -1,4 +1,5 @@
 import { parseDate } from "./notice-board.js";
+import { getModuleData } from "../services/module-data-service.js";
 
 function computeStatus(dataInicio, dataFim, now) {
   const inicio = parseDate(dataInicio);
@@ -178,11 +179,7 @@ export function initLessonAccordion() {
   const moduloNumero = container.dataset.modulo;
   if (!moduloNumero) return;
 
-  fetch(`../assets/data/modulos/modulo-${moduloNumero}.json`)
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.json();
-    })
+  getModuleData(`modulo-${moduloNumero}`)
     .then((data) => {
       const lessons = Array.isArray(data?.lessons) ? data.lessons : [];
       container.innerHTML = "";

@@ -1,3 +1,5 @@
+import { getLessonLink } from "../services/module-data-service.js";
+
 const DATA_URL = "./assets/data/avisos.json";
 const REFRESH_INTERVAL_MS = 60000;
 const TIMEZONE = "America/Sao_Paulo";
@@ -143,8 +145,17 @@ function pickAula(current, now) {
   return null;
 }
 
+/* Substitui a antiga URL direta do aviso: `link` de aula/material agora é
+   resolvido em resolveNoticeLink() a partir de moduleId+lessonId+linkType
+   e guardado aqui. `staticLink` (ex.: "#modulos") não passa pelo serviço
+   de módulos por não pertencer a uma aula específica. */
 function linkPodeAparecer(aviso, now) {
-  if (!aviso.link) return false;
+  if (!aviso._link) return false;
+  const exibirA_partir = parseDate(aviso.exibirLinkAPartirDe);
+  return !exibirA_partir || now >= exibirA_partir;
+}
+
+function podeExibirLinksAoVivo(aviso, now) {
   const exibirA_partir = parseDate(aviso.exibirLinkAPartirDe);
   return !exibirA_partir || now >= exibirA_partir;
 }
@@ -153,12 +164,93 @@ function renderLink(aviso, now, className) {
   if (!linkPodeAparecer(aviso, now)) return null;
   const a = document.createElement("a");
   a.className = className;
-  a.href = aviso.link;
+  a.href = aviso._link;
   a.textContent = aviso.textoLink || "Acessar";
-  if (/^https?:\/\//i.test(aviso.link)) {
+  if (/^https?:\/\//i.test(aviso._link)) {
     a.target = "_blank";
     a.rel = "noopener noreferrer";
   }
+  return a;
+}
+
+/* Resolve o link de um aviso, na ordem:
+   1. `url` legado (compatibilidade temporária, ver docs/NOTICE_LINK_INTEGRATION.md);
+   2. `staticLink` (link fixo que não pertence a uma aula, ex.: "#modulos");
+   3. moduleId + lessonId + linkType, via module-data-service.
+   Nunca lança: falha de resolução apenas oculta o botão, aviso continua visível. */
+async function resolveNoticeLink(aviso) {
+  if (aviso.url) {
+    console.warn(`[notice-board] URL legada encontrada no aviso ${aviso.id}`);
+    return aviso.url;
+  }
+
+  if (aviso.staticLink) {
+    return aviso.staticLink;
+  }
+
+  if (aviso.liveLinks) {
+    return aviso.liveLinks.teams || aviso.liveLinks.youtubeLive || null;
+  }
+
+  if (!aviso.moduleId || !aviso.lessonId || !aviso.linkType) {
+    return null;
+  }
+
+  try {
+    return await getLessonLink(aviso.moduleId, aviso.lessonId, aviso.linkType);
+  } catch (error) {
+    console.warn(`[notice-board] link não encontrado para o aviso ${aviso.id}`, error);
+    return null;
+  }
+}
+
+/* Aula "ao vivo" mostra Teams + YouTube lado a lado, independente do
+   `linkType` configurado no aviso (que resolve só 1 link em `_link`).
+   Fonte, em ordem: `liveLinks` explícito (aula sem módulo real, ex.:
+   transmissão de teste) ou moduleId+lessonId (busca os 2 tipos direto no
+   module-data-service). Falha ao buscar um dos dois só deixa o botão
+   indisponível. */
+async function resolveLiveLinks(aviso) {
+  const isAula = Boolean(aviso.dataInicio && aviso.dataFim);
+  if (!isAula) return null;
+
+  if (aviso.liveLinks) {
+    return {
+      teams: aviso.liveLinks.teams ?? null,
+      youtubeLive: aviso.liveLinks.youtubeLive ?? null,
+    };
+  }
+
+  if (!aviso.moduleId || !aviso.lessonId) return null;
+
+  const [teams, youtubeLive] = await Promise.all([
+    getLessonLink(aviso.moduleId, aviso.lessonId, "teams").catch(() => null),
+    getLessonLink(aviso.moduleId, aviso.lessonId, "youtubeLive").catch(() => null),
+  ]);
+
+  return { teams, youtubeLive };
+}
+
+function renderLiveLink(url, className, label, iconClass) {
+  const a = document.createElement("a");
+  a.className = `notice-board__live-link ${className}`;
+
+  const icon = document.createElement("i");
+  icon.className = iconClass;
+  icon.setAttribute("aria-hidden", "true");
+  a.append(icon, document.createTextNode(label));
+
+  if (url) {
+    a.href = url;
+    if (/^https?:\/\//i.test(url)) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+  } else {
+    a.classList.add("notice-board__live-link--unavailable");
+    a.setAttribute("aria-disabled", "true");
+  }
+
   return a;
 }
 
@@ -211,6 +303,36 @@ function renderAula(container, aulaInfo, now) {
     status === "ao_vivo"
       ? withBrasiliaNote(`Até ${formatTime(fim)}`)
       : withBrasiliaNote(`${formatDate(inicio)} · ${formatTime(inicio)}–${formatTime(fim)}`);
+
+  if (status === "ao_vivo" && aviso._liveLinks) {
+    const info = document.createElement("div");
+    info.className = "notice-board__live-info";
+    info.append(renderBadge("ao_vivo"), title, message);
+
+    const mostrarLinks = podeExibirLinksAoVivo(aviso, now);
+    const linksCol = document.createElement("div");
+    linksCol.className = "notice-board__live-links";
+    linksCol.append(
+      renderLiveLink(
+        mostrarLinks ? aviso._liveLinks.teams : null,
+        "notice-board__live-link--teams",
+        "Teams",
+        "fa-solid fa-user-group"
+      ),
+      renderLiveLink(
+        mostrarLinks ? aviso._liveLinks.youtubeLive : null,
+        "notice-board__live-link--youtube",
+        "YouTube",
+        "fa-brands fa-youtube"
+      )
+    );
+
+    const grid = document.createElement("div");
+    grid.className = "notice-board__live-grid";
+    grid.append(info, linksCol);
+    container.append(grid);
+    return;
+  }
 
   container.append(renderBadge(status === "ao_vivo" ? "ao_vivo" : "confirmacao"), title, message);
 
@@ -371,9 +493,19 @@ export function initNoticeBoard() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         const avisos = Array.isArray(data) ? data.filter(isValidAviso) : [];
         if (!avisos.length) throw new Error("Nenhum aviso válido encontrado em avisos.json");
+
+        const [links, liveLinks] = await Promise.all([
+          Promise.all(avisos.map(resolveNoticeLink)),
+          Promise.all(avisos.map(resolveLiveLinks)),
+        ]);
+        avisos.forEach((aviso, index) => {
+          aviso._link = links[index];
+          aviso._liveLinks = liveLinks[index];
+        });
+
         render(avisos, refs);
       })
       .catch((error) => {
