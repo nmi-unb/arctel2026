@@ -26,7 +26,7 @@ GitHub Pages configurado para publicar a partir da raiz do repositório (`index.
 ## Editar Avisos e Módulos
 
 ```pwsh
-  cd .notice_editor
-  uv sync
-  uv run flet run src/main.py
+cd .notice_editor
+uv sync
+uv run flet run src/main.py
 ```

@@ -98,6 +98,29 @@ main section.container:last-of-type {
   margin-top: 24px;
 }
 
+.section-contato__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.section-contato__cta {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .section-contato__row {
+    justify-content: center;
+  }
+
+  .section-contato__cta {
+    margin-left: 0;
+  }
+}
+
 /* Placeholder genérico "em desenvolvimento" - mesmo padrão visual de
    .section-cronograma__placeholder, reaproveitado pras seções novas
    (Noticias/Matériais/Contato) sem tocar na classe original. */
