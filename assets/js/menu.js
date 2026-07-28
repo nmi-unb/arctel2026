@@ -44,7 +44,7 @@ function setActiveNavLink(hash) {
    pequena, mesmo quando #inicio é visualmente quem está no topo. Em vez
    disso, pega a última seção cujo topo já passou de uma linha de referência
    (clássico scrollspy por posição). */
-const sectionIds = ["inicio", "modulos", "avisos", "contato"];
+const sectionIds = ["inicio", "modulos", "avisos", "calendario", "contato"];
 const sections = sectionIds
   .map((id) => document.getElementById(id))
   .filter(Boolean);

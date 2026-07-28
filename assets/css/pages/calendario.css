@@ -1,0 +1,293 @@
+/* Seção "Calendário" (#calendario). Variáveis locais só usadas aqui —
+   auxiliares de cor que não existem em base/variables.css. */
+.section-calendario {
+  --cal-verde-claro: #9fd9b1;
+  --cal-branco-suave: #cfe3e3;
+  --cal-fundo-atual: #f4faf6;
+  --cal-borda-atual: #cfe9d8;
+  --cal-borda-evento: #e2ece5;
+  --cal-cinza-texto: #8a9899;
+  --cal-cinza-texto-forte: #6f7d7e;
+}
+
+.calendario__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.calendario__grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* Coluna A — card "Próxima aula" */
+.calendario__highlight {
+  background-color: var(--navy-700);
+  border-radius: 12px;
+  padding: 28px;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calendario__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cal-verde-claro);
+  margin: 0;
+}
+
+.calendario__titulo {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.calendario__tema {
+  font-size: 15px;
+  color: var(--cal-branco-suave);
+  margin: 0;
+}
+
+.calendario__datahora {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.calendario__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.calendario__btn {
+  border-radius: var(--radius-pill);
+  padding: 11px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.calendario__btn--teams {
+  background-color: var(--verde-600);
+  color: var(--color-white);
+}
+
+.calendario__btn--teams:hover {
+  background-color: var(--verde-500);
+  opacity: 1;
+}
+
+.calendario__btn--ics {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: var(--color-white);
+}
+
+.calendario__btn--ics:hover {
+  border-color: var(--color-white);
+  opacity: 1;
+}
+
+.calendario__btn--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.calendario__highlight--encerrado .calendario__actions {
+  display: none;
+}
+
+/* Coluna B — trilha de semanas */
+.calendario__weeks {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendario__weeks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calendario__month-label {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--navy-700);
+}
+
+.calendario__nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendario__weeks-range {
+  font-size: var(--text-xs);
+  color: var(--cal-cinza-texto);
+}
+
+.calendario__nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gray-200);
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy-700);
+  cursor: pointer;
+  box-shadow: none;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.calendario__nav-btn:hover:not(:disabled) {
+  border-color: var(--verde-600);
+  color: var(--verde-600);
+}
+
+.calendario__nav-btn:focus-visible {
+  outline: 2px solid var(--verde-600);
+  outline-offset: 2px;
+}
+
+.calendario__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.calendario__weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.calendario__semana {
+  border: 1px solid #eeeeee;
+  background-color: #fbfbfb;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendario__semana.is-current {
+  background-color: var(--cal-fundo-atual);
+  border-color: var(--cal-borda-atual);
+}
+
+.calendario__semana-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cal-cinza-texto);
+  margin: 0;
+}
+
+.calendario__semana-intervalo {
+  font-size: 13px;
+  color: var(--cal-cinza-texto-forte);
+  margin: 0;
+}
+
+.calendario__semana-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calendario__evento {
+  background-color: var(--color-white);
+  border: 1px solid var(--cal-borda-evento);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.calendario__evento-data {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--verde-600);
+}
+
+.calendario__evento-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-700);
+  line-height: 1.25;
+  margin: 2px 0 0;
+}
+
+.calendario__evento-horario {
+  font-size: 11px;
+  color: var(--cal-cinza-texto);
+  margin: 2px 0 0;
+}
+
+.calendario__semana-vazio {
+  font-size: 12px;
+  color: #b3bcbd;
+}
+
+/* ≤900px: coluna única, card de destaque no topo, trilha em 2 colunas */
+@media (max-width: 900px) {
+  .calendario__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendario__weeks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ≤600px: semanas em 1 coluna, botões do destaque empilhados em largura
+   total, min-height das semanas liberado, rótulo de intervalo escondido */
+@media (max-width: 600px) {
+  .calendario__weeks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendario__semana {
+    min-height: auto;
+  }
+
+  .calendario__actions {
+    flex-direction: column;
+  }
+
+  .calendario__btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .calendario__weeks-range {
+    display: none;
+  }
+}
