@@ -42,7 +42,8 @@
       </button>
       <a class="btn btn--outline btn--outline-nav site-nav__link site-nav__link--first" href="#inicio">Inicio</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#modulos">Módulos</a>
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#avisos">Avisos</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#avisos" style="display: none;">Avisos</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#calendario">Calendário</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#contato">Contato</a>
     </nav>
   </header>
@@ -289,7 +290,7 @@
       </div>
     </section>
 
-    <section class="section-avisos container" id="avisos">
+    <section class="section-avisos container" id="avisos" style="display: none;">
       <h2 class="section-title">Avisos</h2>
 
       <div data-notice-board>
@@ -316,6 +317,70 @@
       </div>
     </section>
 
+    <section class="section-calendario container" id="calendario" aria-label="Calendário" data-calendario>
+      <div class="calendario__proxima">
+        <h2 class="section-title">Próximas aulas</h2>
+        <div class="calendario__proxima-grid">
+          <div class="calendario__highlight" data-calendario-highlight>
+            <p class="calendario__titulo" data-calendario-titulo>Carregando…</p>
+            <p class="calendario__tema" data-calendario-tema></p>
+            <p class="calendario__datahora">
+              <time data-calendario-datahora-time data-calendario-datahora></time>
+            </p>
+            <div class="calendario__actions" data-calendario-actions>
+              <a
+                class="btn btn--solid calendario__btn calendario__btn--teams"
+                data-calendario-teams
+                href="#"
+                >Entrar no Teams</a
+              >
+            </div>
+          </div>
+
+          <div class="calendario__highlight" data-calendario-highlight>
+            <p class="calendario__titulo" data-calendario-titulo>Carregando…</p>
+            <p class="calendario__tema" data-calendario-tema></p>
+            <p class="calendario__datahora">
+              <time data-calendario-datahora-time data-calendario-datahora></time>
+            </p>
+            <div class="calendario__actions" data-calendario-actions>
+              <a
+                class="btn btn--solid calendario__btn calendario__btn--teams"
+                data-calendario-teams
+                href="#"
+                >Entrar no Teams</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendario__trilha">
+        <h2 class="section-title" id="calendario-heading">Calendário</h2>
+        <div class="calendario__weeks">
+          <div class="calendario__weeks-header">
+            <span class="calendario__month-label" data-calendario-month></span>
+            <div class="calendario__nav-group" role="group" aria-label="Navegação de mês" data-calendario-nav-group>
+              <span class="calendario__weeks-range" data-calendario-weeks-range></span>
+              <button type="button" class="calendario__nav-btn" data-calendario-prev aria-label="Mês anterior">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button type="button" class="calendario__nav-btn" data-calendario-next aria-label="Próximo mês">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="calendario__weeks-grid" data-calendario-weeks-grid></div>
+        </div>
+      </div>
+
+      <p class="calendario__sr-only" role="status" aria-live="polite" data-calendario-live></p>
+    </section>
+
     <section class="section-contato container" id="contato">
       <h2 class="section-title">Contato</h2>
       <div class="section-contato__row">
@@ -334,7 +399,7 @@
           </div>
         </div>
 
-        <a class="btn btn--solid btn--solid-square section-contato__cta" href="" target="_blank" rel="noopener">Lista de Controle de Presença</a>
+        <a class="btn btn--solid btn--solid-square section-contato__cta" href="https://docs.google.com/spreadsheets/d/1ScxjU3xgY1OEiSlhh_KWLfzMRkRTUA3N/edit?usp=sharing&ouid=112114478657596215007&rtpof=true&sd=true" target="_blank" rel="noopener">Lista de Controle de Presença</a>
       </div>
     </section>
     <div style="margin-bottom: 100px;"></div>

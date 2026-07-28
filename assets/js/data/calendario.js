@@ -1,0 +1,44 @@
+/* Fonte única dos encontros do curso — datas/links reais em
+   .info/links_aulas_teams.md, temas em .info/modulos.md. Horário padronizado
+   08:00–10:00 (America/Sao_Paulo). Módulo 11 ainda sem link Teams definido. */
+export const eventos = [
+  { id: "m1-p1", modulo: 1, parte: 1, titulo: "Módulo 1 — Parte 1", tema: "Impactos do Ecossistema Digital na Comunicação Social", data: "2026-08-04", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/236209397406231?p=ROMe7QamstNlzcHSL0", icsUrl: "" },
+  { id: "m1-p2", modulo: 1, parte: 2, titulo: "Módulo 1 — Parte 2", tema: "Impactos do Ecossistema Digital na Comunicação Social", data: "2026-08-06", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/221374634084643?p=wYxSJBe5e38rGR21x5", icsUrl: "" },
+
+  { id: "m2-p1", modulo: 2, parte: 1, titulo: "Módulo 2 — Parte 1", tema: "Desenho regulatório responsivo", data: "2026-08-11", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
+  { id: "m2-p2", modulo: 2, parte: 2, titulo: "Módulo 2 — Parte 2", tema: "Desenho regulatório responsivo", data: "2026-08-13", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
+
+  { id: "m3-p1", modulo: 3, parte: 1, titulo: "Módulo 3 — Parte 1", tema: "Modelo regulatório pró-inovação", data: "2026-08-18", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
+  { id: "m3-p2", modulo: 3, parte: 2, titulo: "Módulo 3 — Parte 2", tema: "Modelo regulatório pró-inovação", data: "2026-08-20", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/230309599603786?p=MCOB8w1EjqjEFKOenO", icsUrl: "" },
+  { id: "m3-p3", modulo: 3, parte: 3, titulo: "Módulo 3 — Parte 3", tema: "Modelo regulatório pró-inovação", data: "2026-08-25", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/286222844758846?p=g7mQhQgkfQ7r5EvjEl", icsUrl: "" },
+
+  { id: "m4-p1", modulo: 4, parte: 1, titulo: "Módulo 4 — Parte 1", tema: "Análise de Impacto Regulatório e Avaliação de Resultado Regulatório", data: "2026-08-27", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/276375285420830?p=EPNbCPvbCAp62GnzyL", icsUrl: "" },
+  { id: "m4-p2", modulo: 4, parte: 2, titulo: "Módulo 4 — Parte 2", tema: "Análise de Impacto Regulatório e Avaliação de Resultado Regulatório", data: "2026-09-01", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/243604603397655?p=qJQahuXs5sfSrHZwSR", icsUrl: "" },
+
+  { id: "m6-p1", modulo: 6, parte: 1, titulo: "Módulo 6 — Parte 1", tema: "Antitruste e Plataformas Digitais", data: "2026-09-03", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/2216236358191?p=eh7Cj5mdPAlnqJm4xo", icsUrl: "" },
+  { id: "m5-p1", modulo: 5, parte: 1, titulo: "Módulo 5 — Parte 1", tema: "Tributação de Serviços Digitais", data: "2026-09-08", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/265717928354071?p=p2ozBgLlMeXRgPBA2p", icsUrl: "" },
+  { id: "m6-p2", modulo: 6, parte: 2, titulo: "Módulo 6 — Parte 2", tema: "Antitruste e Plataformas Digitais", data: "2026-09-10", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/224941917665953?p=oozouSYXwhJhdLdaNJ", icsUrl: "" },
+  { id: "m5-p2", modulo: 5, parte: 2, titulo: "Módulo 5 — Parte 2", tema: "Tributação de Serviços Digitais", data: "2026-09-15", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/29754870339274?p=oiNYjm4Kr5vgRFEHUC", icsUrl: "" },
+  { id: "m5-p3", modulo: 5, parte: 3, titulo: "Módulo 5 — Parte 3", tema: "Tributação de Serviços Digitais", data: "2026-09-17", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/248617763073881?p=3PcsivJgHkFn1Mqcwu", icsUrl: "" },
+
+  { id: "m7-p1", modulo: 7, parte: 1, titulo: "Módulo 7 — Parte 1", tema: "Cadeia de Valor da Internet e a corrida pela Liderança Digital", data: "2026-09-22", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/27404076549794?p=b7f9mnpmxi6xx27W3P", icsUrl: "" },
+  { id: "m7-p2", modulo: 7, parte: 2, titulo: "Módulo 7 — Parte 2", tema: "Cadeia de Valor da Internet e a corrida pela Liderança Digital", data: "2026-09-24", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/236519130651261?p=pB8sSfdnKnFsHFZnwy", icsUrl: "" },
+  { id: "m7-p3", modulo: 7, parte: 3, titulo: "Módulo 7 — Parte 3", tema: "Cadeia de Valor da Internet e a corrida pela Liderança Digital", data: "2026-09-29", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/292016512995698?p=JxeYx9YWv5r5O9hW1K", icsUrl: "" },
+  { id: "m7-p4", modulo: 7, parte: 4, titulo: "Módulo 7 — Parte 4", tema: "Cadeia de Valor da Internet e a corrida pela Liderança Digital", data: "2026-10-01", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/246670935871693?p=ikhsMvQ5i7K0QZ8Oru", icsUrl: "" },
+
+  { id: "m8-p1", modulo: 8, parte: 1, titulo: "Módulo 8 — Parte 1", tema: "Liberdade de Expressão no Ecossistema Digital", data: "2026-10-03", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/261201745670347?p=rNiuV2ybaBMHSulKXg", icsUrl: "" },
+  { id: "m8-p2", modulo: 8, parte: 2, titulo: "Módulo 8 — Parte 2", tema: "Liberdade de Expressão no Ecossistema Digital", data: "2026-10-08", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/2421574592161?p=3P0OJYfQpVhBDo1kaX", icsUrl: "" },
+
+  { id: "m9-p1", modulo: 9, parte: 1, titulo: "Módulo 9 — Parte 1", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-10", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/223337149942064?p=zVOEcB5PgMKzngK3AQ", icsUrl: "" },
+  { id: "m9-p2", modulo: 9, parte: 2, titulo: "Módulo 9 — Parte 2", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-15", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/27191828360552?p=Xk019df77KNS5Wkq3z", icsUrl: "" },
+  { id: "m9-p3", modulo: 9, parte: 3, titulo: "Módulo 9 — Parte 3", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-17", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg", icsUrl: "" },
+  { id: "m9-p4", modulo: 9, parte: 4, titulo: "Módulo 9 — Parte 4", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-22", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/272223791649605?p=oFbvzJi1x7qJdaeEcu", icsUrl: "" },
+
+  { id: "m10-p1", modulo: 10, parte: 1, titulo: "Módulo 10 — Parte 1", tema: "Cenários prospectivos do futuro da Internet", data: "2026-10-24", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP", icsUrl: "" },
+  { id: "m10-p2", modulo: 10, parte: 2, titulo: "Módulo 10 — Parte 2", tema: "Cenários prospectivos do futuro da Internet", data: "2026-10-29", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/221232043114894?p=LcDFHCGHhEPfCxxTr7", icsUrl: "" },
+  { id: "m10-p3", modulo: 10, parte: 3, titulo: "Módulo 10 — Parte 3", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-03", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7", icsUrl: "" },
+  { id: "m10-p4", modulo: 10, parte: 4, titulo: "Módulo 10 — Parte 4", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-05", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3", icsUrl: "" },
+
+  { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11 — Parte 1", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "", icsUrl: "" },
+  { id: "m11-p2", modulo: 11, parte: 2, titulo: "Módulo 11 — Parte 2", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-12", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "", icsUrl: "" },
+];
