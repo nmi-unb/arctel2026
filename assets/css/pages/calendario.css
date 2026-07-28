@@ -1,7 +1,6 @@
 /* Seção "Calendário" (#calendario). Variáveis locais só usadas aqui —
    auxiliares de cor que não existem em base/variables.css. */
 .section-calendario {
-  --cal-verde-claro: #9fd9b1;
   --cal-branco-suave: #cfe3e3;
   --cal-fundo-atual: #f4faf6;
   --cal-borda-atual: #cfe9d8;
@@ -19,14 +18,23 @@
   white-space: nowrap;
 }
 
-.calendario__grid {
+/* Duas seções empilhadas (antes era um grid de 2 colunas lado a lado) —
+   cada uma com seu próprio h2 (.section-title). */
+.calendario__proxima {
+  margin-bottom: 20px;
+}
+
+.calendario__trilha {
+  margin-bottom: 0;
+}
+
+.calendario__proxima-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  align-items: stretch;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-/* Coluna A — card "Próxima aula" */
+/* Card de aula (mostra a próxima e a que vem depois dela) */
 .calendario__highlight {
   background-color: var(--navy-700);
   border-radius: 12px;
@@ -34,17 +42,7 @@
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 16px;
-}
-
-.calendario__eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--cal-verde-claro);
-  margin: 0;
 }
 
 .calendario__titulo {
@@ -70,7 +68,7 @@
 
 .calendario__actions {
   display: flex;
-  gap: 10px;
+  justify-content: flex-end;
 }
 
 .calendario__btn {
@@ -91,27 +89,30 @@
   opacity: 1;
 }
 
-.calendario__btn--ics {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  color: var(--color-white);
-}
-
-.calendario__btn--ics:hover {
-  border-color: var(--color-white);
-  opacity: 1;
-}
-
 .calendario__btn--disabled {
   opacity: 0.45;
   pointer-events: none;
+}
+
+/* Fora da janela de acesso (1h antes do início até 30min depois) — link
+   ainda existe, mas o clique é bloqueado via JS (não pointer-events:none,
+   pra manter o hover/tooltip funcionando). */
+.calendario__btn--wait {
+  background-color: var(--navy-500);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: var(--color-white);
+  cursor: default;
+}
+
+.calendario__btn--wait:hover {
+  background-color: var(--navy-500);
+  opacity: 1;
 }
 
 .calendario__highlight--encerrado .calendario__actions {
   display: none;
 }
 
-/* Coluna B — trilha de semanas */
 .calendario__weeks {
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-200);
@@ -256,12 +257,8 @@
   color: #b3bcbd;
 }
 
-/* ≤900px: coluna única, card de destaque no topo, trilha em 2 colunas */
+/* ≤900px: trilha de semanas em 2 colunas */
 @media (max-width: 900px) {
-  .calendario__grid {
-    grid-template-columns: 1fr;
-  }
-
   .calendario__weeks-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -270,6 +267,10 @@
 /* ≤600px: semanas em 1 coluna, botões do destaque empilhados em largura
    total, min-height das semanas liberado, rótulo de intervalo escondido */
 @media (max-width: 600px) {
+  .calendario__proxima-grid {
+    grid-template-columns: 1fr;
+  }
+
   .calendario__weeks-grid {
     grid-template-columns: 1fr;
   }

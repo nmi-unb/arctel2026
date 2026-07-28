@@ -172,58 +172,29 @@ function formatIntervaloSemana(semana) {
   return `${startD} ${MONTH_SHORT_BR[startM]} – ${endD} ${MONTH_SHORT_BR[endM]}`;
 }
 
-function pad2(n) {
-  return String(n).padStart(2, "0");
-}
-
-function toIcsTimestamp(date) {
-  return (
-    date.getUTCFullYear() +
-    pad2(date.getUTCMonth() + 1) +
-    pad2(date.getUTCDate()) +
-    "T" +
-    pad2(date.getUTCHours()) +
-    pad2(date.getUTCMinutes()) +
-    pad2(date.getUTCSeconds()) +
-    "Z"
-  );
-}
-
-function escapeIcsText(text) {
-  return String(text).replace(/([,;])/g, "\\$1");
-}
-
-/* icsUrl no dado é o "escape hatch" pra apontar um arquivo hospedado de
-   verdade no futuro; sem ele, gera o .ics on-the-fly a partir dos próprios
-   campos do evento — não depende de hospedagem externa, então o botão
-   "Adicionar à agenda" nunca fica sem link. */
-function buildIcsHref(evento) {
-  if (evento.icsUrl) return evento.icsUrl;
-
-  const inicio = buildInstant(evento, "inicio");
-  const fim = buildInstant(evento, "fim");
-  const linhas = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//NMI//Calendario do curso//PT-BR",
-    "BEGIN:VEVENT",
-    `UID:${evento.id}@arctel2026.nmi`,
-    `DTSTAMP:${toIcsTimestamp(new Date())}`,
-    `DTSTART:${toIcsTimestamp(inicio)}`,
-    `DTEND:${toIcsTimestamp(fim)}`,
-    `SUMMARY:${escapeIcsText(`${evento.titulo} — ${evento.tema}`)}`,
-    evento.teamsUrl ? `DESCRIPTION:${escapeIcsText(evento.teamsUrl)}` : "",
-    "END:VEVENT",
-    "END:VCALENDAR",
-  ].filter(Boolean);
-
-  return `data:text/calendar;charset=utf-8,${encodeURIComponent(linhas.join("\r\n"))}`;
-}
-
-function encontrarProximoEvento(lista, now) {
+/* "Próxima aula" usa o FIM do evento como corte, não o início: uma aula em
+   andamento (entre início e fim) continua sendo a "próxima/atual" até
+   terminar — senão, no minuto em que ela começa, o card já pularia pra
+   seguinte e a janela de acesso ao Teams (1h antes até 30min depois do
+   início) nunca teria efeito prático nesse intervalo pós-início. */
+function encontrarProximasAulas(lista, now) {
   const ordenados = lista.slice().sort((a, b) => buildInstant(a, "inicio") - buildInstant(b, "inicio"));
-  const proximo = ordenados.find((evento) => buildInstant(evento, "inicio") >= now);
-  return { proximo: proximo || null, ultimo: ordenados[ordenados.length - 1] || null };
+  const indice = ordenados.findIndex((evento) => buildInstant(evento, "fim") >= now);
+  const proximo = indice === -1 ? null : ordenados[indice];
+  const seguinte = indice === -1 ? null : ordenados[indice + 1] || null;
+  return { proximo, seguinte, ultimo: ordenados[ordenados.length - 1] || null };
+}
+
+/* Janela de acesso ao Teams: 1h antes do início até 30min depois do
+   horário fixado — fora dela o link some (fica só visível, não clicável). */
+const JANELA_ANTES_MS = 60 * 60 * 1000;
+const JANELA_DEPOIS_MS = 30 * 60 * 1000;
+
+function calcularJanelaTeams(evento, now) {
+  const inicio = buildInstant(evento, "inicio");
+  const abre = new Date(inicio.getTime() - JANELA_ANTES_MS);
+  const fecha = new Date(inicio.getTime() + JANELA_DEPOIS_MS);
+  return { dentro: now >= abre && now <= fecha, aindaNaoAbriu: now < abre };
 }
 
 function clampMonth(mes) {
@@ -233,45 +204,86 @@ function clampMonth(mes) {
   return mes;
 }
 
-function renderDestaque(refs, proximo, ultimo) {
-  const card = refs.highlight;
+function renderTeamsBtn(btn, evento, now) {
+  btn.classList.remove("calendario__btn--disabled", "calendario__btn--wait");
+  btn.removeAttribute("title");
 
-  if (!proximo) {
-    card.classList.add("calendario__highlight--encerrado");
-    refs.highlightTitulo.textContent = "Curso encerrado";
-    refs.highlightTema.textContent = "";
-    refs.highlightTema.hidden = true;
-    refs.highlightData.textContent = ultimo
-      ? `Último encontro: ${formatDataHora(buildInstant(ultimo, "inicio"), buildInstant(ultimo, "fim"))}`
-      : "";
-    refs.highlightActions.hidden = true;
+  const teamsHref = evento.teamsUrl;
+
+  if (!teamsHref) {
+    btn.href = "#";
+    btn.removeAttribute("target");
+    btn.setAttribute("aria-disabled", "true");
+    btn.classList.add("calendario__btn--disabled");
     return;
   }
 
-  card.classList.remove("calendario__highlight--encerrado");
-  refs.highlightActions.hidden = false;
-  refs.highlightTema.hidden = false;
+  const { dentro, aindaNaoAbriu } = calcularJanelaTeams(evento, now);
 
-  refs.highlightTitulo.textContent = proximo.titulo;
-  refs.highlightTema.textContent = proximo.tema;
-
-  const inicio = buildInstant(proximo, "inicio");
-  const fim = buildInstant(proximo, "fim");
-  refs.highlightDataTime.setAttribute("datetime", inicio.toISOString());
-  refs.highlightData.textContent = formatDataHora(inicio, fim);
-
-  const teamsHref = proximo.teamsUrl;
-  refs.teamsBtn.href = teamsHref || "#";
-  refs.teamsBtn.toggleAttribute("aria-disabled", !teamsHref);
-  refs.teamsBtn.classList.toggle("calendario__btn--disabled", !teamsHref);
-  if (!teamsHref) refs.teamsBtn.removeAttribute("target");
-  else {
-    refs.teamsBtn.target = "_blank";
-    refs.teamsBtn.rel = "noopener noreferrer";
+  if (!dentro) {
+    btn.href = "#";
+    btn.removeAttribute("target");
+    btn.setAttribute("aria-disabled", "true");
+    btn.classList.add("calendario__btn--wait");
+    btn.title = aindaNaoAbriu
+      ? "Esta atividade ainda não começou."
+      : "O horário de acesso a esta atividade já passou.";
+    return;
   }
 
-  refs.icsBtn.href = buildIcsHref(proximo);
-  refs.icsBtn.download = `${proximo.id}.ics`;
+  btn.href = teamsHref;
+  btn.target = "_blank";
+  btn.rel = "noopener noreferrer";
+  btn.removeAttribute("aria-disabled");
+}
+
+/* Cada card (a próxima aula e a que vem depois dela) usa a mesma marcação —
+   cardRefs vem de buildCardRefs(), um por elemento [data-calendario-highlight].
+   Sem evento (não há "próxima depois da próxima", ou curso encerrado): o
+   card correspondente só some — não há o que mostrar nele. */
+function renderCard(cardRefs, evento, now) {
+  if (!evento) {
+    cardRefs.card.hidden = true;
+    return;
+  }
+
+  cardRefs.card.hidden = false;
+  cardRefs.card.classList.remove("calendario__highlight--encerrado");
+  cardRefs.actions.hidden = false;
+  cardRefs.tema.hidden = false;
+
+  cardRefs.titulo.textContent = evento.titulo;
+  cardRefs.tema.textContent = evento.tema;
+
+  const inicio = buildInstant(evento, "inicio");
+  const fim = buildInstant(evento, "fim");
+  cardRefs.dataTime.setAttribute("datetime", inicio.toISOString());
+  cardRefs.data.textContent = formatDataHora(inicio, fim);
+
+  renderTeamsBtn(cardRefs.teamsBtn, evento, now);
+}
+
+function renderCardEncerrado(cardRefs, ultimo) {
+  cardRefs.card.hidden = false;
+  cardRefs.card.classList.add("calendario__highlight--encerrado");
+  cardRefs.titulo.textContent = "Curso encerrado";
+  cardRefs.tema.textContent = "";
+  cardRefs.tema.hidden = true;
+  cardRefs.data.textContent = ultimo
+    ? `Último encontro: ${formatDataHora(buildInstant(ultimo, "inicio"), buildInstant(ultimo, "fim"))}`
+    : "";
+  cardRefs.actions.hidden = true;
+}
+
+function renderDestaque(cards, proximo, seguinte, ultimo, now) {
+  if (!proximo) {
+    renderCardEncerrado(cards[0], ultimo);
+    renderCard(cards[1], null, now);
+    return;
+  }
+
+  renderCard(cards[0], proximo, now);
+  renderCard(cards[1], seguinte, now);
 }
 
 function renderEvento(evento) {
@@ -365,19 +377,34 @@ function irParaMes(refs, state, delta) {
   renderMes(refs, state);
 }
 
+/* Um cardRefs por elemento [data-calendario-highlight] (são 2: a próxima
+   aula e a que vem depois dela) — cada um busca seus próprios campos
+   escopados dentro do card, não por id (as duas marcações são idênticas). */
+function buildCardRefs(cardEl) {
+  const teamsBtn = cardEl.querySelector("[data-calendario-teams]");
+
+  teamsBtn.addEventListener("click", (event) => {
+    if (teamsBtn.getAttribute("aria-disabled") === "true") event.preventDefault();
+  });
+
+  return {
+    card: cardEl,
+    titulo: cardEl.querySelector("[data-calendario-titulo]"),
+    tema: cardEl.querySelector("[data-calendario-tema]"),
+    data: cardEl.querySelector("[data-calendario-datahora]"),
+    dataTime: cardEl.querySelector("[data-calendario-datahora-time]"),
+    actions: cardEl.querySelector("[data-calendario-actions]"),
+    teamsBtn,
+  };
+}
+
 export function initCalendario() {
   const section = document.querySelector("[data-calendario]");
   if (!section) return;
 
+  const cards = [...section.querySelectorAll("[data-calendario-highlight]")].map(buildCardRefs);
+
   const refs = {
-    highlight: section.querySelector("[data-calendario-highlight]"),
-    highlightTitulo: section.querySelector("[data-calendario-titulo]"),
-    highlightTema: section.querySelector("[data-calendario-tema]"),
-    highlightData: section.querySelector("[data-calendario-datahora]"),
-    highlightDataTime: section.querySelector("[data-calendario-datahora-time]"),
-    highlightActions: section.querySelector("[data-calendario-actions]"),
-    teamsBtn: section.querySelector("[data-calendario-teams]"),
-    icsBtn: section.querySelector("[data-calendario-ics]"),
     monthLabel: section.querySelector("[data-calendario-month]"),
     weeksRange: section.querySelector("[data-calendario-weeks-range]"),
     weeksGrid: section.querySelector("[data-calendario-weeks-grid]"),
@@ -388,7 +415,7 @@ export function initCalendario() {
   };
 
   const now = new Date();
-  const { proximo, ultimo } = encontrarProximoEvento(eventos, now);
+  const { proximo, seguinte, ultimo } = encontrarProximasAulas(eventos, now);
   const referencia = proximo || ultimo;
   const dataReferencia = referencia ? parseYMD(referencia.data) : utcDate(COURSE_START.year, COURSE_START.month, 1);
 
@@ -397,7 +424,7 @@ export function initCalendario() {
     proximo,
   };
 
-  renderDestaque(refs, proximo, ultimo);
+  renderDestaque(cards, proximo, seguinte, ultimo, now);
   renderMes(refs, state);
 
   refs.prevBtn.addEventListener("click", () => irParaMes(refs, state, -1));
@@ -413,16 +440,16 @@ export function initCalendario() {
     }
   });
 
-  /* Recalcula "próxima aula" periodicamente — sem isso, uma aba aberta
-     atravessando o horário de início/fim de um encontro mostraria o card
-     desatualizado até um F5 (mesmo intervalo de notice-board.js). Só
-     atualiza o card e a marcação is-current; nunca pula o mês que a pessoa
-     esteja navegando manualmente. */
+  /* Recalcula "próximas aulas" e a janela de acesso ao Teams periodicamente
+     — sem isso, uma aba aberta atravessando o horário de início/fim de um
+     encontro mostraria o card e o botão desatualizados até um F5 (mesmo
+     intervalo de notice-board.js). Só atualiza os cards e a marcação
+     is-current; nunca pula o mês que a pessoa esteja navegando manualmente. */
   setInterval(() => {
     const agora = new Date();
-    const proxima = encontrarProximoEvento(eventos, agora);
-    state.proximo = proxima.proximo;
-    renderDestaque(refs, proxima.proximo, proxima.ultimo);
+    const proximas = encontrarProximasAulas(eventos, agora);
+    state.proximo = proximas.proximo;
+    renderDestaque(cards, proximas.proximo, proximas.seguinte, proximas.ultimo, agora);
     renderMes(refs, state);
   }, REFRESH_INTERVAL_MS);
 }

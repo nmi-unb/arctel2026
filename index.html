@@ -42,7 +42,7 @@
       </button>
       <a class="btn btn--outline btn--outline-nav site-nav__link site-nav__link--first" href="#inicio">Inicio</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#modulos">Módulos</a>
-      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#avisos">Avisos</a>
+      <a class="btn btn--outline btn--outline-nav site-nav__link" href="#avisos" style="display: none;">Avisos</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#calendario">Calendário</a>
       <a class="btn btn--outline btn--outline-nav site-nav__link" href="#contato">Contato</a>
     </nav>
@@ -317,30 +317,46 @@
       </div>
     </section>
 
-    <section class="section-calendario container" id="calendario" aria-labelledby="calendario-heading" data-calendario>
-      <h2 class="section-title" id="calendario-heading">Calendário</h2>
+    <section class="section-calendario container" id="calendario" aria-label="Calendário" data-calendario>
+      <div class="calendario__proxima">
+        <h2 class="section-title">Próximas aulas</h2>
+        <div class="calendario__proxima-grid">
+          <div class="calendario__highlight" data-calendario-highlight>
+            <p class="calendario__titulo" data-calendario-titulo>Carregando…</p>
+            <p class="calendario__tema" data-calendario-tema></p>
+            <p class="calendario__datahora">
+              <time data-calendario-datahora-time data-calendario-datahora></time>
+            </p>
+            <div class="calendario__actions" data-calendario-actions>
+              <a
+                class="btn btn--solid calendario__btn calendario__btn--teams"
+                data-calendario-teams
+                href="#"
+                >Entrar no Teams</a
+              >
+            </div>
+          </div>
 
-      <div class="calendario__grid">
-        <div class="calendario__highlight" data-calendario-highlight>
-          <p class="calendario__eyebrow">Próxima aula</p>
-          <p class="calendario__titulo" data-calendario-titulo>Carregando…</p>
-          <p class="calendario__tema" data-calendario-tema></p>
-          <p class="calendario__datahora">
-            <time data-calendario-datahora-time data-calendario-datahora></time>
-          </p>
-          <div class="calendario__actions" data-calendario-actions>
-            <a
-              class="btn btn--solid calendario__btn calendario__btn--teams"
-              data-calendario-teams
-              href="#"
-              >Entrar no Teams</a
-            >
-            <a class="btn btn--outline calendario__btn calendario__btn--ics" data-calendario-ics href="#"
-              >Adicionar à agenda</a
-            >
+          <div class="calendario__highlight" data-calendario-highlight>
+            <p class="calendario__titulo" data-calendario-titulo>Carregando…</p>
+            <p class="calendario__tema" data-calendario-tema></p>
+            <p class="calendario__datahora">
+              <time data-calendario-datahora-time data-calendario-datahora></time>
+            </p>
+            <div class="calendario__actions" data-calendario-actions>
+              <a
+                class="btn btn--solid calendario__btn calendario__btn--teams"
+                data-calendario-teams
+                href="#"
+                >Entrar no Teams</a
+              >
+            </div>
           </div>
         </div>
+      </div>
 
+      <div class="calendario__trilha">
+        <h2 class="section-title" id="calendario-heading">Calendário</h2>
         <div class="calendario__weeks">
           <div class="calendario__weeks-header">
             <span class="calendario__month-label" data-calendario-month></span>
@@ -383,7 +399,7 @@
           </div>
         </div>
 
-        <a class="btn btn--solid btn--solid-square section-contato__cta" href="" target="_blank" rel="noopener">Lista de Controle de Presença</a>
+        <a class="btn btn--solid btn--solid-square section-contato__cta" href="https://docs.google.com/spreadsheets/d/1ScxjU3xgY1OEiSlhh_KWLfzMRkRTUA3N/edit?usp=sharing&ouid=112114478657596215007&rtpof=true&sd=true" target="_blank" rel="noopener">Lista de Controle de Presença</a>
       </div>
     </section>
     <div style="margin-bottom: 100px;"></div>
