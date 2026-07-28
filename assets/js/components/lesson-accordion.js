@@ -143,7 +143,7 @@ function renderLesson(lesson, moduloNumero, now) {
   );
   renderGroup(
     inner,
-    "Atividades substitutas",
+    "Atividades substitutas (Opcional)",
     buildMaterialPills(lesson.materials?.replacementCourses, "lesson-pill--curso", "Atividade substituta (em breve)")
   );
 
