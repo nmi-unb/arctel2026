@@ -77,3 +77,10 @@ toolbox run file_tree -- "$REPO_ALVO" --config "$CONFIG_FILE"
 ```pwsh
     toolbox run deploy_filter -- ../arctel2026 --config .\_docs\dFilter.py
 ```
+
+
+# git_commit
+
+```powershell
+toolbox run git_commit -- . --msg "+" --all --sync
+```
