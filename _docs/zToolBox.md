@@ -82,5 +82,5 @@ toolbox run file_tree -- "$REPO_ALVO" --config "$CONFIG_FILE"
 # git_commit
 
 ```powershell
-toolbox run git_commit -- . --msg "+" --all --sync
+toolbox run git_commit -- "C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arctel2026" --msg "+" --all --sync
 ```
