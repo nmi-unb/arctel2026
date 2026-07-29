@@ -1,5 +1,5 @@
 CONFIG_SOURCE: dict = {
-    "ignored_dirs": [""],
+    "ignored_dirs": ["_privado"],
     "visible_dirs": ["assets", "modulos"],
     "ignored_extensions": [],
     "visible_extensions": [],
