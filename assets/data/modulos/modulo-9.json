@@ -13,7 +13,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
         "replacementCourses": []
       }
     },
@@ -28,7 +33,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
         "replacementCourses": []
       }
     },
@@ -43,7 +53,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
         "replacementCourses": []
       }
     },
@@ -58,7 +73,12 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
         "replacementCourses": []
       }
     }

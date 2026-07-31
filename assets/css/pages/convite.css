@@ -120,6 +120,21 @@ body {
   border-bottom: none;
 }
 
+.tz-table td a {
+  color: #008B8B;
+  text-decoration: underline;
+}
+
+.tz-table td a:visited {
+  color: #006666;
+}
+
+.tz-table td a:hover,
+.tz-table td a:focus-visible {
+  color: #00AFAF;
+  text-decoration-thickness: 2px;
+}
+
 .tz-table__highlight td {
   font-weight: 700;
   color: var(--color-black);

@@ -13,8 +13,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -28,8 +38,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -43,8 +63,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     }
   ]
