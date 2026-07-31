@@ -17,9 +17,18 @@
           {
             "title": "Slide",
             "url": "https://drive.google.com/file/d/1t5ryDRY82e1oHY-SyC8-IgYppKCdFOy1/view?usp=sharing"
+          },
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/1FifuaZBgfqAmyBgaVdEdfKn4oPvHhw60/view?usp=drive_link"
           }
         ],
-        "replacementCourses": []
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -37,9 +46,18 @@
           {
             "title": "Slide",
             "url": "https://drive.google.com/file/d/1qehSX0MIMgoMft9Y1mnIRSFOGZusAOK5/view?usp=sharing"
+          },
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/1FifuaZBgfqAmyBgaVdEdfKn4oPvHhw60/view?usp=drive_link"
           }
         ],
-        "replacementCourses": []
+                "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     }
   ]

@@ -13,8 +13,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -28,8 +38,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -43,8 +63,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -58,8 +88,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     }
   ]

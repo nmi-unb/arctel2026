@@ -14,7 +14,12 @@
       },
       "materials": {
         "professor": [],
-        "replacementCourses": []
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     },
     {
@@ -28,8 +33,18 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
-        "replacementCourses": []
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://www.gov.br/anvisa/pt-br/assuntos/regulamentacao/air/saiba-mais-4"
+          }
+        ],
+        "replacementCourses": [
+          {
+            "title": "Atividade",
+            "url": "https://lms.iaclube.help/"
+          }
+        ]
       }
     }
   ]
