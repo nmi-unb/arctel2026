@@ -16,6 +16,7 @@ CONFIG_SOURCE: dict = {
         "ArcTel2026.csv",
         "forms.js",
         "convite-turma.html",
+        "lembrete-aula.html",
     ],
     "visible_files": ["index.html"],
 }
