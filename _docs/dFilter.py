@@ -1,5 +1,10 @@
 CONFIG_SOURCE: dict = {
-    "ignored_dirs": ["_privado", "_slide", ".notice_editor"],
+    "ignored_dirs": [
+        "_privado", 
+        "_slide", 
+        ".notice_editor",
+        "_not-auto"
+    ],
     "visible_dirs": ["assets", "modulos"],
     "ignored_extensions": [],
     "visible_extensions": [],
@@ -17,6 +22,7 @@ CONFIG_SOURCE: dict = {
         "forms.js",
         "convite-turma.html",
         "lembrete-aula.html",
+        "aviso.html",
     ],
     "visible_files": ["index.html"],
 }
