@@ -8,3 +8,6 @@ node_modules/
 caminhos.txt
 tree_focada.txt
 deploy_report.md
+
+_frequencia/credentials.json
+_frequencia/saida/
