@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _ROOT_MARKERS = (
-    "tree_focada.txt",
     Path("assets") / "data" / "avisos.json",
     Path("assets") / "data" / "modulos" / "index.json",
 )
