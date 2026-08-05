@@ -10,7 +10,7 @@
       "links": {
         "teams": "https://teams.microsoft.com/meet/236209397406231?p=ROMe7QamstNlzcHSL0",
         "youtubeLive": null,
-        "youtubeRecorded": null
+        "youtubeRecorded": "https://youtu.be/GYZh_2B2LFc?si=S9Hc-YBahFmoIKUH"
       },
       "materials": {
         "professor": [
@@ -52,7 +52,7 @@
             "url": "https://drive.google.com/file/d/1FifuaZBgfqAmyBgaVdEdfKn4oPvHhw60/view?usp=drive_link"
           }
         ],
-                "replacementCourses": [
+        "replacementCourses": [
           {
             "title": "Atividade",
             "url": "https://lms.iaclube.help/arctel"

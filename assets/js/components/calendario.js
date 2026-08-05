@@ -1,4 +1,5 @@
 import { eventos } from "../data/calendario.js";
+import { calcularJanelaAcesso } from "../services/access-window.js";
 
 const TIMEZONE = "America/Sao_Paulo";
 const REFRESH_INTERVAL_MS = 60000;
@@ -175,7 +176,7 @@ function formatIntervaloSemana(semana) {
 /* "Próxima aula" usa o FIM do evento como corte, não o início: uma aula em
    andamento (entre início e fim) continua sendo a "próxima/atual" até
    terminar — senão, no minuto em que ela começa, o card já pularia pra
-   seguinte e a janela de acesso ao Teams (1h antes até 30min depois do
+   seguinte e a janela de acesso ao Teams (30min antes até 30min depois do
    início) nunca teria efeito prático nesse intervalo pós-início. */
 function encontrarProximasAulas(lista, now) {
   const ordenados = lista.slice().sort((a, b) => buildInstant(a, "inicio") - buildInstant(b, "inicio"));
@@ -185,16 +186,8 @@ function encontrarProximasAulas(lista, now) {
   return { proximo, seguinte, ultimo: ordenados[ordenados.length - 1] || null };
 }
 
-/* Janela de acesso ao Teams: 1h antes do início até 30min depois do
-   horário fixado — fora dela o link some (fica só visível, não clicável). */
-const JANELA_ANTES_MS = 60 * 60 * 1000;
-const JANELA_DEPOIS_MS = 30 * 60 * 1000;
-
 function calcularJanelaTeams(evento, now) {
-  const inicio = buildInstant(evento, "inicio");
-  const abre = new Date(inicio.getTime() - JANELA_ANTES_MS);
-  const fecha = new Date(inicio.getTime() + JANELA_DEPOIS_MS);
-  return { dentro: now >= abre && now <= fecha, aindaNaoAbriu: now < abre };
+  return calcularJanelaAcesso(buildInstant(evento, "inicio"), now);
 }
 
 function clampMonth(mes) {
@@ -259,6 +252,7 @@ function renderCard(cardRefs, evento, now) {
   const fim = buildInstant(evento, "fim");
   cardRefs.dataTime.setAttribute("datetime", inicio.toISOString());
   cardRefs.data.textContent = formatDataHora(inicio, fim);
+  cardRefs.liveBadge.hidden = !(now >= inicio && now <= fim);
 
   renderTeamsBtn(cardRefs.teamsBtn, evento, now);
 }
@@ -266,6 +260,7 @@ function renderCard(cardRefs, evento, now) {
 function renderCardEncerrado(cardRefs, ultimo) {
   cardRefs.card.hidden = false;
   cardRefs.card.classList.add("calendario__highlight--encerrado");
+  cardRefs.liveBadge.hidden = true;
   cardRefs.titulo.textContent = "Curso encerrado";
   cardRefs.tema.textContent = "";
   cardRefs.tema.hidden = true;
@@ -389,6 +384,7 @@ function buildCardRefs(cardEl) {
 
   return {
     card: cardEl,
+    liveBadge: cardEl.querySelector("[data-calendario-live]"),
     titulo: cardEl.querySelector("[data-calendario-titulo]"),
     tema: cardEl.querySelector("[data-calendario-tema]"),
     data: cardEl.querySelector("[data-calendario-datahora]"),
