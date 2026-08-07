@@ -1,5 +1,6 @@
 import { parseDate } from "./notice-board.js";
 import { getModuleData } from "../services/module-data-service.js";
+import { calcularJanelaAcesso } from "../services/access-window.js";
 
 function computeStatus(dataInicio, dataFim, now) {
   const inicio = parseDate(dataInicio);
@@ -37,11 +38,12 @@ function formatLessonDate(date) {
 
 /* Pill é sempre <a> (mesmo indisponível, com href="#" e pointer-events:none
    via .lesson-pill--disabled) — nunca <span>, nunca omitida. */
-function createPill({ className, href, text, disabled }) {
+function createPill({ className, href, text, disabled, title }) {
   const el = document.createElement("a");
   el.className = `lesson-pill ${className}${disabled ? " lesson-pill--disabled" : ""}`;
   el.textContent = text;
   el.href = disabled ? "#" : href;
+  if (title) el.title = title;
   if (!disabled && /^https?:\/\//i.test(href)) {
     el.target = "_blank";
     el.rel = "noopener noreferrer";
@@ -59,12 +61,35 @@ function renderGroup(container, titleText, pills) {
   container.append(title, list);
 }
 
-function buildTransmissaoPills(links) {
-  const teamsHref = links?.teams;
+function buildTeamsPill(teamsHref, inicio, now) {
+  if (!teamsHref) {
+    return createPill({ className: "lesson-pill--teams", text: "Teams", disabled: true });
+  }
+
+  if (!inicio) {
+    return createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: false });
+  }
+
+  const { dentro, aindaNaoAbriu } = calcularJanelaAcesso(inicio, now);
+  if (!dentro) {
+    return createPill({
+      className: "lesson-pill--teams",
+      text: "Teams",
+      disabled: true,
+      title: aindaNaoAbriu
+        ? "Esta aula ainda não começou."
+        : "O horário de acesso a esta aula já passou.",
+    });
+  }
+
+  return createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: false });
+}
+
+function buildTransmissaoPills(links, inicio, now) {
   const gravacaoHref = links?.youtubeRecorded || links?.youtubeLive;
 
   return [
-    createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: !teamsHref }),
+    buildTeamsPill(links?.teams, inicio, now),
     createPill({
       className: "lesson-pill--youtube",
       href: gravacaoHref,
@@ -135,7 +160,7 @@ function renderLesson(lesson, moduloNumero, now) {
   const inner = document.createElement("div");
   inner.className = "lesson-item__body-inner";
 
-  renderGroup(inner, "Transmissão", buildTransmissaoPills(lesson.links));
+  renderGroup(inner, "Transmissão", buildTransmissaoPills(lesson.links, inicio, now));
   renderGroup(
     inner,
     "Materiais do professor",
@@ -172,12 +197,21 @@ function renderEmpty(container) {
   container.append(empty);
 }
 
+function renderAvailabilityNotice(container) {
+  const notice = document.createElement("p");
+  notice.className = "lesson-accordion__notice";
+  notice.textContent = "Os links das aulas ficam disponíveis 30 minutos antes do horário de início.";
+  container.insertAdjacentElement("afterend", notice);
+}
+
 export function initLessonAccordion() {
   const container = document.querySelector("[data-lesson-accordion]");
   if (!container) return;
 
   const moduloNumero = container.dataset.modulo;
   if (!moduloNumero) return;
+
+  renderAvailabilityNotice(container);
 
   getModuleData(`modulo-${moduloNumero}`)
     .then((data) => {

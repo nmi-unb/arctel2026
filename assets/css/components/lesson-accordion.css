@@ -10,6 +10,14 @@
   margin-top: 10px;
 }
 
+.lesson-accordion__notice {
+  margin-top: 15px;
+  color: #a12b2b;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
 .lesson-item {
   border: 1px solid var(--color-gray-200);
   border-radius: 10px;

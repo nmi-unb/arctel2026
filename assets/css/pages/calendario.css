@@ -43,6 +43,25 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
+}
+
+/* Badge --ao_vivo reaproveitado de notice-board.css tem fundo navy-700 —
+   igual ao fundo do card, ficaria invisível. Sobrescreve o fundo/cor e
+   encaixa no canto livre superior direito, fora do fluxo do flex. */
+.calendario__live-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: var(--color-white);
+}
+
+/* .notice-board__badge define display:inline-flex, que (por ser regra de
+   author stylesheet) vence o `display:none` do atributo hidden vindo do
+   UA stylesheet — sem isso o badge nunca some de verdade. */
+.calendario__live-badge[hidden] {
+  display: none;
 }
 
 .calendario__titulo {
@@ -94,7 +113,7 @@
   pointer-events: none;
 }
 
-/* Fora da janela de acesso (1h antes do início até 30min depois) — link
+/* Fora da janela de acesso (30min antes do início até 30min depois) — link
    ainda existe, mas o clique é bloqueado via JS (não pointer-events:none,
    pra manter o hover/tooltip funcionando). */
 .calendario__btn--wait {
