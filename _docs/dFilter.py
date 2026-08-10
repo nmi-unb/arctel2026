@@ -23,6 +23,7 @@ CONFIG_SOURCE: dict = {
         "convite-turma.html",
         "lembrete-aula.html",
         "aviso.html",
+        "package.json",
     ],
     "visible_files": ["index.html"],
 }
