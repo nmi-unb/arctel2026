@@ -13,7 +13,16 @@
         "youtubeRecorded": null
       },
       "materials": {
-        "professor": [],
+        "professor": [
+          {
+            "title": "Referência",
+            "url": "https://www.gov.br/anvisa/pt-br/assuntos/regulamentacao/air/saiba-mais-4"
+          },
+          {
+            "title": "Slide",
+            "url": "https://docs.google.com/presentation/d/1LcjC_XAMcUOEHMmobffhdoznX2kZL1uE/edit?usp=sharing&ouid=112114478657596215007&rtpof=true&sd=true"
+          }
+        ],
         "replacementCourses": [
           {
             "title": "Atividade",
