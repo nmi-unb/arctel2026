@@ -19,11 +19,11 @@
 |    | 24/09 | Parte 2 | https://teams.microsoft.com/meet/236519130651261?p=pB8sSfdnKnFsHFZnwy | |
 |    | 29/09 | Parte 3 | https://teams.microsoft.com/meet/292016512995698?p=JxeYx9YWv5r5O9hW1K | |
 |    | 01/10 | Parte 4 | https://teams.microsoft.com/meet/246670935871693?p=ikhsMvQ5i7K0QZ8Oru | |
-| 08 | 03/10 | Parte 1 | https://teams.microsoft.com/meet/261201745670347?p=rNiuV2ybaBMHSulKXg | [Liberdade de Expressão no Ecossistema Digital](https://drive.google.com/file/d/1BqAD-iY1W0PrMCke_VkfACi1Ie9LwucG/view?usp=sharing)                  |
+| 08 | 06/10 | Parte 1 | https://teams.microsoft.com/meet/261201745670347?p=rNiuV2ybaBMHSulKXg | [Liberdade de Expressão no Ecossistema Digital](https://drive.google.com/file/d/1BqAD-iY1W0PrMCke_VkfACi1Ie9LwucG/view?usp=sharing)                  |
 |    | 08/10 | Parte 2 | https://teams.microsoft.com/meet/2421574592161?p=3P0OJYfQpVhBDo1kaX   | |
-| 09 | 10/10 | Parte 1 | https://teams.microsoft.com/meet/223337149942064?p=zVOEcB5PgMKzngK3AQ | [Convergência tecnológica: impacto das OTTs](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing)   |
+| 09 | 13/10 | Parte 1 | https://teams.microsoft.com/meet/223337149942064?p=zVOEcB5PgMKzngK3AQ | [Convergência tecnológica: impacto das OTTs](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing)   |
 |    | 15/10 | Parte 2 | https://teams.microsoft.com/meet/27191828360552?p=Xk019df77KNS5Wkq3z  | |
-|    | 17/10 | Parte 3 | https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg | |
+|    | 20/10 | Parte 3 | https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg | |
 |    | 22/10 | Parte 4 | https://teams.microsoft.com/meet/272223791649605?p=oFbvzJi1x7qJdaeEcu | |
 | 10 | 24/10 | Parte 1 | https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP | [Cenários prospectivos do futuro da Internet](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing)     |
 |    | 29/10 | Parte 2 | https://teams.microsoft.com/meet/221232043114894?p=LcDFHCGHhEPfCxxTr7 | |
