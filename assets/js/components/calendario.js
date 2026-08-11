@@ -407,7 +407,7 @@ export function initCalendario() {
     prevBtn: section.querySelector("[data-calendario-prev]"),
     nextBtn: section.querySelector("[data-calendario-next]"),
     navGroup: section.querySelector("[data-calendario-nav-group]"),
-    liveRegion: section.querySelector("[data-calendario-live]"),
+    liveRegion: section.querySelector("[data-calendario-month-live]"),
   };
 
   const now = new Date();

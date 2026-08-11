@@ -21,9 +21,9 @@
 |    | 01/10 | Parte 4 | a definir | a definir | |
 | 08 | 03/10 | Parte 1 | a definir | a definir | Liberdade de Expressão no Ecossistema Digital  |
 |    | 08/10 | Parte 2 | a definir | a definir | |
-| 09 | 10/10 | Parte 1 | a definir | a definir | Convergência tecnológica: impacto das OTTs  |
+| 09 | 13/10 | Parte 1 | a definir | a definir | Convergência tecnológica: impacto das OTTs  |
 |    | 15/10 | Parte 2 | a definir | a definir | |
-|    | 17/10 | Parte 3 | a definir | a definir | |
+|    | 20/10 | Parte 3 | a definir | a definir | |
 |    | 22/10 | Parte 4 | a definir | a definir | |
 | 10 | 24/10 | Parte 1 | a definir | a definir | Cenários prospectivos do futuro da Internet  |
 |    | 29/10 | Parte 2 | a definir | a definir | |
