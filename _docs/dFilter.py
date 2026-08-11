@@ -24,6 +24,7 @@ CONFIG_SOURCE: dict = {
         "lembrete-aula.html",
         "aviso.html",
         "package.json",
+        "package-lock.json",
     ],
     "visible_files": ["index.html"],
 }
