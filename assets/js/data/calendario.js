@@ -8,7 +8,7 @@ export const eventos = [
   { id: "m2-p1", modulo: 2, parte: 1, titulo: "Módulo 2 — Parte 1", tema: "Desenho regulatório responsivo", data: "2026-08-11", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
   { id: "m2-p2", modulo: 2, parte: 2, titulo: "Módulo 2 — Parte 2", tema: "Desenho regulatório responsivo", data: "2026-08-13", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
 
-  { id: "m3-p1", modulo: 3, parte: 1, titulo: "Módulo 3 — Parte 1", tema: "Modelo regulatório pró-inovação", data: "2026-08-18", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/232970188565064?p=cpFmv1kYWNw4W81Fqw", icsUrl: "" },
+  { id: "m3-p1", modulo: 3, parte: 1, titulo: "Módulo 3 — Parte 1", tema: "Modelo regulatório pró-inovação", data: "2026-08-18", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/270882030824432?p=kfAj7sUSjIJIT1MFqz", icsUrl: "" },
   { id: "m3-p2", modulo: 3, parte: 2, titulo: "Módulo 3 — Parte 2", tema: "Modelo regulatório pró-inovação", data: "2026-08-20", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/230309599603786?p=MCOB8w1EjqjEFKOenO", icsUrl: "" },
   { id: "m3-p3", modulo: 3, parte: 3, titulo: "Módulo 3 — Parte 3", tema: "Modelo regulatório pró-inovação", data: "2026-08-25", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/286222844758846?p=g7mQhQgkfQ7r5EvjEl", icsUrl: "" },
 
