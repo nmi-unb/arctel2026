@@ -6,7 +6,7 @@
 
 Se você alterar ou adicionar módulos na `toolbox`, reinstale a ferramenta:
 
-```pwsh
+```pwsh 
     :: Caminho Relativo
 $TOOLBOX_DIR = "..\toolbox"
 uv tool install --reinstall $TOOLBOX_DIR
