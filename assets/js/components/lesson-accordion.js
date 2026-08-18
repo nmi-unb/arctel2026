@@ -61,16 +61,16 @@ function renderGroup(container, titleText, pills) {
   container.append(title, list);
 }
 
-function buildTeamsPill(teamsHref, inicio, now) {
+function buildTeamsPill(teamsHref, inicio, fim, now) {
   if (!teamsHref) {
     return createPill({ className: "lesson-pill--teams", text: "Teams", disabled: true });
   }
 
-  if (!inicio) {
+  if (!inicio || !fim) {
     return createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: false });
   }
 
-  const { dentro, aindaNaoAbriu } = calcularJanelaAcesso(inicio, now);
+  const { dentro, aindaNaoAbriu } = calcularJanelaAcesso(inicio, fim, now);
   if (!dentro) {
     return createPill({
       className: "lesson-pill--teams",
@@ -85,11 +85,11 @@ function buildTeamsPill(teamsHref, inicio, now) {
   return createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: false });
 }
 
-function buildTransmissaoPills(links, inicio, now) {
+function buildTransmissaoPills(links, inicio, fim, now) {
   const gravacaoHref = links?.youtubeRecorded || links?.youtubeLive;
 
   return [
-    buildTeamsPill(links?.teams, inicio, now),
+    buildTeamsPill(links?.teams, inicio, fim, now),
     createPill({
       className: "lesson-pill--youtube",
       href: gravacaoHref,
@@ -118,6 +118,7 @@ function renderLesson(lesson, moduloNumero, now) {
   const id = `modulo-${moduloNumero}-aula-${lesson.numero}`;
   const status = computeStatus(lesson.dataInicio, lesson.dataFim, now);
   const inicio = parseDate(lesson.dataInicio);
+  const fim = parseDate(lesson.dataFim);
 
   const item = document.createElement("article");
   item.className = "lesson-item";
@@ -160,7 +161,7 @@ function renderLesson(lesson, moduloNumero, now) {
   const inner = document.createElement("div");
   inner.className = "lesson-item__body-inner";
 
-  renderGroup(inner, "Transmissão", buildTransmissaoPills(lesson.links, inicio, now));
+  renderGroup(inner, "Transmissão", buildTransmissaoPills(lesson.links, inicio, fim, now));
   renderGroup(
     inner,
     "Materiais do professor",

@@ -3,8 +3,8 @@
 export const JANELA_ANTES_MS = 30 * 60 * 1000;
 export const JANELA_DEPOIS_MS = 30 * 60 * 1000;
 
-export function calcularJanelaAcesso(inicio, now) {
+export function calcularJanelaAcesso(inicio, fim, now) {
   const abre = new Date(inicio.getTime() - JANELA_ANTES_MS);
-  const fecha = new Date(inicio.getTime() + JANELA_DEPOIS_MS);
+  const fecha = new Date(fim.getTime() + JANELA_DEPOIS_MS);
   return { dentro: now >= abre && now <= fecha, aindaNaoAbriu: now < abre };
 }
