@@ -187,7 +187,7 @@ function encontrarProximasAulas(lista, now) {
 }
 
 function calcularJanelaTeams(evento, now) {
-  return calcularJanelaAcesso(buildInstant(evento, "inicio"), now);
+  return calcularJanelaAcesso(buildInstant(evento, "inicio"), buildInstant(evento, "fim"), now);
 }
 
 function clampMonth(mes) {
