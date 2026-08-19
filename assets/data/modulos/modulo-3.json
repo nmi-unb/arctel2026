@@ -10,21 +10,25 @@
       "links": {
         "teams": "https://teams.microsoft.com/meet/270882030824432?p=kfAj7sUSjIJIT1MFqz",
         "youtubeLive": null,
-        "youtubeRecorded": null
+        "youtubeRecorded": "https://youtu.be/P8qs_XmuTFw?is=Vc5s-KEWl5O4qc2V"
       },
       "materials": {
         "professor": [
-          {
-            "title": "Artigo - Referência 1",
-            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
-          },
           {
             "title": "Slide",
             "url": "https://drive.google.com/file/d/142RGLTR1bSX5iLY3sU8w9dIIxU4r5yvV/view?usp=sharing"
           },
           {
-            "title": "Digital Regulation Handbook",
+            "title": "Referência 1",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          },
+          {
+            "title": "Referência 2",
             "url": "https://drive.google.com/file/d/1FQtf-jJ219hejS_cjn7eyECQDRTC7AQ7/view?usp=sharing"
+          },
+          {
+            "title": "Referência 3",
+            "url": "https://drive.google.com/file/d/1S28YxzQX9R2Az2cLq1dqCShWuib-rOw4/view?usp=sharing"
           }
         ],
         "replacementCourses": [
@@ -48,16 +52,20 @@
       "materials": {
         "professor": [
           {
-            "title": "Artigo - Referência 1",
-            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
-          },
-          {
             "title": "Slide",
             "url": "https://drive.google.com/file/d/142RGLTR1bSX5iLY3sU8w9dIIxU4r5yvV/view?usp=sharing"
           },
           {
-            "title": "Digital Regulation Handbook",
+            "title": "Referência 1",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          },
+          {
+            "title": "Referência 2",
             "url": "https://drive.google.com/file/d/1FQtf-jJ219hejS_cjn7eyECQDRTC7AQ7/view?usp=sharing"
+          },
+          {
+            "title": "Referência 3",
+            "url": "https://drive.google.com/file/d/1S28YxzQX9R2Az2cLq1dqCShWuib-rOw4/view?usp=sharing"
           }
         ],
         "replacementCourses": [
@@ -81,16 +89,20 @@
       "materials": {
         "professor": [
           {
-            "title": "Artigo - Referência 1",
-            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
-          },
-          {
             "title": "Slide",
             "url": "https://drive.google.com/file/d/142RGLTR1bSX5iLY3sU8w9dIIxU4r5yvV/view?usp=sharing"
           },
           {
-            "title": "Digital Regulation Handbook",
+            "title": "Referência 1",
+            "url": "https://drive.google.com/file/d/1wx74GRWU7S9MSOeo6K-2G1VunWnnEX81/view?usp=sharing"
+          },
+          {
+            "title": "Referência 2",
             "url": "https://drive.google.com/file/d/1FQtf-jJ219hejS_cjn7eyECQDRTC7AQ7/view?usp=sharing"
+          },
+          {
+            "title": "Referência 3",
+            "url": "https://drive.google.com/file/d/1S28YxzQX9R2Az2cLq1dqCShWuib-rOw4/view?usp=sharing"
           }
         ],
         "replacementCourses": [
