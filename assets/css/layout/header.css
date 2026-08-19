@@ -7,21 +7,16 @@
   padding: 24px var(--grid-margin);
   max-width: var(--container-max-width);
   margin: 0 auto;
-  transition: padding 0.2s ease;
 }
 
-/* Header (logo + nav) fica "sticky" no topo ao rolar — igual ao original,
-   só um pouco mais compacto quando rolado. Mobile mantém o drawer normal
-   (regra só entra em min-width: 901px).
+/* Header (logo + nav) fica "sticky" no topo ao rolar. Mobile mantém o
+   drawer normal (regra só entra em min-width: 901px).
 
    Usa `position: sticky`, não `fixed`: sticky mantém o espaço do header
-   reservado no fluxo do documento. `fixed` (versão anterior) o REMOVE do
-   fluxo ao "pinar", encolhendo a altura total da página — em página curta
-   com pouco espaço de scroll (ex: modulos/*.html numa tela larga), isso
-   empurra o scrollY abaixo do threshold, desliga o pin, a página cresce de
-   volta, o scrollY sobe de novo, religa... loop infinito que pisca o
-   header e trava a rolagem. `sticky` não remove do fluxo, então não entra
-   nesse loop. */
+   reservado no fluxo do documento. O estado `is-pinned` também não pode
+   alterar padding, altura ou largura: em páginas curtas, reduzir a altura
+   total da página pode empurrar o scrollY de volta para baixo do threshold
+   e criar um ciclo de liga/desliga no limite da rolagem. */
 @media (min-width: 901px) {
   .site-header {
     position: sticky;
@@ -33,7 +28,6 @@
     background-color: var(--color-white);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-sm);
-    padding: 10px;
   }
 }
 
@@ -65,12 +59,6 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-}
-
-@media (min-width: 901px) {
-  .site-header.is-pinned .site-nav__link {
-    padding: 10px 16px;
-  }
 }
 
 /* Botão hambúrguer mobile - fixo no topo, verde, some no desktop */
