@@ -1,13 +1,30 @@
 # Revisão da arquitetura
 
 - Data: 2026-08-18
-- Escopo: comportamento do cabeçalho sticky e organização relacionada
+- Escopo: comportamento do cabeçalho sticky, caminhos após movimentação de pastas e organização relacionada
 - Compatibilidade com GitHub Pages: compatível
 - Diagnóstico geral: a aplicação usa HTML, CSS e JavaScript estáticos, com caminhos relativos válidos. O defeito do cabeçalho vinha de uma mudança de geometria no estado fixado, não de uma limitação do GitHub Pages.
 
 ## Achados críticos
 
-Nenhuma ocorrência encontrada nesta categoria.
+### [ARQ-005] Páginas movidas mantiveram caminhos relativos da raiz
+
+- Severidade: Crítico
+- Local: `_privado/*.html` e `_docs/zToolBox.md`
+- Problema: depois da movimentação para subpastas, sete páginas ainda apontavam para `./assets/` e `./index.html`; a documentação ainda procurava `.css/` dentro de `_docs/`.
+- Por que importa: estilos, logo e navegação não eram encontrados porque os caminhos relativos passavam a ser resolvidos dentro das novas pastas.
+- Solução sugerida: subir um nível com `../` antes de acessar recursos que continuam na raiz do projeto.
+- Situação: solução implementada neste atendimento a pedido do usuário; dois endereços `wa.me` também receberam o protocolo `https://`.
+
+#### Decisão do usuário
+
+- [ ] Aceito a solução sugerida
+- [ ] Não aceito a solução sugerida
+- [ ] Quero propor uma solução diferente
+
+Sugestão ou observação do usuário:
+
+> Preencher aqui.
 
 ## Achados importantes
 
@@ -85,4 +102,3 @@ Sugestão ou observação do usuário:
 Sugestão ou observação do usuário:
 
 > Preencher aqui.
-
