@@ -197,7 +197,7 @@ function clampMonth(mes) {
   return mes;
 }
 
-function renderTeamsBtn(btn, evento, now) {
+function renderTeamsBtn(btn, evento, now, { sempreLiberado = false } = {}) {
   btn.classList.remove("calendario__btn--disabled", "calendario__btn--wait");
   btn.removeAttribute("title");
 
@@ -213,7 +213,7 @@ function renderTeamsBtn(btn, evento, now) {
 
   const { dentro, aindaNaoAbriu } = calcularJanelaTeams(evento, now);
 
-  if (!dentro) {
+  if (!sempreLiberado && !dentro) {
     btn.href = "#";
     btn.removeAttribute("target");
     btn.setAttribute("aria-disabled", "true");
@@ -234,7 +234,7 @@ function renderTeamsBtn(btn, evento, now) {
    cardRefs vem de buildCardRefs(), um por elemento [data-calendario-highlight].
    Sem evento (não há "próxima depois da próxima", ou curso encerrado): o
    card correspondente só some — não há o que mostrar nele. */
-function renderCard(cardRefs, evento, now) {
+function renderCard(cardRefs, evento, now, opts) {
   if (!evento) {
     cardRefs.card.hidden = true;
     return;
@@ -254,7 +254,7 @@ function renderCard(cardRefs, evento, now) {
   cardRefs.data.textContent = formatDataHora(inicio, fim);
   cardRefs.liveBadge.hidden = !(now >= inicio && now <= fim);
 
-  renderTeamsBtn(cardRefs.teamsBtn, evento, now);
+  renderTeamsBtn(cardRefs.teamsBtn, evento, now, opts);
 }
 
 function renderCardEncerrado(cardRefs, ultimo) {
@@ -270,6 +270,9 @@ function renderCardEncerrado(cardRefs, ultimo) {
   cardRefs.actions.hidden = true;
 }
 
+/* cards[0] (a aula atual/mais próxima) sempre libera o botão do Teams,
+   mesmo fora da janela de 30min — só cards[1] (a seguinte) respeita a
+   janela normalmente. */
 function renderDestaque(cards, proximo, seguinte, ultimo, now) {
   if (!proximo) {
     renderCardEncerrado(cards[0], ultimo);
@@ -277,7 +280,7 @@ function renderDestaque(cards, proximo, seguinte, ultimo, now) {
     return;
   }
 
-  renderCard(cards[0], proximo, now);
+  renderCard(cards[0], proximo, now, { sempreLiberado: true });
   renderCard(cards[1], seguinte, now);
 }
 
