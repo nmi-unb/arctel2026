@@ -392,7 +392,7 @@ function renderHistoryList(listEl, archived) {
   });
 }
 
-function createModalController(overlay, openButton) {
+export function createModalController(overlay, openButton) {
   const closeButton = overlay.querySelector("[data-notice-modal-close]");
   const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
   let lastFocused = null;

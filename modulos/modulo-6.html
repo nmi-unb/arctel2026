@@ -20,6 +20,18 @@
         referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="../assets/css/main.css?v=050530e7" />
+
+  <!-- Override local: link "Acessar" do modal de Livros e Referências vira
+       pill verde/branco, só nesta página (não afeta o modal de avisos). -->
+  <style>
+    #referencias-modal .notice-modal__item-link {
+      display: inline-flex;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background-color: var(--verde-600);
+      color: var(--color-white);
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -94,9 +106,92 @@
 
         <h3>Aulas, gravações e recursos</h3>
         <div class="lesson-accordion" data-lesson-accordion data-modulo="6"></div>
+
+        <div class="lesson-accordion" id="referencias-accordion" style="margin-top: 12px;">
+          <div class="lesson-item">
+            <button
+              type="button"
+              class="lesson-item__header"
+              id="referencias-btn"
+              aria-haspopup="dialog"
+              aria-controls="referencias-modal"
+            >
+              <span class="lesson-num" aria-hidden="true">+</span>
+              <span class="lesson-item__title" style="flex: 1 1 auto;">Livros e Referências</span>
+              <!-- <span aria-hidden="true" style="flex-shrink: 0; font-size: var(--text-lg); color: var(--navy-700);">&#8599;</span> -->
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   </main>
+
+  <div
+    class="notice-modal-overlay"
+    id="referencias-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="referencias-modal-title"
+    hidden
+  >
+    <div class="notice-modal">
+      <div class="notice-modal__header">
+        <h3 class="notice-modal__title" id="referencias-modal-title">Livros e Referências</h3>
+        <button type="button" class="notice-modal__close" data-notice-modal-close aria-label="Fechar">&times;</button>
+      </div>
+      <ul class="notice-modal__list">
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Fernandes, Victor. O. (2021). Plataformas digitais entre abuso de posição dominante e inovação: Perspectivas a partir das teorias de concorrência dinâmica do antitruste (Tese de doutorado, Universidade de São Paulo, Faculdade de Direito).</p>
+          <a class="notice-modal__item-link" href="https://doi.org/10.11606/T.2.2021.tde-26092022-121026" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2017, 11 de julho). O poder das plataformas digitais: O que são e as suas repercussões sobre a regulação jurídica. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/o-poder-das-plataformas-digitais" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. Plataformas digitais e os desafios para a regulação jurídica. In: Parentoni, Leonardo (org.). Direito, tecnologia e inovação. Belo Horizonte: D'Plácido, 2018.</p>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2023, 22 de março). Regulação de conteúdos em plataformas digitais: Não invoquemos a liberdade de expressão em vão. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/regulacao-de-conteudos-em-plataformas-digitais" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2023, 5 de julho). O papel e a responsabilidade das plataformas digitais pelo 8 de janeiro. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/o-papel-e-a-responsabilidade-das-plataformas-digitais-pelo-8-de-janeiro" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2024, 18 de setembro). Plataformas digitais e repercussões concorrenciais: O desafio da caracterização do mercado relevante. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/plataformas-digitais-e-repercussoes-concorrenciais" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2024, 16 de outubro). Plataformas digitais e impactos concorrenciais: As conclusões do recente relatório da Secretaria de Reformas Econômicas do Ministério da Fazenda. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/plataformas-digitais-e-impactos-concorrenciais" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2024, 27 de novembro). Por que uma regulação como o Digital Markets Act? JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/por-que-uma-regulacao-como-o-digital-markets-act" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2025, 2 de julho). A decisão do STF sobre o art. 19 do Marco Civil da Internet: Compreendendo o contexto e as principais determinações da tese adotada pelo Tribunal. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/a-decisao-do-stf-sobre-o-art-19-do-marco-civil-da-internet" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Frazão, Ana. (2025, 10 de setembro). Economia movida a dados: As plataformas digitais e a importância do gerenciamento informacional. JOTA.</p>
+          <a class="notice-modal__item-link" href="https://www.jota.info/opiniao-e-analise/colunas/constituicao-empresa-e-mercado/economia-movida-a-dados-2" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Kira, Beatriz. (2021). A regulação estrutural de mercados digitais no Brasil (Tese de doutorado, Universidade de São Paulo, Faculdade de Direito).</p>
+          <a class="notice-modal__item-link" href="https://doi.org/10.11606/T.2.2021.tde-26092022-112004" target="_blank" rel="noopener">Acessar</a>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Wu, Tim. (2016). The attention merchants: The epic scramble to get inside our heads. Alfred A. Knopf.</p>
+        </li>
+        <li class="notice-modal__item">
+          <p class="notice-modal__item-message">Wu, Tim. (2025). The age of extraction: How tech platforms conquered the economy and threaten our future prosperity. Alfred A.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <button type="button" id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
     <span style="transform: rotate(-90deg);" aria-hidden="true">➤</span>
@@ -124,6 +219,7 @@
   </footer>
 
   <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/pages/modulo-6-referencias.js"></script>
   <script src="../assets/js/menu.js"></script>
   <script src="../assets/js/back-to-top.js"></script>
 </body>
