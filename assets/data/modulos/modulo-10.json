@@ -5,8 +5,8 @@
     {
       "numero": 1,
       "titulo": "Aula 1",
-      "dataInicio": "2026-10-24T07:30:00-03:00",
-      "dataFim": "2026-10-24T10:30:00-03:00",
+      "dataInicio": "2026-10-27T07:30:00-03:00",
+      "dataFim": "2026-10-27T10:30:00-03:00",
       "links": {
         "teams": "https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP",
         "youtubeLive": null,
