@@ -39,6 +39,5 @@ export const eventos = [
   { id: "m10-p3", modulo: 10, parte: 3, titulo: "Módulo 10 — Parte 3", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-03", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7", icsUrl: "" },
   { id: "m10-p4", modulo: 10, parte: 4, titulo: "Módulo 10 — Parte 4", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-05", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3", icsUrl: "" },
 
-  { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11 — Parte 1", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "", icsUrl: "" },
-  { id: "m11-p2", modulo: 11, parte: 2, titulo: "Módulo 11 — Parte 2", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-12", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "", icsUrl: "" },
+  { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "07:30", fim: "11:30", tipo: "aula", teamsUrl: "", icsUrl: "" },
 ];
