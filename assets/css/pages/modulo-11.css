@@ -33,12 +33,13 @@
 .oficina-groups {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   margin-top: 14px;
 }
 
 .oficina-group-card {
-  flex: 1 1 220px;
+  flex: 0 1 350px;
   position: relative;
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-200);
