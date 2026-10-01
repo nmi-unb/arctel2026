@@ -201,7 +201,7 @@ function renderEmpty(container) {
 function renderAvailabilityNotice(container) {
   const notice = document.createElement("p");
   notice.className = "lesson-accordion__notice";
-  notice.textContent = "Os links das aulas ficam disponíveis 30 minutos antes do horário de início.";
+  notice.textContent = "Os links ficam disponíveis 30 minutos antes do horário de início das aulas.";
   container.insertAdjacentElement("afterend", notice);
 }
 
