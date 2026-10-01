@@ -310,17 +310,17 @@
     "titulo": "Aula do Módulo 8 — Parte 1 programada",
     "mensagem": "A Parte 1 do Módulo 8 — Liberdade de Expressão no Ecossistema Digital — está programada.",
     "tipo": "confirmacao",
-    "dataPublicacao": "2026-10-02T08:00:00-03:00",
-    "dataInicio": "2026-10-03T08:00:00-03:00",
-    "dataFim": "2026-10-03T10:00:00-03:00",
+    "dataPublicacao": "2026-10-05T08:00:00-03:00",
+    "dataInicio": "2026-10-06T08:00:00-03:00",
+    "dataFim": "2026-10-06T10:00:00-03:00",
     "moduleId": "modulo-8",
     "lessonId": "aula-1",
     "linkType": "teams",
     "textoLink": "Entrar na aula",
     "prioridade": 3,
     "ativo": true,
-    "arquivarApos": "2026-10-03T10:30:00-03:00",
-    "exibirLinkAPartirDe": "2026-10-03T07:15:00-03:00"
+    "arquivarApos": "2026-10-06T10:30:00-03:00",
+    "exibirLinkAPartirDe": "2026-10-06T07:15:00-03:00"
   },
   {
     "id": "aula-modulo-8-parte-2",
