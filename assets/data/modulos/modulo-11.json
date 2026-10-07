@@ -8,7 +8,7 @@
       "dataInicio": "2026-11-10T07:30:00-03:00",
       "dataFim": "2026-11-10T11:30:00-03:00",
       "links": {
-        "teams": null,
+        "teams": "https://teams.microsoft.com/meet/254314806990319?p=6X0RP8Lly5WpWVEWdy",
         "youtubeLive": null,
         "youtubeRecorded": null
       },
