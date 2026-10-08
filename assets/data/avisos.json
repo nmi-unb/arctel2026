@@ -379,16 +379,16 @@
     "mensagem": "A Parte 3 do Módulo 9 — Convergência tecnológica de serviços tradicionais e digitais: impacto das OTT's na indústria global de Telecomunicações — está programada.",
     "tipo": "confirmacao",
     "dataPublicacao": "2026-10-16T08:00:00-03:00",
-    "dataInicio": "2026-10-17T08:00:00-03:00",
-    "dataFim": "2026-10-17T10:00:00-03:00",
+    "dataInicio": "2026-10-20T08:00:00-03:00",
+    "dataFim": "2026-10-20T10:00:00-03:00",
     "moduleId": "modulo-9",
     "lessonId": "aula-3",
     "linkType": "teams",
     "textoLink": "Entrar na aula",
     "prioridade": 3,
     "ativo": true,
-    "arquivarApos": "2026-10-17T10:30:00-03:00",
-    "exibirLinkAPartirDe": "2026-10-17T07:15:00-03:00"
+    "arquivarApos": "2026-10-20T10:30:00-03:00",
+    "exibirLinkAPartirDe": "2026-10-20T07:15:00-03:00"
   },
   {
     "id": "aula-modulo-9-parte-4",
