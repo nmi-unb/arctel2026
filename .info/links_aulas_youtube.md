@@ -29,6 +29,5 @@
 |    | 29/10 | Parte 2 | a definir | a definir | |
 |    | 03/11 | Parte 3 | a definir | a definir | |
 |    | 05/11 | Parte 4 | a definir | a definir | |
-| 11 | 10/11 | Parte 4 | a definir | a definir | |
-|    | 12/11 | Parte 4 | a definir | a definir | |
+| 11 | 10/11 | Parte 1 | a definir | a definir | |
 

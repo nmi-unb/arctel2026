@@ -29,6 +29,5 @@
 |    | 29/10 | Parte 2 | https://teams.microsoft.com/meet/221232043114894?p=LcDFHCGHhEPfCxxTr7 | |
 |    | 03/11 | Parte 3 | https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7 | |
 |    | 05/11 | Parte 4 | https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3 | |
-| 11 | 10/11 | Parte 4 | a definir | |
-|    | 12/11 | Parte 4 | a definir | |
+| 11 | 10/11 | Parte 1 | https://teams.microsoft.com/meet/254314806990319?p=6X0RP8Lly5WpWVEWdy | |
 

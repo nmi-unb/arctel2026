@@ -76,6 +76,6 @@ Topologia de rede para Web 3.0; Segurança cibernética e geopolítica. Intelig�
 
 **Módulo 11 – Oficina com Lideranças Regulatórias** **Ementa**: Uma oficina que reúne líderes do setor de telecomunicações para discutir o papel da mulher na regulação e tecnologia.
 O programa foca em estratégias de liderança, inovação com equidade, e a construção de redes de apoio, capacitando as pessoas participantes a enfrentar desafios e aproveitar oportunidades para impulsionar a mudança.
-**Duração**: 4 horas.
+**Duração**: 6 horas.
 **Modalidade**: Online síncrona.
 **PROFESSOR**: Luis Fernando Ramos Molinaro

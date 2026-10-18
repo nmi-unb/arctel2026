@@ -80,7 +80,7 @@ Plano de Ensino Geral para Sala Virtual
 
 **Ementa:** Uma oficina que reúne líderes do setor de telecomunicações para discutir o papel da mulher na regulação e tecnologia. O programa foca em estratégias de liderança, inovação com equidade, e a construção de redes de apoio, capacitando as pessoas participantes a enfrentar desafios e aproveitar oportunidades para impulsionar a mudança.
 
-- **Duração:** 4 horas.
+- **Duração:** 6 horas.
 - **Modalidade:** Online síncrona.
 
 ---
@@ -151,5 +151,5 @@ O curso terá o seguinte cronograma, podendo haver realocações de módulos seg
 **Obs.:**
 
 - Haverá uma aula magna no início das atividades, a ser proferida por representante da Anatel.
-- A Oficina com Lideranças Regulatórias ocorrerá ao final do curso em data a ser definida com duração de 4 horas corridas.
+- A Oficina com Lideranças Regulatórias ocorrerá ao final do curso em 10/11/2026, das 7h30 às 13h30 (horário de Brasília), com duração de 6 horas corridas.
 - Haverá um evento de encerramento, em data a ser definida.

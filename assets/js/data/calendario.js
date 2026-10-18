@@ -1,6 +1,6 @@
 /* Fonte única dos encontros do curso — datas/links reais em
    .info/links_aulas_teams.md, temas em .info/modulos.md. Horário padronizado
-   08:00–10:00 (America/Sao_Paulo). Módulo 11 ainda sem link Teams definido. */
+   08:00–10:00 (America/Sao_Paulo). Módulo 11: 07:30–13:30. */
 export const eventos = [
   { id: "m1-p1", modulo: 1, parte: 1, titulo: "Módulo 1 — Parte 1", tema: "Impactos do Ecossistema Digital na Comunicação Social", data: "2026-08-04", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/236209397406231?p=ROMe7QamstNlzcHSL0", icsUrl: "" },
   { id: "m1-p2", modulo: 1, parte: 2, titulo: "Módulo 1 — Parte 2", tema: "Impactos do Ecossistema Digital na Comunicação Social", data: "2026-08-06", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/221374634084643?p=wYxSJBe5e38rGR21x5", icsUrl: "" },
@@ -31,7 +31,7 @@ export const eventos = [
 
   { id: "m9-p1", modulo: 9, parte: 1, titulo: "Módulo 9 — Parte 1", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-13", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/223337149942064?p=zVOEcB5PgMKzngK3AQ", icsUrl: "" },
   { id: "m9-p2", modulo: 9, parte: 2, titulo: "Módulo 9 — Parte 2", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-15", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/27191828360552?p=Xk019df77KNS5Wkq3z", icsUrl: "" },
-  { id: "m9-p3", modulo: 9, parte: 3, titulo: "Módulo 9 — Parte 3", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-17", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg", icsUrl: "" },
+  { id: "m9-p3", modulo: 9, parte: 3, titulo: "Módulo 9 — Parte 3", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-20", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg", icsUrl: "" },
   { id: "m9-p4", modulo: 9, parte: 4, titulo: "Módulo 9 — Parte 4", tema: "Convergência tecnológica: impacto das OTTs na indústria global de Telecomunicações", data: "2026-10-22", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/272223791649605?p=oFbvzJi1x7qJdaeEcu", icsUrl: "" },
 
   { id: "m10-p1", modulo: 10, parte: 1, titulo: "Módulo 10 — Parte 1", tema: "Cenários prospectivos do futuro da Internet", data: "2026-10-24", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP", icsUrl: "" },
@@ -39,5 +39,5 @@ export const eventos = [
   { id: "m10-p3", modulo: 10, parte: 3, titulo: "Módulo 10 — Parte 3", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-03", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7", icsUrl: "" },
   { id: "m10-p4", modulo: 10, parte: 4, titulo: "Módulo 10 — Parte 4", tema: "Cenários prospectivos do futuro da Internet", data: "2026-11-05", inicio: "08:00", fim: "10:00", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3", icsUrl: "" },
 
-  { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "07:30", fim: "11:30", tipo: "aula", teamsUrl: "", icsUrl: "" },
+  { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "07:30", fim: "13:30", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/254314806990319?p=6X0RP8Lly5WpWVEWdy", icsUrl: "" },
 ];
