@@ -41,3 +41,10 @@ export const eventos = [
 
   { id: "m11-p1", modulo: 11, parte: 1, titulo: "Módulo 11", tema: "Oficina com Lideranças Regulatórias", data: "2026-11-10", inicio: "07:30", fim: "13:30", tipo: "aula", teamsUrl: "https://teams.microsoft.com/meet/254314806990319?p=6X0RP8Lly5WpWVEWdy", icsUrl: "" },
 ];
+
+/* Marcos que não são encontros ao vivo (prazos do estudo de caso — ver
+   avaliação geral em index.html). Usados só pela agenda completa oculta. */
+export const marcos = [
+  { id: "prazo-proposta", titulo: "Entrega da proposta do estudo de caso", descricao: "Título, resumo e justificativa da pertinência do tema, enviados à coordenação para validação.", data: "2026-11-20", tipo: "prazo" },
+  { id: "prazo-final", titulo: "Entrega final do estudo de caso", descricao: "Envio do estudo de caso completo, no formato e na estrutura definidos na avaliação do curso.", data: "2026-12-20", tipo: "prazo" },
+];
