@@ -412,17 +412,17 @@
     "titulo": "Aula do Módulo 10 — Parte 1 programada",
     "mensagem": "A Parte 1 do Módulo 10 — Cenários prospectivos do futuro da Internet — está programada.",
     "tipo": "confirmacao",
-    "dataPublicacao": "2026-10-23T08:00:00-03:00",
-    "dataInicio": "2026-10-24T08:00:00-03:00",
-    "dataFim": "2026-10-24T10:00:00-03:00",
+    "dataPublicacao": "2026-10-26T08:00:00-03:00",
+    "dataInicio": "2026-10-27T08:00:00-03:00",
+    "dataFim": "2026-10-27T10:00:00-03:00",
     "moduleId": "modulo-10",
     "lessonId": "aula-1",
     "linkType": "teams",
     "textoLink": "Entrar na aula",
     "prioridade": 3,
     "ativo": true,
-    "arquivarApos": "2026-10-24T10:30:00-03:00",
-    "exibirLinkAPartirDe": "2026-10-24T07:15:00-03:00"
+    "arquivarApos": "2026-10-27T10:30:00-03:00",
+    "exibirLinkAPartirDe": "2026-10-27T07:15:00-03:00"
   },
   {
     "id": "aula-modulo-10-parte-2",

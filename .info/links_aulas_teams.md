@@ -25,7 +25,7 @@
 |    | 15/10 | Parte 2 | https://teams.microsoft.com/meet/27191828360552?p=Xk019df77KNS5Wkq3z  | |
 |    | 20/10 | Parte 3 | https://teams.microsoft.com/meet/274555399737937?p=VX74MumA9uuu2F87Tg | |
 |    | 22/10 | Parte 4 | https://teams.microsoft.com/meet/272223791649605?p=oFbvzJi1x7qJdaeEcu | |
-| 10 | 24/10 | Parte 1 | https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP | [Cenários prospectivos do futuro da Internet](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing)     |
+| 10 | 27/10 | Parte 1 | https://teams.microsoft.com/meet/288516193797680?p=uiCe0XQ8NhfZoft2TP | [Cenários prospectivos do futuro da Internet](https://drive.google.com/file/d/14qpYo0VT2c1kudV1spTjnp1pCza8pCNe/view?usp=sharing)     |
 |    | 29/10 | Parte 2 | https://teams.microsoft.com/meet/221232043114894?p=LcDFHCGHhEPfCxxTr7 | |
 |    | 03/11 | Parte 3 | https://teams.microsoft.com/meet/280486001865369?p=Zr5k738NVHJPtErVo7 | |
 |    | 05/11 | Parte 4 | https://teams.microsoft.com/meet/292607075753504?p=DiMLM78zQ62LGaonL3 | |

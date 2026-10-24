@@ -25,7 +25,7 @@
 |    | 15/10 | Parte 2 | a definir | a definir | |
 |    | 20/10 | Parte 3 | a definir | a definir | |
 |    | 22/10 | Parte 4 | a definir | a definir | |
-| 10 | 24/10 | Parte 1 | a definir | a definir | Cenários prospectivos do futuro da Internet  |
+| 10 | 27/10 | Parte 1 | a definir | a definir | Cenários prospectivos do futuro da Internet  |
 |    | 29/10 | Parte 2 | a definir | a definir | |
 |    | 03/11 | Parte 3 | a definir | a definir | |
 |    | 05/11 | Parte 4 | a definir | a definir | |
