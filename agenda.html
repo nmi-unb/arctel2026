@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>Agenda completa | NMI</title>
+
+  <link rel="icon" href="./assets/img/favicon/favicon.ico" />
+  <link rel="icon" type="image/png" href="./assets/img/favicon/favicon-32x32.png" sizes="32x32" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/pages/agenda.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" href="./agenda.html">
+      <img src="./assets/img/logo/logo-nmi.svg" alt="NMI - Núcleo de Estudos em Políticas, Direito, Economia e Tecnologia das Comunicações" />
+    </a>
+  </header>
+
+  <main>
+    <section class="agenda container" aria-label="Agenda completa" data-agenda>
+      <h1 class="section-title">Agenda completa</h1>
+      <p class="agenda__intro">Todos os meses com atividades do curso. Clique no nome de um mês para listar só as atividades dele; clique de novo para ver todas.</p>
+
+      <ul class="agenda__legenda" aria-label="Legenda">
+        <li><span class="agenda__legenda-cor"></span> Aula</li>
+        <li><span class="agenda__legenda-cor agenda__legenda-cor--prazo"></span> Prazo</li>
+        <li><span class="agenda__legenda-cor agenda__legenda-cor--hoje"></span> Hoje</li>
+      </ul>
+
+      <div class="agenda__meses" data-agenda-meses></div>
+
+      <div class="agenda__lista" data-agenda-lista aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/pages/agenda-page.js"></script>
+</body>
+</html>
