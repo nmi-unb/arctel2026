@@ -144,6 +144,15 @@
   border-radius: 12px;
 }
 
+/* Textos de tamanhos diferentes (nome/cargo em 1–4 linhas) deixavam as
+   etiquetas em alturas distintas. Os <li> esticam até a altura da linha do
+   grid; a etiqueta vai para o fim do card com margin-top: auto, então todas
+   ficam alinhadas na mesma linha horizontal. */
+.oficina-gallery--guests .oficina-status,
+.oficina-gallery--guests .oficina-tbd {
+  margin-top: auto;
+}
+
 .oficina-dynamics-list {
   list-style: none;
   margin: 12px 0 0;
