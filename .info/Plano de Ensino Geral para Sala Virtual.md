@@ -151,5 +151,5 @@ O curso terá o seguinte cronograma, podendo haver realocações de módulos seg
 **Obs.:**
 
 - Haverá uma aula magna no início das atividades, a ser proferida por representante da Anatel.
-- A Oficina com Lideranças Regulatórias ocorrerá ao final do curso em 10/11/2026, das 7h30 às 13h30 (horário de Brasília), com duração de 6 horas corridas.
+- A Oficina com Lideranças Regulatórias ocorrerá ao final do curso em 10/11/2026, das 7h30 às 12h30 (horário de Brasília), com duração de 6 horas corridas.
 - Haverá um evento de encerramento, em data a ser definida.

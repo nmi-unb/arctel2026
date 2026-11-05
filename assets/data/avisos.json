@@ -482,14 +482,14 @@
     "tipo": "confirmacao",
     "dataPublicacao": "2026-11-09T08:00:00-03:00",
     "dataInicio": "2026-11-10T07:30:00-03:00",
-    "dataFim": "2026-11-10T13:30:00-03:00",
+    "dataFim": "2026-11-10T12:30:00-03:00",
     "moduleId": "modulo-11",
     "lessonId": "aula-1",
     "linkType": "teams",
     "textoLink": "Entrar na aula",
     "prioridade": 3,
     "ativo": true,
-    "arquivarApos": "2026-11-10T14:00:00-03:00",
+    "arquivarApos": "2026-11-10T13:00:00-03:00",
     "exibirLinkAPartirDe": "2026-11-10T07:15:00-03:00"
   },
   {
