@@ -110,7 +110,14 @@
 }
 
 .oficina-gallery--guests {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 12px;
+}
+
+.oficina-gallery--guests .oficina-gallery__item {
+  flex: 0 1 calc((100% - 30px) / 3);
 }
 
 .oficina-gallery__name {
@@ -184,5 +191,9 @@
 @media (max-width: 760px) {
   .oficina-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .oficina-gallery--guests .oficina-gallery__item {
+    flex: 0 1 calc((100% - 15px) / 2);
   }
 }
