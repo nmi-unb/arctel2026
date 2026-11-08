@@ -128,7 +128,19 @@
   opacity: 1;
 }
 
-.calendario__highlight--encerrado .calendario__actions {
+/* .calendario__highlight define display:flex, que vence o `hidden` do UA —
+   sem isso o card vazio ("Carregando…") nunca some de verdade. */
+.calendario__highlight[hidden] {
+  display: none;
+}
+
+/* Um card só (último encontro ou aviso de encerramento): centralizado. */
+.calendario__proxima-grid--unico {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
+
+.calendario__btn[hidden] {
   display: none;
 }
 
