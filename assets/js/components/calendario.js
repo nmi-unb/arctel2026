@@ -243,7 +243,10 @@ function renderCard(cardRefs, evento, now) {
   cardRefs.card.hidden = false;
   cardRefs.card.classList.remove("calendario__highlight--encerrado");
   cardRefs.actions.hidden = false;
+  cardRefs.teamsBtn.hidden = false;
+  cardRefs.avaliacaoBtn.hidden = true;
   cardRefs.tema.hidden = false;
+  cardRefs.dataWrap.hidden = false;
 
   cardRefs.titulo.textContent = evento.titulo;
   cardRefs.tema.textContent = evento.tema;
@@ -257,28 +260,54 @@ function renderCard(cardRefs, evento, now) {
   renderTeamsBtn(cardRefs.teamsBtn, evento, now);
 }
 
+/* Depois do último encontro o card vira um aviso: as aulas síncronas
+   acabaram e os próximos prazos (estudo de caso) estão no tópico Avaliação —
+   o botão leva até lá. */
 function renderCardEncerrado(cardRefs, ultimo) {
   cardRefs.card.hidden = false;
   cardRefs.card.classList.add("calendario__highlight--encerrado");
   cardRefs.liveBadge.hidden = true;
-  cardRefs.titulo.textContent = "Curso encerrado";
-  cardRefs.tema.textContent = "";
-  cardRefs.tema.hidden = true;
-  cardRefs.data.textContent = ultimo
-    ? `Último encontro: ${formatDataHora(buildInstant(ultimo, "inicio"), buildInstant(ultimo, "fim"))}`
-    : "";
-  cardRefs.actions.hidden = true;
+  cardRefs.titulo.textContent = "As aulas síncronas foram encerradas";
+
+  const { day, month } = ultimo ? partsInTimezone(buildInstant(ultimo, "inicio")) : {};
+  const quando = ultimo ? ` O último encontro foi em ${day}/${String(month + 1).padStart(2, "0")}.` : "";
+  cardRefs.tema.textContent = `${quando.trim()} Os próximos prazos estão no tópico Avaliação — acompanhe por lá.`.trim();
+  cardRefs.tema.hidden = false;
+
+  cardRefs.dataWrap.hidden = true;
+  cardRefs.actions.hidden = false;
+  cardRefs.teamsBtn.hidden = true;
+  cardRefs.avaliacaoBtn.hidden = false;
+}
+
+/* Com só um card (último encontro, ou aviso de encerramento) ele fica
+   centralizado em vez de ocupar a primeira coluna sozinho. */
+function centralizarSeUnico(cards) {
+  const grid = cards[0].card.parentElement;
+  grid.classList.toggle("calendario__proxima-grid--unico", cards[1].card.hidden);
+}
+
+/* O accordion de módulos não abre por hash, então o botão abre "Avaliação"
+   (se estiver fechado) e rola até ele. */
+function irParaAvaliacao(event) {
+  event.preventDefault();
+  const toggle = document.getElementById("avaliacao-geral-toggle");
+  if (!toggle) return;
+  if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
+  document.getElementById("avaliacao-geral")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderDestaque(cards, proximo, seguinte, ultimo, now) {
   if (!proximo) {
     renderCardEncerrado(cards[0], ultimo);
     renderCard(cards[1], null, now);
+    centralizarSeUnico(cards);
     return;
   }
 
   renderCard(cards[0], proximo, now);
   renderCard(cards[1], seguinte, now);
+  centralizarSeUnico(cards);
 }
 
 function renderEvento(evento) {
@@ -382,8 +411,13 @@ function buildCardRefs(cardEl) {
     if (teamsBtn.getAttribute("aria-disabled") === "true") event.preventDefault();
   });
 
+  const avaliacaoBtn = cardEl.querySelector("[data-calendario-avaliacao]");
+  avaliacaoBtn.addEventListener("click", irParaAvaliacao);
+
   return {
     card: cardEl,
+    avaliacaoBtn,
+    dataWrap: cardEl.querySelector("[data-calendario-datahora]").closest(".calendario__datahora"),
     liveBadge: cardEl.querySelector("[data-calendario-live]"),
     titulo: cardEl.querySelector("[data-calendario-titulo]"),
     tema: cardEl.querySelector("[data-calendario-tema]"),
