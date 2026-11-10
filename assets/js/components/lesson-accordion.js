@@ -85,11 +85,25 @@ function buildTeamsPill(teamsHref, inicio, fim, now) {
   return createPill({ className: "lesson-pill--teams", href: teamsHref, text: "Teams", disabled: false });
 }
 
+/* links.youtubeRecordedParts (opcional): aula gravada em várias partes ->
+   1 pill de gravação por item, em vez da pill única. */
 function buildTransmissaoPills(links, inicio, fim, now) {
+  const teamsPill = buildTeamsPill(links?.teams, inicio, fim, now);
+  const parts = Array.isArray(links?.youtubeRecordedParts) ? links.youtubeRecordedParts.filter((p) => p?.url) : [];
+
+  if (parts.length) {
+    return [
+      teamsPill,
+      ...parts.map((part) =>
+        createPill({ className: "lesson-pill--youtube", href: part.url, text: part.title || "Gravação", disabled: false })
+      ),
+    ];
+  }
+
   const gravacaoHref = links?.youtubeRecorded || links?.youtubeLive;
 
   return [
-    buildTeamsPill(links?.teams, inicio, fim, now),
+    teamsPill,
     createPill({
       className: "lesson-pill--youtube",
       href: gravacaoHref,
@@ -162,11 +176,14 @@ function renderLesson(lesson, moduloNumero, now) {
   inner.className = "lesson-item__body-inner";
 
   renderGroup(inner, "Transmissão", buildTransmissaoPills(lesson.links, inicio, fim, now));
-  renderGroup(
-    inner,
-    "Materiais do professor",
-    buildMaterialPills(lesson.materials?.professor, "lesson-pill--material", "Slides (em breve)")
-  );
+  /* materials.professor === null -> aula sem slides: omite o grupo. */
+  if (lesson.materials?.professor !== null) {
+    renderGroup(
+      inner,
+      "Materiais do professor",
+      buildMaterialPills(lesson.materials?.professor, "lesson-pill--material", "Slides (em breve)")
+    );
+  }
   renderGroup(
     inner,
     "Atividades substitutas (Opcional)",
