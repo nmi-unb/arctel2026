@@ -10,16 +10,31 @@
       "links": {
         "teams": "https://teams.microsoft.com/meet/254314806990319?p=6X0RP8Lly5WpWVEWdy",
         "youtubeLive": null,
-        "youtubeRecorded": null
+        "youtubeRecorded": "https://youtu.be/pP568g00dZw"
       },
       "materials": {
         "professor": [],
-                "replacementCourses": [
+        "replacementCourses": [
           {
             "title": "Atividade",
             "url": "https://lms.iaclube.help/arctel"
           }
         ]
+      }
+    },
+    {
+      "numero": 2,
+      "titulo": "Aula 2",
+      "dataInicio": null,
+      "dataFim": null,
+      "links": {
+        "teams": null,
+        "youtubeLive": null,
+        "youtubeRecorded": "https://youtu.be/8VXmo--tN-c"
+      },
+      "materials": {
+        "professor": [],
+        "replacementCourses": []
       }
     }
   ]
