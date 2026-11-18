@@ -86,3 +86,13 @@ toolbox run git_commit -- "C:\Users\anton\OneDrive\Documentos\GitHub\.deploy\arc
 
 toolbox run git_commit -- "C:\Users\Cadu\Documents\GitHub\.deploy\arctel2026" --msg "+" --all --sync
 ```
+
+# Cache Reload
+
+```bash
+# Projeto específico
+toolbox run cache_reload
+
+# Apenas reporta o que mudaria
+toolbox run cache_reload --dry-run
+```
